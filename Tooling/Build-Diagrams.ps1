@@ -7,9 +7,6 @@ $outputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 
 [IO.Directory]::CreateDirectory($outputPath) | Out-Null
 
-# Remove any existing diagram build output.
-Get-ChildItem -Path $outputPath -Filter "*.png" | Remove-Item
-
 # And build the diagrams anew.
 $plantuml = Join-Path $PSScriptRoot "plantuml.jar"
 $graphviz = Join-Path $PSScriptRoot "graphviz"

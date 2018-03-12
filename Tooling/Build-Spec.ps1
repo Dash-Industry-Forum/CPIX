@@ -12,9 +12,6 @@ $ErrorActionPreference = "Stop"
 $inputPath = Split-Path -Parent $PSScriptRoot
 $outputDirectoryPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 
-# Clean existing .html files.
-Get-ChildItem -Path $outputDirectoryPath -Filter "*.html" | Remove-Item
-
 Get-ChildItem -Path $inputPath -Filter "*.bs" | ForEach-Object {
     $outputPath = Join-Path $outputDirectoryPath ($_.BaseName + ".html")
 
