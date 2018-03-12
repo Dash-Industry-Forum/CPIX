@@ -1,20 +1,20 @@
-﻿<pre class="metadata">
-Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
-Status: LS
-Revision: 2.1
-ED: https://dashif.org/guidelines/
-Shortname: cpix
-Level: none
-Editor: DASH-IF IOP, Content Protection and Security task force
-Abstract: None
-
+<pre class="metadata">
 Date: 2018-03-07
+Revision: 2.1
+
+Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
+Status: LD
+Shortname: cpix
+URL: https://dashif.org/guidelines/
 Issue Tracking: GitHub https://github.com/Dash-Industry-Forum/CPIX/issues
 Repository: https://github.com/Dash-Industry-Forum/CPIX GitHub
+Editor: DASH-IF IOP, Content Protection and Security task force
+
 Default Highlight: text
 Line Numbers: on
 Markup Shorthands: markdown yes
 Boilerplate: copyright off, abstract off
+Abstract: None
 </pre>
 
 <pre class="biblio">
@@ -64,28 +64,19 @@ Boilerplate: copyright off, abstract off
 <!-- This disables the RFC2119 conformance section, as we use custom DASH-IF specific text for this.  -->
 </pre>
 
+<pre boilerplate="logo">
+<a href="https://dashif.org/"><img src="DASH-IF.png" /></a>
+</pre>
+
 # Scope # {#scope}
 
-The scope of this document is to define a Content Protection Information Exchange Format (CPIX). The CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
+The scope of this document is to define a Content Protection Information Exchange Format (CPIX). A CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example, DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
 
-This specification describes version 2.1 of the CPIX document. Detailed changes with respect to Version 2.0 are tracked under https://github.com/Dash-Industry-Forum/CPIX/issues. Highlighted changes are:
-<ul>
-  <li>Updated HLS signalization support and added the support for Smooth Streaming</li>
-  <li>Added new label attributes to usages rules for keys and corrected.</li>
-  <li>Added key hierarchy support (2 layers of keys).</li>
-</ul>
+This specification describes version 2.1 of the CPIX document. Detailed changes with respect to version 2.0 are tracked under https://github.com/Dash-Industry-Forum/CPIX/issues. Highlighted changes are:
 
-Changes between version 1.0 and version 2.0 are:
-<ul>
-  <li>The CPIX document structure has been extensively revised in order to make it more generic so that media formats other than those described in [[!DASH-IF-IOP]] can be accommodated.
-	<ul>
-		<li>It no longer mirrors the structure of an MPD file, but rather contains rules to describe the mapping of streams to content keys.</li>
-		<li>It allows for supporting additional DRM signaling schemes by allowing alternative types of DRM signaling elements.</li>
-	</ul>
-  </li>
-  <li>Sets of elements can be authenticated by means of XML element signing.</li>
-  <li>Versioning has been added so that the history of added elements can be tracked.</li>
-</ul>
+* Updated HLS signalization support and added the support for Smooth Streaming
+* Added new label attributes to usages rules for keys and corrected.
+* Added key hierarchy support (2 layers of keys).
 
 # Disclaimer # {#disclaimer}
 
