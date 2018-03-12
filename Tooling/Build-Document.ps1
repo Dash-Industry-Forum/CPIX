@@ -17,12 +17,16 @@ $outputDirectoryPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 Get-ChildItem -Path $inputPath -Filter "*.bs" | ForEach-Object {
     $outputPath = Join-Path $outputDirectoryPath ($_.BaseName + ".html")
 
-    Write-Host "Building $($_.FullName)"
-
     if ($force) {
+        Write-Host "Building $($_.FullName)"
         [Bikeshed]::Compile($_.FullName, $true) | Out-File $outputPath
     }
     else {
+        # First validate, because build only fails on super critical errors.
+        Write-Host "Validating $($_.FullName)"
+        [Bikeshed]::Validate($_.FullName)
+
+        Write-Host "Building $($_.FullName)"
         [Bikeshed]::Compile($_.FullName, $false) | Out-File $outputPath
     }
 }
