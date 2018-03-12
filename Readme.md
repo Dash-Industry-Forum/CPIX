@@ -1,5 +1,7 @@
 # Content Protection Information Exchange Format (CPIX)
 
+Join the discussion: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+
 The latest published version of CPIX can be found on the [DASH-IF website](https://dashif.org/guidelines/).
 
 This repository contains the source files and issue tracker for CPIX. Contributions are welcome!
