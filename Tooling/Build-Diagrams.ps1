@@ -3,7 +3,9 @@ $ErrorActionPreference = "Stop"
 & (Join-Path $PSScriptRoot "Verify-Install.ps1")
 
 $inputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Diagrams"
-$outputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Diagrams-Png"
+$outputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
+
+[IO.Directory]::CreateDirectory($outputPath) | Out-Null
 
 # Remove any existing diagram build output.
 Get-ChildItem -Path $outputPath -Filter "*.png" | Remove-Item
