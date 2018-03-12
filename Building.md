@@ -14,6 +14,10 @@ Then execute */Tooling/Build-All.ps1* in PowerShell to build the document. This 
 
 You can find the publishable output in the */Output/* directory.
 
+# Visual Studio Code integration
+
+If you use Visual Studio Code as your text editor, the build script is already wired up to the editor's build shortcut (Control+Shift+B).
+
 # Building on Linux
 
 It should be relatively easy to enable the build process to also support building on Linux. This has not been done simply because it has not proven sufficiently necessary yet. If you wish to extend the build process to support Linux, that would be a valuable contribution.
