@@ -4,6 +4,8 @@ The main text of the document is in the *Index.bs* file.
 It is written in the [Bikeshed](https://github.com/tabatkins/bikeshed) format,
 which is a mixture of [Markdown](http://commonmark.org/help/) and HTML.
 
+XML Schema files are in the repository root directory.
+
 Diagrams are created as [PlantUML](http://plantuml.com/) text documents
 that are compiled into PNG images for publishing. You can find the diagram definitions
 in the */Diagrams/* directory.
