@@ -2,6 +2,8 @@ $ErrorActionPreference = "Stop"
 
 & (Join-Path $PSScriptRoot "Verify-Install.ps1")
 
+Write-Host "Building diagrams."
+
 $inputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Diagrams"
 $outputPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 

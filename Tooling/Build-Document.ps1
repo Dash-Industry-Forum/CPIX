@@ -6,6 +6,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+Write-Host "Compiling Bikeshed document to HTML."
+
 . $PSScriptRoot/Functions.ps1
 
 # Any *.bs file in the input will be transformed into *.html in the output.

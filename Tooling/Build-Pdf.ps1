@@ -9,6 +9,7 @@ $ErrorActionPreference = "Stop"
 . $PSScriptRoot/Functions.ps1
 
 # Converts any .html file in the Output directory to .pdf.
+Write-Host "Converting HTML to PDF."
 
 $directoryPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 
