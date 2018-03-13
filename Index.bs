@@ -938,8 +938,8 @@ Each <{DeliveryData}> element identifies a Delivery Key, which is a public key f
 The below figure gives the schema of encryption of the different keys when there are several <{DeliveryData}> elements and several <{ContentKey}> Elements. The Document Key allows reducing the numbers of <{ContentKey}> Elements as the Content Key they contain are all encrypted by the same Document Key.
 
 <figure>
-	<img src="CpixKeys.png" />
-	<figcaption>Keys Used to Secure the CPIX document.</figcaption>
+	<img src="DocumentKeyStructure.png" />
+	<figcaption>Encryption relationships within the CPIX document. Blue indicates encrypted data.</figcaption>
 </figure>
 
 ### Authenticated Encryption ### {#keys-enc-mac}
