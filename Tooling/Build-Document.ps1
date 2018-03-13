@@ -14,6 +14,8 @@ Write-Host "Compiling Bikeshed document to HTML."
 $inputPath = Split-Path -Parent $PSScriptRoot
 $outputDirectoryPath = Join-Path (Split-Path -Parent $PSScriptRoot) "Output"
 
+[IO.Directory]::CreateDirectory($outputDirectoryPath) | Out-Null
+
 Get-ChildItem -Path $inputPath -Filter "*.bs" | ForEach-Object {
     $outputPath = Join-Path $outputDirectoryPath ($_.BaseName + ".html")
 

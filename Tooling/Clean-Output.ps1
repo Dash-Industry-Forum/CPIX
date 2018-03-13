@@ -12,4 +12,6 @@ if (Test-Path $outputDirectoryPath) {
     Get-ChildItem -Path $outputDirectoryPath | Remove-Item -Force -Recurse
 }
 
+[IO.Directory]::CreateDirectory($outputDirectoryPath) | Out-Null
+
 Get-ChildItem $staticFilesPath | % { Copy-Item -Path $_.FullName $outputDirectoryPath -Recurse }
