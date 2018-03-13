@@ -1,0 +1,26 @@
+@startuml
+hide footbox
+
+title Part 1
+
+participant "Key Server" as KeyServer
+participant "Policy Engine" as PolicyEngine
+participant "DRM System" as DrmSystem
+
+KeyServer->PolicyEngine: CPIX document with:\n\
+* Encrypted Content Keys\n\
+* Content Keys signed by Key Server\n\
+* Delivery data for Encryption Engine\n\
+* Key Usage Rules\n\
+* Key Usage Rules signed by Key Server\n\
+* Document signed by Key Server
+
+PolicyEngine->DrmSystem: CPIX document with:\n\
+* Encrypted Content Keys\n\
+* Content Keys signed by Key Server\n\
+* Delivery data for Encryption Engine\n\
+* **Key Usage Rules (updated)**\n\
+* **Key Usage Rules signed by Policy Engine**\n\
+* **Document signed by Policy Engine**
+
+@enduml
