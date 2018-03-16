@@ -2,7 +2,7 @@
 <!-- edited with XMLSpy v2008 (http://www.altova.com) by It licence (Nagravision SA) -->
 <xs:schema xmlns:cpix="urn:dashif:org:cpix" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="urn:dashif:org:cpix" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
-	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
 	<xs:import namespace="urn:ietf:params:xml:ns:keyprov:pskc" schemaLocation="pskc.xsd"/>
 	<xs:complexType name="UpdateHistoryItemType">
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
@@ -78,7 +78,7 @@
 			<xs:element name="ContentProtectionData" type="xs:base64Binary" minOccurs="0"/>
 			<xs:element name="URIExtXKey" type="xs:base64Binary" minOccurs="0"/>
 			<xs:element name="HLSSignalingData" type="xs:base64Binary" minOccurs="0"/>
-			<xs:element name="SmoothStreamingProtectionHeaderData" type="xs:base64Binary" minOccurs="0"/>
+			<xs:element name="SmoothStreamingProtectionHeaderData" type="xs:string" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
