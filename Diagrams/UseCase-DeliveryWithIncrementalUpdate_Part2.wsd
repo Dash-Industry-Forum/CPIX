@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+
+title Part 2
+
+participant "DRM System" as DrmSystem
+participant "Encryption Engine" as Encryptor
+participant Packager
+
+DrmSystem->Encryptor: CPIX document with:\n\
+* Encrypted Content Keys\n\
+* Content Keys signed by Key Server\n\
+* Delivery data for Encryption Engine\n\
+* Key Usage Rules\n\
+* Key Usage Rules signed by Policy Engine\n\
+* **DRM system signaling**\n\
+* **DRM system signaling signed by DRM system**\n\
+* **Document signed by DRM system**
+
+Encryptor->Packager: CPIX document with:\n\
+* Encrypted Content Keys\n\
+* Content Keys signed by Key Server\n\
+* Delivery data for Encryption Engine\n\
+* **Key Usage Rules (updated)**\n\
+* **Key Usage Rules signed by Encryption Engine**\n\
+* DRM system signaling\n\
+* DRM system signaling signed by DRM system\n\
+* **Document signed by Encryption Engine**
+
+@enduml

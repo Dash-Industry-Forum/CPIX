@@ -1,0 +1,10 @@
+@startuml
+hide footbox
+
+participant "Service A" as A
+participant "Service B" as B
+
+A->B: CPIX document with:\n\
+* Content Keys
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+package "Recipient A delivery data" {
+    [Document key] as DKforA #lightskyblue
+    [Recipient A public key] as KpubA
+
+    KpubA <-- DKforA : Encrypted with
+}
+
+package "Recipient B delivery data" {
+    [Document key] as DKforB #lightskyblue
+    [Recipient B public key] as KpubB
+
+    KpubB <-- DKforB : Encrypted with
+}
+
+[Content key 1] as Key1 #lightskyblue
+[Content key 2] as Key2 #lightskyblue
+
+Key1 -up-> DKforA : Encrypted with
+Key1 -up-> DKforB
+
+Key2 -up-> DKforA : Encrypted with
+Key2 -up-> DKforB
+
+@enduml

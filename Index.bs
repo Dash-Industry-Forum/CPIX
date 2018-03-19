@@ -209,10 +209,10 @@ This informative section gives details on how content protection information is 
 
 ### Content Key Delivery to One Entity ### {#usecase-delivery-to-one}
 
-In the simplest use case content protection information is made of a Content Key one entity sends some Content Keys to the other entity. This use case is summarized in the figure below.
+In the simplest use case content protection information is made of a Content Key one entity sends some Content Keys to the other entity.
 
 <figure>
-	<img src="UseCases-DeliveryToOne.png" />
+	<img src="UseCase-ClearDeliveryToOne.png" />
 	<figcaption>Content Key delivery to one entity.</figcaption>
 </figure>
 
@@ -220,10 +220,10 @@ The primary data model carried by content protection information document is mad
 
 ### Secure Content Key Delivery to Serveral Entities ### {#usecase-secure-delivery-to-many}
 
-This use case is an extension of [[#usecase-delivery-to-one]] and is compatible with the use cases presented in the following sections. This use case is summarized in the figure below.
+This use case is an extension of [[#usecase-delivery-to-one]] and is compatible with the use cases presented in the following sections.
 
 <figure>
-	<img src="UseCases-SecureDeliveryToMany.png" />
+	<img src="UseCase-EncryptedDeliveryToMany.png" />
 	<figcaption>Secure Content Key delivery to Several Entities.</figcaption>
 </figure>
 
@@ -235,16 +235,16 @@ In situations with more than one recipient, the document allows each one to decr
 
 These use cases are extension of [[#usecase-delivery-to-one]] and present different rules that can be applied on a Content Key when delivered to an entity. Each usage rule defines a set of filters that are used to define a Content Key Context. If a rule match is found, the Content Key referenced by the usage rule is to be used to encrypt the Content Key Context defined by the rule.
 
+<figure>
+	<img src="UseCase-DeliveryWithUsageRules.png" />
+	<figcaption>Content Key Delivery with key usage rules.</figcaption>
+</figure>
+
 A scenario where multiple Content Keys can be mapped to a single Content Key Context shall be considered invalid. A CPIX document must always match exactly zero or one Content Keys to any Content Key Context.
 
 #### Label Filter #### {#usecase-usagerules-labelfilter}
 
-This use case adds information to Content Keys that specifies how they are to be mapped to labelled Content Key Contexts, where the labeling system has been pre-agreed between the producer and consumer of the CPIX document. This use case is summarized in the figure below.
-
-<figure>
-	<img src="UseCases-Rules-LabelFilter.png" />
-	<figcaption>Content Key Delivery with Label Filter.</figcaption>
-</figure>
+This use case adds information to Content Keys that specifies how they are to be mapped to labelled Content Key Contexts, where the labeling system has been pre-agreed between the producer and consumer of the CPIX document.
 
 For example, labels might be the IDs of DASH adaptation sets or, for more compatibility with formats other than DASH, names of media files/directories or input values for arbitrary custom logic.
 
@@ -252,23 +252,13 @@ The recipient will use the added information to map Content Keys to Content Key 
 
 #### Key Period Filter #### {#usecase-usagerules-periodfilter}
 
-This use case adds information to Content Keys that specifies how they are to be mapped to key periods, a.k.a. crypto-periods for Content Key rotation. The mapping is accomplished by defining key periods and mapping Content Keys to any number of key periods. This use case is summarized in the figure below.
-
-<figure>
-	<img src="UseCases-Rules-KeyPeriodFilter.png" />
-	<figcaption>Content Key Delivery with Period Filter.</figcaption>
-</figure>
+This use case adds information to Content Keys that specifies how they are to be mapped to key periods, a.k.a. crypto-periods for Content Key rotation. The mapping is accomplished by defining key periods and mapping Content Keys to any number of key periods.
 
 The recipient will use the added information to map Content Keys to time periods.
 
 #### Policy-based Filters #### {#usecase-usagerules-policyfilters}
 
-This use case associates policy-based information with Content Keys, constraining how they define Content Key Contexts. Policy based filters are, for example, video or audio stream attributes and bitrate ranges. This use case is summarized in the figure below.
-
-<figure>
-	<img src="UseCases-Rules-PolicyFilters.png" />
-	<figcaption>Content Key Delivery with Policy-based Filters.</figcaption>
-</figure>
+This use case associates policy-based information with Content Keys, constraining how they define Content Key Contexts. Policy based filters are, for example, video or audio stream attributes and bitrate ranges.
 
 The recipient will use the added information to map Content Keys to Content Key Contexts according to the defined policy.
 
@@ -278,10 +268,10 @@ Having no policy in some dimension means that the Content Key Context is not con
 
 This use case is an extension of [[#usecase-delivery-to-one]] and is compatible with [[#usecase-usagerules]].
 
-This use case adds DRM System Signaling information to each Content Key. The recipient may embed this signaling into the data streams it generates. This use case is summarized in the figure below.
+This use case adds DRM System Signaling information to each Content Key. The recipient may embed this signaling into the data streams it generates.
 
 <figure>
-	<img src="UseCases-DrmSignaling.png" />
+	<img src="UseCase-DeliveryWithDrmSignaling.png" />
 	<figcaption>Content Key Delivery with DRM Signaling.</figcaption>
 </figure>
 
@@ -293,10 +283,11 @@ The recipient may use the part of signaling data that it understands and knows h
 
 ### Incremental Update and Extension of the Document ### {#usecase-incremental-authoring}
 
-This use case illustrates the usage of the content protection information document in a realistic workflow comprising multiple cooperating components that require a standardized data format for content protection information exchange. It is shown in the figure below.
+This use case illustrates the usage of the content protection information document in a realistic workflow comprising multiple cooperating components that require a standardized data format for content protection information exchange.
 
 <figure>
-	<img src="UseCases-IncrementalAuthoring.png" />
+	<img src="UseCase-DeliveryWithIncrementalUpdate_Part1.png" />
+	<img src="UseCase-DeliveryWithIncrementalUpdate_Part2.png" />
 	<figcaption>Incremental Update and Extension of the Document.</figcaption>
 </figure>
 
@@ -947,8 +938,8 @@ Each <{DeliveryData}> element identifies a Delivery Key, which is a public key f
 The below figure gives the schema of encryption of the different keys when there are several <{DeliveryData}> elements and several <{ContentKey}> Elements. The Document Key allows reducing the numbers of <{ContentKey}> Elements as the Content Key they contain are all encrypted by the same Document Key.
 
 <figure>
-	<img src="CpixKeys.png" />
-	<figcaption>Keys Used to Secure the CPIX document.</figcaption>
+	<img src="DocumentKeyStructure.png" />
+	<figcaption>Encryption relationships within the CPIX document. Blue indicates encrypted data.</figcaption>
 </figure>
 
 ### Authenticated Encryption ### {#keys-enc-mac}
