@@ -595,7 +595,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: The primary use case is to enable the use of DRM systems that associate a single IV with each content key and whose DRM client implementations are unable to extract the IV from the content, requiring the license server to deliver the IV together with the content key upon request. A CPIX document can be used to supply the content key and IV together to the license server.
 :: Use of this attribute is not recommended except for compatibility with such DRM systems. Even if present in a CPIX document, the attribute should be ignored if solution-specific logic does not require it to be used.
 
-: <dfn>dependsOnKey</dfn> (M, xs:string)
+: <dfn>dependsOnKey</dfn> (O, xs:string)
 :: This attribute signals that the Content Key is a leaf key in a key hierarchy. It references the <{ContentKey/kid}> attribute of another ContentKey element describing the root key.
 :: The referenced key shall not be a leaf key.
 :: If this attribute is not specified, the Content Key is either a root key or does not participate in a key hierarchy. The CPIX document format does not make a distinction between these two cases.
