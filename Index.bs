@@ -665,6 +665,11 @@ The DRMSystem element contains all information on a DRM system that can be used 
 :: This element shall not be used if the referenced Content Key is a leaf key in a key hierarchy.
 :: This element has meaning only when a Smooth Streaming manifest is created for the media content.
 
+: <dfn>HDSSignalingData </dfn> (0...1, xs:base64binary)
+:: This is the full drmAdditionalHeader element to be added to the HDS playlist (including the beginning and ending tags). This is UTF-8 text without a byte order mark.
+:: This element shall not be used if the referenced Content Key is a leaf key in a key hierarchy.
+:: This element has meaning only when a Flash media manifest is created for the media content.
+
 </dl>
 
 Additional child elements not defined by DASH-IF may be present containing signaling data for other media formats. Such elements must appear after any elements defined here.
@@ -950,7 +955,7 @@ For every CPIX document, a MAC Key is created. It is used to calculate the MAC o
 
 **Authenticated Encryption of Content Keys**
 
-Implementations SHALL provide a MAC for every encrypted Content Key and SHALL verify the MAC before attempting to decrypt any encrypted Content Key. The purpose of the MAC is to protect against cryptographic vulnerabilities in the receiving application; it is not used as a general purpose authentication mechanism.
+Implementations shall provide a MAC for every encrypted Content Key and shall verify the MAC before attempting to decrypt any encrypted Content Key. The purpose of the MAC is to protect against cryptographic vulnerabilities in the receiving application; it is not used as a general purpose authentication mechanism.
 
 The MAC is calculated over the data in the *CipherValue* element (the concatenated IV and encrypted Content Key) and stored in the *ValueMac* element under the Secret element for each encrypted Content Key.
 
@@ -958,9 +963,9 @@ The MAC is calculated over the data in the *CipherValue* element (the concatenat
 
 Every element in the document that has an @id attribute can be signed according to [[!XMLDSIG-CORE]]. Furthermore, the document (including any other signatures) can be signed as a whole.
 
-Upon loading a CPIX document, implementations SHOULD verify that signatures are present on entities that are expected to be signed and verify all digital signatures that are present. Implementations SHOULD refuse to process a document if expected signatures are missing or if the signatures cannot be verified or if the signers are not trusted as authoritative sources for the signed data.
+Upon loading a CPIX document, implementations should verify that signatures are present on entities that are expected to be signed and verify all digital signatures that are present. Implementations should refuse to process a document if expected signatures are missing or if the signatures cannot be verified or if the signers are not trusted as authoritative sources for the signed data.
 
-Implementations SHOULD sign any elements that recipients wish to authenticate. Note that modifying any signed data will require any signatures on the data to be removed and/or re-applied. This requires the appropriate consideration and trust model design in content processing workflow creation (out of scope of this specification).
+Implementations should sign any elements that recipients wish to authenticate. Note that modifying any signed data will require any signatures on the data to be removed and/or re-applied. This requires the appropriate consideration and trust model design in content processing workflow creation (out of scope of this specification).
 
 ### Mandatory Algorithms ### {#keys-enc-algorithms}
 
