@@ -690,7 +690,7 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 ### <dfn element>ContentKeyPeriod</dfn> Element ### {#schema-contentkeyperiod}
 
-When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by `[start, end)`, meaning that the key is in use at the start time but not at the end time.
+When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by `[start, end)`, meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries interally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (<{ContentKeyPeriod/index}>). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriod">
 
@@ -731,7 +731,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyUsageRule">
 
-: <dfn>id</dfn> (O, xs:ID)
+: <dfn>id</dfn> (O, xs:	    ID)
 :: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>kid</dfn> (M, xs:string)
