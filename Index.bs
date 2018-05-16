@@ -731,7 +731,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyUsageRule">
 
-: <dfn>id</dfn> (O, xs:	    ID)
+: <dfn>id</dfn> (O, xs:ID)
 :: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>kid</dfn> (M, xs:string)
