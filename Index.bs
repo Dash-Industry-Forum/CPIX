@@ -695,7 +695,7 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 ### <dfn element>ContentKeyPeriod</dfn> Element ### {#schema-contentkeyperiod}
 
-When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by `[start, end)`, meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries interally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (<{ContentKeyPeriod/index}>). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
+When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by `[start, end)`, meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries internally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (<{ContentKeyPeriod/index}>). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriod">
 
