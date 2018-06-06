@@ -674,7 +674,7 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 ### <dfn element>HLSSignalingData</dfn> Element ### {#schema-HLSsignalingdata}
 
-The HLSSignalingData allows carrying base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. If <{HLSSignalingData/playlist}>not present then the HDSSignalingData goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one HLSSignalingData element in the CPIX document).
+The HLSSignalingData allows carrying base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. If <{HLSSignalingData/playlist}> is not present then the HDSSignalingData goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one HLSSignalingData element in the CPIX document).
 
 <dl dfn-type="element-attr" dfn-for="HLSSignalingData">
 
@@ -696,7 +696,7 @@ The HLSSignalingData allows carrying base64 encoded text. It has an optional att
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>ContentKeyPeriod</dfn> (0...N, <{ContentKeyPeriod}>)
-:: A list of ContentKeyPeriod element. For every [=Content Key=], ContentKeyPeriod elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the [=Content=] as some part may be in the clear.
+:: A list of ContentKeyPeriod element. For every [=Content Key=], ContentKeyPeriod elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the [=Content=] as some parts may be in the clear.
 
 </dl>
 
