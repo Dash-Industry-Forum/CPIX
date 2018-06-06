@@ -18,7 +18,7 @@
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="KeyPeriodFilterType">
-		<xs:attribute name="periodId" type="xs:string" use="required"/>
+		<xs:attribute name="periodId" type="xs:ID" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="LabelFilterType">
 		<xs:attribute name="label" type="xs:string" use="required"/>
@@ -72,12 +72,25 @@
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
 	</xs:complexType>
+	<xs:complexType name="HLSSignalingDataType">
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attribute name="playlist" type="cpix:PlaylistType" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="PlaylistType" final="restriction" >
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="master" />
+        <xs:enumeration value="variant" />
+    </xs:restriction>
+</xs:simpleType>
 	<xs:complexType name="DRMSystemType">
 		<xs:sequence>
 			<xs:element name="PSSH" type="xs:base64Binary" minOccurs="0"/>
 			<xs:element name="ContentProtectionData" type="xs:base64Binary" minOccurs="0"/>
 			<xs:element name="URIExtXKey" type="xs:base64Binary" minOccurs="0"/>
-			<xs:element name="HLSSignalingData" type="xs:base64Binary" minOccurs="0"/>
+			<xs:element name="HLSSignalingData" type="cpix:HLSSignalingDataType" minOccurs="0" maxOccurs="2"/>
 			<xs:element name="SmoothStreamingProtectionHeaderData" type="xs:string" minOccurs="0"/>
 			<xs:element name="HDSSignalingData" type="xs:base64Binary" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -136,8 +149,8 @@
 			<xs:element name="ReceivingEntity" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
-		<xs:attribute name="name" type="xs:string" use="optional"/>
 		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="DeliveryDataListType">
 		<xs:sequence>
