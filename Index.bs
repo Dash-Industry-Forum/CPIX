@@ -412,7 +412,7 @@ It shall allow generating MPD conformant to [[!DASH-IF-IOP]].
 
 Entities exchanging content protection information should be authenticated.
 
-# XSD Schema Definition # {#schema}
+# XML Schema Definition # {#schema}
 
 This section describes the Content Protection Information eXchange (CPIX) format to provide a framework to securely exchange [=Content Key=](s) and [=DRM Signaling=] between different system entities (see Section 2). This is an XML file that is described by the XSD provided in [[!CPIX-XSD]]. This section describes in details elements part of the schema.
 
@@ -732,12 +732,16 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyUsageRule">
 
+ContentKeyUsageRule specifies how to process specific streams or portions of. Whether they ought to be encrypted, and if so, which key to use for encryption. Exactly one ContentKeyUsageRule must exist for every stream or portion of a stream which make up the presentation, whether encrypted or clear. Otherwise, it is an error.
+
 : <dfn>id</dfn> (O, xs:ID)
 :: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: <dfn>kid</dfn> (M, xs:string)
-:: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
-:: In hierarchical key scenarios, this shall reference a leaf key, not a root key.
+: <dfn>encrypted</dfn> (O, xs:boolean)
+:: Specifies whether the content matching the rule ought to be encrypted. The default value for this attribute is "true", and may be omitted if <{ContentKeyUsageRule/kid}> is specified.
+
+: <dfn>kid</dfn> (O, xs:string)
+:: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references. This attribute should be omitted if <{ContentKeyUsageRule/encrypted}> is "false", but is required otherwise. In hierarchical key scenarios, this shall reference a leaf key, not a root key.
 
 : <dfn>intendedTrackType</dfn> (O, xs:string)
 :: Specifies the type of media track which corresponds to the streams which match the rules defined in this <{ContentKeyUsageRule}> element.
