@@ -651,8 +651,8 @@ The DRMSystem element contains all information on a DRM system that can be used 
 :: This element is present only when the content is in the HLS format.
 :: The use of this element is deprecated. Using <{DRMSystem/HLSSignalingData}> is recommended.
 
-: <dfn>HLSSignalingData</dfn> (0...1, xs:base64binary)
-:: This is the full data including the #EXT-X-KEY tag of a HLS playlist. This may contain multiple lines allowing to add lines with proprietary tags and values. This is UTF-8 text without a byte order mark.
+: <dfn>HLSSignalingData</dfn> (0...2, extended xs:base64binary)
+:: This is the full data including the #EXT-X-KEY or #EXT-X-SESSION-KEY tag of a HLS playlist depending on the destination of the data (see [[#schema-HLSsignalingdata]]). This may contain multiple lines allowing to add lines with proprietary tags and values. This is UTF-8 text without a byte order mark.
 :: This element shall not be used if the referenced [=Content Key=] is a leaf key in a key hierarchy.
 :: This element has meaning only when a HLS playlist is created for the media content.
 
@@ -672,6 +672,19 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 <img src="Schema-DRMSystem.png" />
 
+### <dfn element>HLSSignalingData</dfn> Element ### {#schema-HLSsignalingdata}
+
+The HLSSignalingData allows carrying base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. If <{HLSSignalingData/playlist}> is not present then the HDSSignalingData goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one HLSSignalingData element in the CPIX document).
+
+<dl dfn-type="element-attr" dfn-for="HLSSignalingData">
+
+: <dfn>playlist</dfn> (O, restricted xs:string)
+:: Specifies the destination of the data carried by this element. It can only have two values `master` and `media`.
+
+</dl>
+
+<img src="Schema-HLSSignalingData.png" />
+
 ### <dfn element>ContentKeyPeriodList</dfn> Element ### {#schema-contentkeyperiodlist}
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriodList">
@@ -683,7 +696,7 @@ Additional child elements not defined by DASH-IF may be present containing signa
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>ContentKeyPeriod</dfn> (0...N, <{ContentKeyPeriod}>)
-:: A list of ContentKeyPeriod element. For every [=Content Key=], ContentKeyPeriod elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the [=Content=] as some part may be in the clear.
+:: A list of ContentKeyPeriod element. For every [=Content Key=], ContentKeyPeriod elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the [=Content=] as some parts may be in the clear.
 
 </dl>
 
@@ -691,7 +704,7 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 ### <dfn element>ContentKeyPeriod</dfn> Element ### {#schema-contentkeyperiod}
 
-When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by `[start, end)`, meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries internally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (<{ContentKeyPeriod/index}>). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
+When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the interval is defined by [<{ContentKeyPeriod/start}>, <{ContentKeyPeriod/end}>), meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries internally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (<{ContentKeyPeriod/index}>). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
 
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriod">
 
@@ -699,13 +712,13 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 :: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>index</dfn> (O, xs:integer)
-:: Numerical index for the key period. Mutually exclusive with *start* and *end*.
+:: Numerical index for the key period. Mutually exclusive with <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}>.
 
 : <dfn>start</dfn> (O, xs:dateTime)
-:: Wall clock (Live) or media time (VOD) for the start time for the period. Mutually inclusive with *end*, and mutually exclusive with *index*.
+:: Wall clock (Live) or media time (VOD) for the start time for the period. Mutually inclusive with <{ContentKeyPeriod/end}>, and mutually exclusive with <{ContentKeyPeriod/index}>.
 
 : <dfn>end</dfn> (O, xs:dateTime)
-:: Wall clock (Live) or media time (VOD) for the end time for the period. Mutually inclusive with *start*, and mutually exclusive with *index*.
+:: Wall clock (Live) or media time (VOD) for the end time for the period. Mutually inclusive with <{ContentKeyPeriod/start}>, and mutually exclusive with <{ContentKeyPeriod/index}>.
 
 </dl>
 
@@ -865,11 +878,11 @@ When <{AudioFilter/minChannels}> and <{AudioFilter/maxChannels}> are present, th
 
 : <dfn>minBitrate</dfn> (O, xs:integer)
 :: The filter will only match samples from streams with a nominal bitrate in Mb/s of at least this value. The default value is 0 (zero).
-:: At least one of *minBitrate* and *maxBitrate* must be specified.
+:: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
 : <dfn>maxBitrate</dfn> (O, xs:integer)
 :: The filter will not match samples from streams with a nominal bitrate in Mb/s that exceeds this value. The default value is MAX_UINT32.
-:: At least one of *minBitrate* and *maxBitrate* must be specified.
+:: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
 </dl>
 
