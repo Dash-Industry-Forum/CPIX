@@ -567,7 +567,55 @@ The root element that carries the Content Protection Information for a set of me
 
 ### <dfn element>ContentKey</dfn> Element ### {#schema-contentkey}
 
-Extends *KeyType* defined in [[!RFC6030]]. The attributes *id* and *Algorithm* and the element *Data* are optional in this extension.
+This extends *KeyType* defined in [[!RFC6030]]. The following is modified in this extension:
+* The attributes *id* and *Algorithm* are optional
+* The element *Data* is optional
+* The optional attribute *Algorithm* can have the following URN values
+
+<table class="def">
+	<tr>
+		<th>URN</th>
+		<th>Algorithm description</th>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:dash:cenc</td>
+		<td>CENC cenc scheme</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:dash:cbcs</td>
+		<td>CENC cbcs scheme</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:dash:cbc1</td>
+		<td>CENC cbc1 scheme</td>
+	</tr>
+		<tr>
+		<td>urn:dashif:org:cpix:dash:cens</td>
+		<td>CENC cens scheme</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:hls:sampleaes</td>
+		<td>HLS SAMPLE-AES</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:hls:aes128</td>
+		<td>HLS AES-128</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:piff:ctr</td>
+		<td>Smooth Streaming PIFF CTR mode</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:piff:cbc</td>
+		<td>Smooth Streaming PIFF CBC mode</td>
+	</tr>
+	<tr>
+		<td>urn:dashif:org:cpix:hds:aes</td>
+		<td>HDS content encryption</td>
+	</tr>
+</table>
+
+Note: In case [=Content=] is ISOBMFF segements and is made available with both a DASH MPD and a HLS playlist, if used, it is recommended to set the optional attribute *Algorithm*  to the corresponding value from the four CENC possibilities.
 
 The key this element contains can be encrypted. If it is encrypted, it is encrypted with the key that is under the DocumentKey element part of the DeliveryData. Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
@@ -577,7 +625,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>Algorithm</dfn> (O, xs:ID)
-:: This is an attribute inherited from [[!RFC6039]] and made optional in this specification.
+:: This is an attribute inherited from [[!RFC6039]] and made optional in this specification. Allowed values are defined above.
 
 : <dfn>kid</dfn> (M, xs:string)
 :: The unique identifier of the [=Content Key=].
