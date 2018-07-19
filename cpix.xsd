@@ -79,12 +79,12 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<xs:simpleType name="PlaylistType" final="restriction" >
-    <xs:restriction base="xs:string">
-        <xs:enumeration value="master" />
-        <xs:enumeration value="variant" />
-    </xs:restriction>
-</xs:simpleType>
+	<xs:simpleType name="PlaylistType" final="restriction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="master"/>
+			<xs:enumeration value="variant"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="DRMSystemType">
 		<xs:sequence>
 			<xs:element name="PSSH" type="xs:base64Binary" minOccurs="0"/>
@@ -96,9 +96,10 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
+		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
 		<xs:attribute name="systemId" type="xs:string" use="required"/>
 		<xs:attribute name="kid" type="xs:string" use="required"/>
-		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="DRMSystemListType">
 		<xs:sequence>

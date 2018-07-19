@@ -1,5 +1,5 @@
 <pre class="metadata">
-Date: 2018-03-07
+Date: 2018-07-16
 Revision: 2.1
 
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
@@ -500,7 +500,7 @@ The root element that carries the Content Protection Information for a set of me
 
 : <dfn>DeliveryData</dfn> (0...N, <{DeliveryData}>)
 :: Contains the required information allowing defining which entities can get access to the [=Content Key=]s delivered in this document.
-:: There is one *DeliveryData* element per entity capable of accessing encrypted [=Content Key=]s stored in this document. If this element is not present, then the [=Content Key=]s are in the clear in the file.
+:: There is one <{DeliveryData}> element per entity capable of accessing encrypted [=Content Key=]s stored in this document. If this element is not present, then the [=Content Key=]s are in the clear in the file.
 
 </dl>
 
@@ -569,7 +569,7 @@ The root element that carries the Content Protection Information for a set of me
 
 Extends *KeyType* defined in [[!RFC6030]]. The attributes *id* and *Algorithm* and the element *Data* are optional in this extension.
 
-The key this element contains can be encrypted. If it is encrypted, it is encrypted with the key that is under the DocumentKey element part of the DeliveryData. Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
+The key this element contains can be encrypted. If it is encrypted, it is encrypted with the key that is under the <{DeliveryData/DocumentKey}> element part of the <{DeliveryData}>. Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
 <dl dfn-type="element-attr" dfn-for="ContentKey">
 
@@ -588,7 +588,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: Use of this attribute is not recommended except for compatibility with such DRM systems. Even if present in a CPIX document, the attribute should be ignored if solution-specific logic does not require it to be used.
 
 : <dfn>dependsOnKey</dfn> (O, xs:string)
-:: This attribute signals that the [=Content Key=] is a leaf key in a key hierarchy. It references the <{ContentKey/kid}> attribute of another ContentKey element describing the root key.
+:: This attribute signals that the [=Content Key=] is a leaf key in a key hierarchy. It references the <{ContentKey/kid}> attribute of another <{ContentKey}> element describing the root key.
 :: The referenced key shall not be a leaf key.
 :: If this attribute is not specified, the [=Content Key=] is either a root key or does not participate in a key hierarchy. The CPIX document format does not make a distinction between these two cases.
 
@@ -607,7 +607,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>DRMSystem</dfn> (0...N, <{DRMSystem}>)
-:: DRM system signaling information of a DRM system associated with a [=Content Key=].
+:: [=DRM Signaling=] of a DRM system associated with a [=Content Key=].
 
 </dl>
 
@@ -615,7 +615,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 
 ### <dfn element>DRMSystem</dfn> Element ### {#schema-drmsystem}
 
-The DRMSystem element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming, HLS amd HDS formats. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
+The <{DRMSystem}> element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming, HLS amd HDS formats. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
 
 <dl dfn-type="element-attr" dfn-for="DRMSystem">
 
@@ -630,6 +630,9 @@ The DRMSystem element contains all information on a DRM system that can be used 
 
 : <dfn>kid</dfn> (M, xs:string)
 :: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
+
+: <dfn>name</dfn> (O, xs:string)
+::  This is a human-readable name and version of the DRM system. This can be used in DASH MPD as the value for the *@value* attribute of the *ContentProtection* element.
 
 : <dfn>PSSH</dfn> (0...1, xs:base64binary)
 :: This is the full [=PSSH=] box that should be added to ISOBMFF files encrypted with the referenced [=Content Key=].
@@ -913,7 +916,7 @@ When <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> are present, 
 :: The is the ID referenced by other elements in the document. It is strongly recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>index</dfn> (M, xs:string)
-:: This is the version number for the document update. Each UpdateHistoryItem element contains a unique value for this attribute. It is a monotonically increasing number, starting at value 1.
+:: This is the version number for the document update. Each <{UpdateHistoryItem}> element contains a unique value for this attribute. It is a monotonically increasing number, starting at value 1.
 
 : <dfn>source</dfn> (M, xs:string)
 :: This is the identifier for the entity which performed the document update.
