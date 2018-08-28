@@ -1,0 +1,17 @@
+@startuml
+hide footbox
+
+participant "Service A" as A
+participant "Service B" as B
+participant "Service C" as C
+
+A->B: CPIX document with:\n\
+* Encrypted Content Keys\n\
+* Content Keys signed by Service A\n\
+* Delivery data for Service B\n\
+* Delivery data for Service C\n\
+* Document signed by Service A
+
+A->C:
+
+@enduml

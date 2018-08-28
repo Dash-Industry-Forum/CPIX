@@ -1,5 +1,17 @@
 # Content Protection Information Exchange Format (CPIX)
 
-This repository contains the issue tracker for [CPIX](http://dashif.org/guidelines/).
+Join the discussion: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
 
-The source files for version 2.1 Community Review can be found in the [v2.1-communityreview branch](https://github.com/Dash-Industry-Forum/CPIX/tree/v2.1-communityreview). Please submit pull requests against that branch.
+The latest published version of CPIX can be found on the [DASH-IF website](https://dashif.org/guidelines/).
+
+This repository contains the source files and issue tracker for CPIX. Contributions are welcome!
+
+# How to post a problem report, request a feature or share feedback?
+
+Simply file a new issue on this repository's issues page.
+
+# How can I contribute a change to CPIX?
+
+We accept pull requests - simply make a pull request with your proposed change and it will be reviewed by the editors.
+
+To learn more about contributing, see [Contributing.md](Contributing.md) and [Building.md](Building.md).
