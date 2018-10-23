@@ -18,6 +18,6 @@ We accept pull requests! See the [Document Authoring Guide](https://dashif.org/D
 
 Most recent output from the **master** branch:
 
-* [HTML document](https://documentauthoringtest.azurewebsites.net/CPIX/master/Cpix.html)
-* [PDF document](https://documentauthoringtest.azurewebsites.net/CPIX/master/Cpix.pdf)
-* [Download PDF + HTML as archive](https://documentauthoringtest.azurewebsites.net/CPIX/master/Cpix.zip)
+* [HTML document](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.html)
+* [PDF document](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.pdf)
+* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.zip)
