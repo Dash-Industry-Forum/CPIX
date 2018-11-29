@@ -453,9 +453,9 @@ The root element that carries the Content Protection Information for a set of me
 :: Contains an X.509 certificate that identifies the intended recipient and the public key that was used to encrypt the [=Document Key=].
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
-: <dfn>DocumentKey</dfn> (1, extended pskc:KeyType)
+: <dfn>DocumentKey</dfn> (1, cpix:KeyType)
 :: Contains the key that was used for encrypting the [=Content Key=] stored in each <{ContentKey}> element. The [=Document Key=] is encrypted using the public key listed in the recipient’s X.509 certificate.
-:: Extends *KeyType* defined in [[!RFC6030]]. The attributes *id* and *Algorithm* are optional in this extension.
+:: This is an extension of `KeyType` defined in [[!RFC6030]]. The attributes `id` and `Algorithm` are optional in this extension.
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
 : <dfn>MACMethod</dfn> (0...1, pskc:MACMethodType)
@@ -497,7 +497,7 @@ The root element that carries the Content Protection Information for a set of me
 
 ### <dfn element>ContentKey</dfn> Element ### {#schema-contentkey}
 
-Extends *KeyType* defined in [[!RFC6030]]. The attributes *id* and *Algorithm* and the element *Data* are optional in this extension.
+This is an extension of `KeyType` defined in [[!RFC6030]]. The attributes `id` and `Algorithm` are optional in this extension.
 
 The key this element contains can be encrypted. If it is encrypted, it is encrypted with the key that is under the <{DeliveryData/DocumentKey}> element part of the <{DeliveryData}>. Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
@@ -562,7 +562,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
 
 : <dfn>name</dfn> (O, xs:string)
-::  This is a human-readable name and version of the DRM system. This can be used in DASH MPD as the value for the *@value* attribute of the *ContentProtection* element.
+::  This is a human-readable name and version of the DRM system. This can be used in DASH MPD as the value for the `@value` attribute of the `ContentProtection` element.
 
 : <dfn>PSSH</dfn> (0...1, xs:base64binary)
 :: This is the full [=PSSH=] box that should be added to ISOBMFF files encrypted with the referenced [=Content Key=].
@@ -571,7 +571,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: This element has meaning only when the media content is in the ISOBMFF format.
 
 : <dfn>ContentProtectionData</dfn> (0...1, xs:base64binary)
-:: This is the full well-formed standalone XML element to be added to the DASH manifest under the ContentProtection element for this DRM system. This is UTF-8 text without a byte order mark.
+:: This is the full well-formed standalone XML fragment to be added to the DASH manifest under the ContentProtection element for this DRM system. This is UTF-8 text without a byte order mark.
 :: This element shall not be used if the referenced [=Content Key=] is a leaf key in a key hierarchy.
 :: This element has meaning only when a DASH manifest is created for the media content.
 
@@ -580,7 +580,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: This element is present only when the content is in the HLS format.
 :: The use of this element is deprecated. Using <{DRMSystem/HLSSignalingData}> is recommended.
 
-: <dfn>HLSSignalingData</dfn> (0...2, extended xs:base64binary)
+: <dfn>HLSSignalingData</dfn> (0...2, <{HLSSignalingData}>)
 :: This is the full data including the #EXT-X-KEY or #EXT-X-SESSION-KEY tag of a HLS playlist depending on the destination of the data (see [[#schema-HLSsignalingdata]]). This may contain multiple lines allowing to add lines with proprietary tags and values. This is UTF-8 text without a byte order mark.
 :: This element shall not be used if the referenced [=Content Key=] is a leaf key in a key hierarchy.
 :: This element has meaning only when a HLS playlist is created for the media content.
@@ -603,12 +603,12 @@ Additional child elements not defined by DASH-IF may be present containing signa
 
 ### <dfn element>HLSSignalingData</dfn> Element ### {#schema-HLSsignalingdata}
 
-The HLSSignalingData allows carrying base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. If <{HLSSignalingData/playlist}> is not present then the HLSSignalingData goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one HLSSignalingData element in the CPIX document).
+The HLSSignalingData allows carrying base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. In a <{DRMSystem}> element, every <{HLSSignalingData}> SHALL have a different <{HLSSignalingData/playlist}> value if present. If <{HLSSignalingData/playlist}> is not present then the HLSSignalingData goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one HLSSignalingData element in the <{DRMSystem}> element).
 
 <dl dfn-type="element-attr" dfn-for="HLSSignalingData">
 
 : <dfn>playlist</dfn> (O, restricted xs:string)
-:: Specifies the destination of the data carried by this element. It can only have two values `master` and `variant`.
+:: Specifies the destination of the data carried by this element. It can only have two values `master` and `media`. There is a uniqueness rule for this attribute. If two elements are added under a <{DRMSystem}> element, they SHALL not have the same <{HLSSignalingData/playlist}> value.
 
 </dl>
 
@@ -899,7 +899,7 @@ For every CPIX document, a MAC Key is created. It is used to calculate the MAC o
 
 Implementations shall provide a MAC for every encrypted [=Content Key=] and shall verify the MAC before attempting to decrypt any encrypted [=Content Key=]. The purpose of the MAC is to protect against cryptographic vulnerabilities in the receiving application; it is not used as a general purpose authentication mechanism.
 
-The MAC is calculated over the data in the *CipherValue* element (the concatenated IV and encrypted [=Content Key=]) and stored in the *ValueMac* element under the Secret element for each encrypted [=Content Key=].
+The MAC is calculated over the data in the `CipherValue` element (the concatenated IV and encrypted [=Content Key=]) and stored in the `ValueMac` element under the Secret element for each encrypted [=Content Key=].
 
 ### Digital Signature ### {#keys-enc-signatures}
 
@@ -993,7 +993,7 @@ This example shows a CPIX document where a key hierarchy is defined. Leaf keys h
 
 **Multiple Updates**
 
-This example, consisting of multiple files (v1...v3), shows a CPIX document which has been built up by successive updates by various entities as illustrated in [[#usecase-incremental-authoring]]. The document has three <{UpdateHistoryItem}> elements within it referencing the entities which performed the updates. Various elements in the document reference the *UpdateHistoryItem* for the update in which they were added by <{UpdateHistoryItem/updateVersion}>.
+This example, consisting of multiple files (v1...v3), shows a CPIX document which has been built up by successive updates by various entities as illustrated in [[#usecase-incremental-authoring]]. The document has three <{UpdateHistoryItem}> elements within it referencing the entities which performed the updates. Various elements in the document reference the `UpdateHistoryItem` for the update in which they were added by <{UpdateHistoryItem/updateVersion}>.
 
 It contains two [=Content Key=]s. The keys can be decrypted by the entity DRM System 1234. The document contains information for a single DRM system, so it only contains a single <{DRMSystem}> element.
 
