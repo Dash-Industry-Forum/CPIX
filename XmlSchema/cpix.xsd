@@ -82,7 +82,7 @@
 	<xs:simpleType name="PlaylistType" final="restriction">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="master"/>
-			<xs:enumeration value="variant"/>
+			<xs:enumeration value="media"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="DRMSystemType">
@@ -103,7 +103,12 @@
 	</xs:complexType>
 	<xs:complexType name="DRMSystemListType">
 		<xs:sequence>
-			<xs:element name="DRMSystem" type="cpix:DRMSystemType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DRMSystem" type="cpix:DRMSystemType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="uniquePlaylistForHLSSignalingData">
+					<xs:selector xpath="cpix:HLSSignalingData"/>
+					<xs:field xpath="@playlist"/>
+				</xs:unique>
+			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
