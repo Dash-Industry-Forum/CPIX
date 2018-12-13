@@ -1036,7 +1036,7 @@ Abstract: None
 		"publisher": "DASH Industry Forum"
 	},
 	"DASH-SystemIDs": {
-		"href": "https://dashif.org/identifiers/protection/",
+		"href": "https://dashif.org/identifiers/content_protection/",
 		"title": "DASH-IF registry of DRM System IDs.",
 		"publisher": "DASH Industry Forum"
 	},
