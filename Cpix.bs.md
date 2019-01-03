@@ -967,43 +967,11 @@ The usage of DRM system signaling data is different when hierarchical keys are u
 
 Any DRM system specific functionality associated with key hierarchies exists on the DRM layer. It may affect the DRM system signaling data but not the keys themselves.
 
-# XML Examples # {#examples}
+# Examples # {#examples}
 
-The zip file available on DASH-IF web site contains four examples of XML files [[!CPIX-XML]]. The XML example files are syntactically correct but do not contain real data. For examples, signature and encrypted data are dummy data. Examples with valid data can be found at https://github.com/Axinom/cpix-test-vectors.
+[Example CPIX documents are available on GitHub](https://github.com/Dash-Industry-Forum/cpix-test-vectors).
 
-**Encrypted Keys**
-
-This example shows a CPIX document where keys can be decrypted by two entities (Authorization Service 1234 and Authorization Service 5678). Both are identified by their X509 certificates.
-
-The [=Content Key=] is encrypted by the [=Document Key=], the [=Document Key=] is therefore encrypted two times (once for Authorization Service 1234 and once for Authorization Service 5678).
-
-In term of DRMs, there are two different DRMs that can be used for accessing content. There are therefore two <{DRMSystem}> elements.
-
-**Clear Keys**
-
-This example shows a CPIX document where keys are not encrypted. It can be read by any entity and therefore does not contain <{DeliveryData}> elements.
-
-The [=Content Key=] is available as plain data.
-
-In term of DRMs, there are two different DRMs that can be used for accessing the content. There are therefore two <{DRMSystem}> elements.
-
-**Hierarchical Keys**
-
-This example shows a CPIX document where a key hierarchy is defined. Leaf keys have the key data included, whereas root keys do not. DRM system signaling is present for both types of keys as is necessary for DASH content packaging.
-
-**Multiple Updates**
-
-This example, consisting of multiple files (v1...v3), shows a CPIX document which has been built up by successive updates by various entities as illustrated in [[#usecase-incremental-authoring]]. The document has three <{UpdateHistoryItem}> elements within it referencing the entities which performed the updates. Various elements in the document reference the `UpdateHistoryItem` for the update in which they were added by <{UpdateHistoryItem/updateVersion}>.
-
-It contains two [=Content Key=]s. The keys can be decrypted by the entity DRM System 1234. The document contains information for a single DRM system, so it only contains a single <{DRMSystem}> element.
-
-**Key Rotation**
-
-This example shows a CPIX document where keys can be decrypted by two entities (Authorization Service 1234 and Authorization Service 5678. Both are identified by their X509 certificates.
-
-It contains two [=Content Key=]s for two cryptoperiods. Two <{ContentKeyPeriod}> elements with by their start and end times are added, each referencing one ContentKey element using a <{KeyPeriodFilter}> element. The [=Content Key=] is encrypted by the [=Document Key=], the [=Document Key=] is therefore encrypted two times (once for Authorization Service 1234 and once for Authorization Service 5678).
-
-In addition, the document contains <{DRMSystem}> elements for the two DRM systems.
+The examples contain valid data unless explicitly noted otherwise. Their contents are described on the referenced page.
 
 
 <!-- Document metadata follows. The below sections are used by the document compiler and are not directly visible. -->
@@ -1043,11 +1011,6 @@ Abstract: None
 	"RFC6030": {
 		"title": "RFC 6030, Portable Symmetric Key Container (PSKC), October 2010.",
 		"publisher": "IETF"
-	},
-	"CPIX-XML": {
-		"href": "https://dashif.org/guidelines/",
-		"title": "CPIX XML Examples.",
-		"publisher": "DASH Industry Forum"
 	},
 	"CPIX-XSD": {
 		"href": "https://dashif.org/guidelines/",
