@@ -14,12 +14,12 @@ Just file a new issue in this repository.
 
 We accept pull requests! See the [Document Authoring Guide](https://dashif.org/DocumentAuthoring/) for details.
 
-# Links to automated build outputs
-
-![Build status of master branch](https://dev.azure.com/dashif/Automation/_apis/build/status/CPIX?branchName=master)
+# Output documents
 
 Most recent output from the **master** branch:
 
-* [HTML document](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.html)
-* [PDF document](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.pdf)
-* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/CPIX/master/Cpix.zip)
+* [HTML document](https://dashif-documents.azurewebsites.net/CPIX/master/MyDocument.html)
+* [PDF document](https://dashif-documents.azurewebsites.net/CPIX/master/MyDocument.pdf)
+* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/CPIX/master/MyDocument.zip)
+
+![Build status of master branch](https://dev.azure.com/dashif/Automation/_apis/build/status/CPIX?branchName=master) [Build history](https://dev.azure.com/dashif/Automation/_build?definitionId=6)
