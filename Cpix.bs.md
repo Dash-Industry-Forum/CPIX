@@ -511,7 +511,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: The unique identifier of the [=Content Key=].
 
 : <dfn>explicitIV</dfn> (O, xs:base64binary)
-:: The IV to use when solution-specific logic requires a single explicit IV to be associated with a [=Content Key=].
+:: The IV to use when solution-specific logic requires a single explicit IV to be associated with a [=Content Key=]. The value consists of a 128-bit IV in binary format, base64-encoded.
 :: The primary use case is to enable the use of DRM systems that associate a single IV with each [=Content Key=] and whose DRM client implementations are unable to extract the IV from the content, requiring the license server to deliver the IV together with the [=Content Key=] upon request. A CPIX document can be used to supply the [=Content Key=] and IV together to the license server.
 :: Use of this attribute is not recommended except for compatibility with such DRM systems. Even if present in a CPIX document, the attribute should be ignored if solution-specific logic does not require it to be used.
 
