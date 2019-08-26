@@ -21,6 +21,7 @@ This document defines a container allowing the exchange between entities of cont
 Because the defined container is not made for a specifically defined content preparation workflow but is generic, conformance is not considered to be a critical part of CPIX. As a consequence, no conformance is defined for this specification.
 
 ## Normative Language ## {#intro-conformance}
+
 See [[!DASH-IF-IOP]] section 2.3.
 
 ## Terms & Definitions ## {#intro-terms}
@@ -48,7 +49,7 @@ See [[!DASH-IF-IOP]] section 2.3.
 
 # Use Cases and Requirements # {#usecases}
 
-[=Content Key=]s and [=DRM Signaling=], a.k.a. content protection information need to be created and exchanged between some system entities when preparing [=Content=]. The flows of information are of very different nature depending on where [=Content Key=]s are created and also depending on the type of [=Content=] that can be either On-Demand or Live.
+[=Content Keys=] and [=DRM Signaling=], a.k.a. content protection information need to be created and exchanged between some system entities when preparing [=Content=]. The flows of information are of very different nature depending on where [=Content Keys=] are created and also depending on the type of [=Content=] that can be either On-Demand or Live.
 
 This section presents different use cases where such exchanges are required. [[#architecture]] is an overview of the general context in which exchange of content protection information is happening, [[#usecases-packaging]] describes some workflows for content creation and [[#usecases-exchange]] goes in the details of how content protection information can be exchanged over an interface between two entities.
 
@@ -69,15 +70,15 @@ The figure above shows logical entities that may send or receive DRM information
 
 **Encoder** - A service provider who encodes media in a specified set of formats with different bitrates and resolutions etc., possibly determined by the publisher.
 
-**Packager / Encryptor** - A service provider who encrypts and packages media, inserting [=DRM Signaling=] and metadata into the media files. In the case of DASH packaging, this consists of adding the default_KID in the file header tenc box, initialization vectors and subsample byte ranges in track fragments indexed by saio and saiz boxes, and possibly one or more [=PSSH=] boxes containing license acquisition information (from the DRM Service). Tracks that are partially encrypted or encrypted with multiple keys require sample to group boxes and sample group description boxes in each track fragment to associate different KIDs to groups of samples. The Packager could originate values for KIDs, [=Content Key=]s, encryption layout, etc., then send that information to other entities that need it, including the DRM Service and Streamer, and probably the Content Provider.  However, the Packager could receive that information from a different point of origin, such as the Content Provider or DRM Service.
+**Packager / Encryptor** - A service provider who encrypts and packages media, inserting [=DRM Signaling=] and metadata into the media files. In the case of DASH packaging, this consists of adding the default_KID in the file header tenc box, initialization vectors and subsample byte ranges in track fragments indexed by saio and saiz boxes, and possibly one or more [=PSSH=] boxes containing license acquisition information (from the DRM Service). Tracks that are partially encrypted or encrypted with multiple keys require sample to group boxes and sample group description boxes in each track fragment to associate different KIDs to groups of samples. The Packager could originate values for KIDs, [=Content Keys=], encryption layout, etc., then send that information to other entities that need it, including the DRM Service and Streamer, and probably the Content Provider.  However, the Packager could receive that information from a different point of origin, such as the Content Provider or DRM Service.
 
-**Manifest Creator** - A service provider which generates the media manifests which group the various media files into a coherent presentation. These manifest files may contain [=DRM Signaling=] information. For DASH, the MPD Creator is assumed to create one or more types of DASH MPD files, and provide indexing of Segments and/or sidx indexes for download so that players can byte range index Subsegments. The MPD must include descriptors for Common Encryption and DRM key management systems, and should include identification of the default_KID for each AdaptationSet element, and sufficient information in UUID ContentProtection Descriptor elements to acquire a DRM license. The default_KID is available from the Packager and any other role that created it, and the DRM specific information is available from the DRM Service.
+**Manifest Creator** - A service provider which generates the media manifests which group the various media files into a coherent presentation. These manifest files may contain [=DRM Signaling=] information. For DASH, the MPD Creator is assumed to create one or more types of DASH MPD files, and provide indexing of Segments and/or sidx indexes for download so that players can byte range index Subsegments. The MPD must include descriptors for Common Encryption and DRM key management systems, and should include identification of the default_KID for each AdaptationSet element, and sufficient information in UUID ContentProtection elements to acquire a DRM license. The default_KID is available from the Packager and any other role that created it, and the DRM specific information is available from the DRM Service.
 
 **DRM Client** - It gets information from different sources: media manifest files, media files, and DRM licenses.
 
 **DRM Service** - The DRM Service creates licenses containing a protected [=Content Key=] that can only be decrypted by a trusted DRM Client.
 
-The DRM Service needs to know the default_KID and DRM SystemID and possibly other information like asset ID and player domain ID in order to create and download one or more licenses required for a Presentation on a particular device. Each DRM system has different license acquisition information, a slightly different license acquisition protocol, and a different license format with different playback rules, output rules, revocation and renewal system, etc. For DASH, the DRM Service typically must supply the Streamer and the Packager license acquisition information for each UUID ContentProtection Descriptor element or [=PSSH=] box, respectively.
+The DRM Service needs to know the default_KID and DRM SystemID and possibly other information like asset ID and player domain ID in order to create and download one or more licenses required for a Presentation on a particular device. Each DRM system has different license acquisition information, a slightly different license acquisition protocol, and a different license format with different playback rules, output rules, revocation and renewal system, etc. For DASH, the DRM Service typically must supply the Streamer and the Packager license acquisition information for each UUID ContentProtection element or [=PSSH=] box, respectively.
 
 The DRM Service may also provide logic to manage key rotation, DRM domain management, revocation and renewal and other [=Content Protection=] related features.
 
@@ -91,7 +92,7 @@ As for the previous section, this informative section takes DASH content as an e
 
 The flow for preparing On-Demand Content requires that a media asset is available non-encrypted, ideally in the maximum resolution so that an adaptive streaming presentation can be prepared.
 
-One possible flow is that a Content Management System (CMS) creates a workflow ensuring that DASH Content is prepared. The CMS makes the file available to a transcoder. The transcoder outputs the segmented files that can be encrypted. The encryption engine either generates the [=Content Key=]s or requests them from a DRM system. The DRM system also provides [=PSSH=] boxes to be added to the media files, as well as ContentProtection elements to be added to the MPD file. When the encrypted DASH Content is ready, the MPD is generated by a MPD Generator It asks the DRM system the required [=DRM Signaling=] to be added in the MPD. DASH content is then uploaded by the CMS on a CDN making it available to users. In parallel, editorial metadata is exported to the Portal, enabling access to users. DRM systems receive relevant metadata information that needs to be included in the license (output controls) when creating a license.
+One possible flow is that a Content Management System (CMS) creates a workflow ensuring that DASH Content is prepared. The CMS makes the file available to a transcoder. The transcoder outputs the segmented files that can be encrypted. The encryption engine either generates the [=Content Keys=] or requests them from a DRM system. The DRM system also provides [=PSSH=] boxes to be added to the media files, as well as ContentProtection elements to be added to the MPD file. When the encrypted DASH Content is ready, the MPD is generated by a MPD Generator It asks the DRM system the required [=DRM Signaling=] to be added in the MPD. DASH content is then uploaded by the CMS on a CDN making it available to users. In parallel, editorial metadata is exported to the Portal, enabling access to users. DRM systems receive relevant metadata information that needs to be included in the license (output controls) when creating a license.
 
 This flow is summarized in the figure below where arrows show the flow of information.
 
@@ -106,7 +107,7 @@ Metadata is regularly imported with new or updated information. Metadata can inc
 
 Content is continuously received, transcoded in the desired format and encrypted if any type of entitlement is required.
 
-One or many [=Content Key=]s can be used if key rotation is used or not. Such setting is static and configuration is hard-coded in the relevant equipment, hence a Content Management System is not required for this workflow to operate. As for Content on-Demand, keys are generated by the encryption engine or the DRM system and are available to all DRM systems and the encryption engine at the right moment depending on how these keys are used. The encoder requests to the DRM systems their specific signaling, if any, to be added in the MPD.
+One or many [=Content Keys=] can be used if key rotation is used or not. Such setting is static and configuration is hard-coded in the relevant equipment, hence a Content Management System is not required for this workflow to operate. As for Content on-Demand, keys are generated by the encryption engine or the DRM system and are available to all DRM systems and the encryption engine at the right moment depending on how these keys are used. The encoder requests to the DRM systems their specific signaling, if any, to be added in the MPD.
 
 Encrypted segments and the media manifest are uploaded on a CDN making it available to users.
 
@@ -144,7 +145,7 @@ In the simplest use case, content protection information is made of a [=Content 
 	<figcaption>Content Key delivery to one entity.</figcaption>
 </figure>
 
-The primary data model carried by content protection information document is made of one to many [=Content Key=]s with their associated KeyIDs. Any context or meaning is attributed externally. The document simply serves as a standard way to serialize [=Content Key=]s for delivery.
+The primary data model carried by content protection information document is made of one to many [=Content Keys=] with their associated KIDs. Any context or meaning is attributed externally. The document simply serves as a standard way to serialize [=Content Keys=] for delivery.
 
 ### Secure Content Key Delivery to Several Entities ### {#usecase-secure-delivery-to-many}
 
@@ -152,12 +153,12 @@ This use case is an extension of [[#usecase-delivery-to-one]] and is compatible 
 
 <figure>
 	<img src="Diagrams/UseCase-EncryptedDeliveryToMany.png" />
-	<figcaption>Secure Content Key delivery to Several Entities.</figcaption>
+	<figcaption>Secure Content Key delivery to several entities.</figcaption>
 </figure>
 
-The entities exchanging [=Content Key=]s may want to rely upon a trust relationship that ensures authentication and privacy of communications. Such a mechanism can be provided by the communication protocol used to deliver the document but the document can also be self-protected. CPIX documents can deliver [=Content Key=]s in encrypted and digitally signed form, enabling confidentiality, authentication and nonrepudiation.
+The entities exchanging [=Content Keys=] may want to rely upon a trust relationship that ensures authentication and privacy of communications. Such a mechanism can be provided by the communication protocol used to deliver the document but the document can also be self-protected. CPIX documents can deliver [=Content Keys=] in encrypted and digitally signed form, enabling confidentiality, authentication and nonrepudiation.
 
-In situations with more than one recipient, the document allows each one to decrypt the [=Content Key=]s using its own private key.
+In situations with more than one recipient, the document allows each one to decrypt the [=Content Keys=] using its own private key.
 
 ### Content Key Delivery with Usage Rules ### {#usecase-usagerules}
 
@@ -165,28 +166,28 @@ These use cases are extension of [[#usecase-delivery-to-one]] and present differ
 
 <figure>
 	<img src="Diagrams/UseCase-DeliveryWithUsageRules.png" />
-	<figcaption>Content Key Delivery with key usage rules.</figcaption>
+	<figcaption>Content Key delivery with key usage rules.</figcaption>
 </figure>
 
 #### Label Filter #### {#usecase-usagerules-labelfilter}
 
-This use case adds information to [=Content Key=]s that specifies how they are to be mapped to labelled [=Content Key Context=]s, where the labeling system has been pre-agreed between the producer and consumer of the CPIX document.
+This use case adds information to [=Content Keys=] that specifies how they are to be mapped to labelled [=Content Key Contexts=], where the labeling system has been pre-agreed between the producer and consumer of the CPIX document.
 
 For example, labels might be the IDs of DASH adaptation sets or, for more compatibility with formats other than DASH, names of media files/directories or input values for arbitrary custom logic.
 
-The recipient will use the added information to map [=Content Key=]s to [=Content Key Context=]s defined by labels.
+The recipient will use the added information to map [=Content Keys=] to [=Content Key Contexts=] defined by labels.
 
 #### Key Period Filter #### {#usecase-usagerules-periodfilter}
 
-This use case adds information to [=Content Key=]s that specifies how they are to be mapped to key periods, a.k.a. crypto-periods for [=Content Key=] rotation. The mapping is accomplished by defining key periods and mapping [=Content Key=]s to any number of key periods.
+This use case adds information to [=Content Keys=] that specifies how they are to be mapped to key periods, a.k.a. crypto-periods for [=Content Key=] rotation. The mapping is accomplished by defining key periods and mapping [=Content Keys=] to any number of key periods.
 
-The recipient will use the added information to map [=Content Key=]s to time periods.
+The recipient will use the added information to map [=Content Keys=] to time periods.
 
 #### Policy-based Filters #### {#usecase-usagerules-policyfilters}
 
-This use case associates policy-based information with [=Content Key=]s, constraining how they define [=Content Key Context=]s. Policy based filters are, for example, video or audio stream attributes and bitrate ranges.
+This use case associates policy-based information with [=Content Keys=], constraining how they define [=Content Key Contexts=]. Policy based filters are, for example, video or audio stream attributes and bitrate ranges.
 
-The recipient will use the added information to map [=Content Key=]s to [=Content Key Context=]s according to the defined policy.
+The recipient will use the added information to map [=Content Keys=] to [=Content Key Contexts=] according to the defined policy.
 
 Having no policy in some dimension means that the [=Content Key Context=] is not constrained in that dimension. For example, if the HDR policy is not specified, the [=Content Key Context=] may include both HDR and non-HDR media.
 
@@ -214,14 +215,14 @@ This use case illustrates the usage of the content protection information docume
 <figure>
 	<img src="Diagrams/UseCase-DeliveryWithIncrementalUpdate_Part1.png" />
 	<img src="Diagrams/UseCase-DeliveryWithIncrementalUpdate_Part2.png" />
-	<figcaption>Incremental Update and Extension of the Document.</figcaption>
+	<figcaption>Incremental update and extension of the document.</figcaption>
 </figure>
 
-Each component participating in such a workflow is the authority on a particular aspect. For example, the Key Server manages [=Content Key=]s and usage rules and may define the key periods, the DRM System knows how to define the correct [=DRM Signaling=] and the Encryption Engine might want to inform the Packager what representations the [=Content Key=]s actually got mapped to (the Packager might not have enough information to resolve usage rules based on detailed metadata, so the Encryption Engine could define a new set of usage rules that are simple enough for the Packager to understand, e.g. by making use of label filters).
+Each component participating in such a workflow is the authority on a particular aspect. For example, the Key Server manages [=Content Keys=] and usage rules and may define the key periods, the DRM System knows how to define the correct [=DRM Signaling=] and the Encryption Engine might want to inform the Packager what representations the [=Content Keys=] actually got mapped to (the Packager might not have enough information to resolve usage rules based on detailed metadata, so the Encryption Engine could define a new set of usage rules that are simple enough for the Packager to understand, e.g. by making use of label filters).
 
-As the document travels in the workflow, each component adds the elements containing the content protection items it generates (key periods, usage rules, [=Content Key=]s, [=DRM Signaling=], etc), making it suitable for the next component that will make use of it. After each modification, the added elements may be signed to maintain a chain of trust on each set of elements individually. The document in its entirety may also be signed to authenticate the document as a whole.
+As the document travels in the workflow, each component adds the elements containing the content protection items it generates (key periods, usage rules, [=Content Keys=], [=DRM Signaling=], etc), making it suitable for the next component that will make use of it. After each modification, the added elements may be signed to maintain a chain of trust on each set of elements individually. The document in its entirety may also be signed to authenticate the document as a whole.
 
-Note that in the above example, the [=Content Key=] material itself is encrypted for the Encryption Engine. Despite the fact that many other components participate in the workflow, they do not have access to [=Content Key=]s.
+Note that in the above example, the [=Content Key=] material itself is encrypted for the Encryption Engine. Despite the fact that many other components participate in the workflow, they do not have access to [=Content Keys=].
 
 ### Content Key Hierarchy Delivery for Content Packaging ### {#usecase-hierarchy-delivery}
 
@@ -241,7 +242,7 @@ Some DRM systems enable the use of hierarchical keys, where the set of keys deli
 
 When, for example, key creation is not a function of the license server, creating licenses in scenarios that use hierarchical keys requires the license server to know the root keys. CPIX enables root keys to be delivered to license servers.
 
-The exchange of root keys is technically identical to the exchange of non-hierarchical [=Content Key=]s as described in [[#usecase-delivery-to-one]]. It is expected that the recipient of a CPIX document in this use case is already aware of the hierarchical nature of the keys within, without any signaling in the CPIX document.
+The exchange of root keys is technically identical to the exchange of non-hierarchical [=Content Keys=] as described in [[#usecase-delivery-to-one]]. It is expected that the recipient of a CPIX document in this use case is already aware of the hierarchical nature of the keys within, without any signaling in the CPIX document.
 
 ## Workflow Examples ## {#workflows}
 
@@ -259,10 +260,10 @@ There are many workflows that are possible, depending on which entities provide 
 	<figcaption>Encryptor Consumer.</figcaption>
 </figure>
 
-All workflows require that content protection information and [=Content Key=]s be exchanged between two or more entities. In the examples above the entities are the Encryptor and DRM System:
+All workflows require that content protection information and [=Content Keys=] be exchanged between two or more entities. In the examples above the entities are the Encryptor and DRM System:
 
-* The Encryptor Producer example allows, in this case, the Encryptor to generate [=Content Key=]s and to push them to one or many DRM systems. The Encryptor could expect to receive from the DRM systems some [=DRM Signaling=].
-* The Encryptor Consumer example allows the Encryptor to pull [=Content Key=]s and [=DRM Signaling=] from a DRM system. In this case, [=Content Key=]s are generated by the DRM System.
+* The Encryptor Producer example allows, in this case, the Encryptor to generate [=Content Keys=] and to push them to one or many DRM systems. The Encryptor could expect to receive from the DRM systems some [=DRM Signaling=].
+* The Encryptor Consumer example allows the Encryptor to pull [=Content Keys=] and [=DRM Signaling=] from a DRM system. In this case, [=Content Keys=] are generated by the DRM System.
 
 The document allows supporting both workflows above in addition to other workflows not explicitly described here.
 
@@ -270,10 +271,10 @@ Before exchanging key information in a secure manner, the entities which exchang
 
 #### Encryptor Producer #### {#workflows-encryptorproducer}
 
-This informative section shows a possible workflow for securing the exchange of the key information between entities when the Encryptor generates the [=Content Key=]s. In this example, the Encryptor is the entity which is taking responsibility for generating the [=Content Key=]s, protecting them and pushing them to the DRM Systems.
+This informative section shows a possible workflow for securing the exchange of the key information between entities when the Encryptor generates the [=Content Keys=]. In this example, the Encryptor is the entity which is taking responsibility for generating the [=Content Keys=], protecting them and pushing them to the DRM Systems.
 
 * The first step is the Trust establishment. Public keys must be exchanged between two or more entities (the Encryptors and the DRM Systems) prior exchanges.
-* Once the Trust is established and the necessary associated key material is shared between entities, [=Content Key=]s can be exchanged. The Encryptor is encrypting these keys using DRM Systems public keys. The DRM Systems can decrypt using their own private key.
+* Once the Trust is established and the necessary associated key material is shared between entities, [=Content Keys=] can be exchanged. The Encryptor is encrypting these keys using DRM Systems public keys. The DRM Systems can decrypt using their own private key.
 * The Encryptor provides crypto material required to uniquely identify the entity capable of decrypting the media.
 
 All these steps are summarized in the figure below.
@@ -285,11 +286,11 @@ All these steps are summarized in the figure below.
 
 #### Encryptor Consumer #### {#workflows-encryptorconsumer}
 
-This informative section shows a possible workflow for securing the exchange of the key information between entities when the DRM System generates the [=Content Key=]s. In this model, the Encryptor can pull documents directly from a DRM System. In this case, the DRM System is generating [=Content Key=]s and is encrypting them for a secure delivery to the Encryptor.
+This informative section shows a possible workflow for securing the exchange of the key information between entities when the DRM System generates the [=Content Keys=]. In this model, the Encryptor can pull documents directly from a DRM System. In this case, the DRM System is generating [=Content Keys=] and is encrypting them for a secure delivery to the Encryptor.
 
 * As in the case of the Encryptor Producer model, the first step is the Trust establishment. Public keys must be exchanged between two or more entities (the Encryptors and the DRM System) prior exchanges.
 * The DRM System will use the public key of the Encryptor to encrypt keys to be inserted in the document and will send it to Encryptor.
-* The Encryptor can decrypt the [=Content Key=]s using its private key.
+* The Encryptor can decrypt the [=Content Keys=] using its private key.
 
 All these steps are summarized in the figure below.
 
@@ -300,7 +301,7 @@ All these steps are summarized in the figure below.
 
 #### Multiple Producers #### {#workflows-multiple-producers}
 
-This informative section illustrates that it is possible to have more complex workflows than those previously illustrated. In one such example, for DASH content, a media packager might define the types of streams in the presentation, an Encryptor might generate the [=Content Key=]s, a DRM System might generate other [=DRM Signaling=], An Encryptor and an MPD Generator might be the consumers of the final document. In such workflows, the document gets passed from entity to entity in sequence, with each entity adding top-level elements, and recording the update.
+This informative section illustrates that it is possible to have more complex workflows than those previously illustrated. In one such example, for DASH content, a media packager might define the types of streams in the presentation, an Encryptor might generate the [=Content Keys=], a DRM System might generate other [=DRM Signaling=], An Encryptor and an MPD Generator might be the consumers of the final document. In such workflows, the document gets passed from entity to entity in sequence, with each entity adding top-level elements, and recording the update.
 
 <figure>
 	<img src="Images/Workflow-MultipleProducers.png" />
@@ -308,10 +309,10 @@ This informative section illustrates that it is possible to have more complex wo
 </figure>
 
 * The first step is the Trust establishment. Public keys must be exchanged between two or more entities prior to exchanges.
-* Once the Trust is established and the necessary associated key material is shared between entities, [=Content Key=]s can be exchanged.
+* Once the Trust is established and the necessary associated key material is shared between entities, [=Content Keys=] can be exchanged.
 * The Packager provides identification of the receivers and the various stream encoding criteria (usage rules) in version 1 of the document.
 * The Encryptor adds key information in version 2 of the document. These elements only contain Keys and no DRM information.
-* The DRM System imports the [=Content Key=]s stored in the document, and adds its own information in version 3 of the document, which is the finalized version.
+* The DRM System imports the [=Content Keys=] stored in the document, and adds its own information in version 3 of the document, which is the finalized version.
 * The Encryptor extracts content protection information from the document to be embedded in the media (e.g. [=PSSH=] boxes).
 * The MPD Generator also extracts content protection related information from the document to be embedded in the MPD document (e.g. [=PSSH=] boxes, key IDs).
 
@@ -338,23 +339,23 @@ Entities exchanging content protection information should be authenticated.
 
 # XSD Schema Definition # {#schema}
 
-This section describes the Content Protection Information eXchange (CPIX) format to provide a framework to securely exchange [=Content Key=](s) and [=DRM Signaling=] between different system entities (see Section 2). This is an XML file that is described by the XSD provided in [[!CPIX-XSD]]. This section describes in details elements part of the schema.
+This section describes the Content Protection Information eXchange (CPIX) format to provide a framework to securely exchange [=Content Key=](s) and [=DRM Signaling=] between different system entities (see [[#usecases]]). This is an XML file that is described by the XSD provided in [[!CPIX-XSD]]. This section describes in details elements part of the schema.
 
 ## Structure Overview ## {#schema-structure}
 
-The structure is articulated around [=Content Key=]s and the accompanying material. The document contains all the information required for allowing any entitled entity to get access to or add in the [=Content Key=]s and either consume or add material, such as time constraint, DRM information to the CPIX document. The same XML file can be shared between several receiving entities. Hence, each one must be able to decrypt keys and must be properly identified.
+The structure is articulated around [=Content Keys=] and the accompanying material. The document contains all the information required for allowing any entitled entity to get access to or add in the [=Content Keys=] and either consume or add material, such as time constraint, DRM information to the CPIX document. The same XML file can be shared between several receiving entities. Hence, each one must be able to decrypt keys and must be properly identified.
 
 Taking this into account, the CPIX document contains lists of elements:
 
-* DeliveryDataList: This list contains instances of DeliveryData, each of which describes an entity entitled to decrypt [=Content Key=]s contained in the CPIX document.
+* DeliveryDataList: This list contains instances of DeliveryData, each of which describes an entity entitled to decrypt [=Content Keys=] contained in the CPIX document.
 * ContentKeyList: This list contains instances of ContentKey, each of which contains a [=Content Key=] used for encrypting media.
 * DRMSystemList: This list contains instances of DRMSystem, each of which contains the signaling data to associate one DRM system with one [=Content Key=].
 * ContentKeyPeriodList: This list contains instances of ContentKeyPeriod, each of which defines a time period that may be referenced by the key period filters included in [=Content Key=] usage rules.
-* ContentKeyUsageRuleList: This list contains instances of ContentKeyUsageRule, which maps a [=Content Key=] to one or more [=Content Key Context=]s.
+* ContentKeyUsageRuleList: This list contains instances of ContentKeyUsageRule, which maps a [=Content Key=] to one or more [=Content Key Contexts=].
 * UpdateHistoryItemList: This list contains instances of UpdateHistoryItem, each of which contains an update version number and an identifier of the entity which produced the update. Other elements in the document are linked to a specific update by update version number (via the <{UpdateHistoryItem/updateVersion}> attribute).
 * Signature: Each instance of this element contains a digital signature [[!XMLDSIG-CORE]] over either the entire document or a subset of XML elements.
 
-The [=Content Key=]s can be encrypted inside the XML file using the public keys of the recipients, identified in the DeliveryData elements. The XML file also allows storing the [=Content Key=]s in the clear, in which case the security of the [=Content Key=]s is contingent on the security of the communication channel used to deliver the CPIX document to the recipients.
+The [=Content Keys=] can be encrypted inside the XML file using the public keys of the recipients, identified in the DeliveryData elements. The XML file also allows storing the [=Content Keys=] in the clear, in which case the security of the [=Content Keys=] is contingent on the security of the communication channel used to deliver the CPIX document to the recipients.
 
 The figure below shows the first elements and a high-level view of the structure. Detailed description of the structure is given in the following sections.
 
@@ -363,7 +364,7 @@ The figure below shows the first elements and a high-level view of the structure
 	<figcaption>Content Protection Information Exchange Format high level view.</figcaption>
 </figure>
 
-## Hierarchical data model ## {#schema-datamodel}
+## Hierarchical Data Model ## {#schema-datamodel}
 
 In this section the following conventions are used:
 
@@ -372,7 +373,7 @@ In this section the following conventions are used:
 * Child element use requirements specify the number of elements allowed (`min...max`) where N means unbounded.
 * Attribute use requirements indicate M=Mandatory, O=Optional, OD=Optional with Default Value, CM=Conditionally Mandatory.
 
-Child elements must be in the order specified here. Attributes may be in any order.
+Child elements shall be in the order specified here. Attributes may be in any order.
 
 The XSD schema for this model is provided in [[!CPIX-XSD]]. In addition to types defined in this document, the CPIX data model references types defined in [[!XMLSCHEMA11-2]], [[!RFC6030]], [[!XMLDSIG-CORE]] and [[!XMLENC-CORE]]. External data types are prefixed with `xs:`, `pskc:`, `ds:` and `xenc:` respectively.
 
@@ -383,16 +384,16 @@ The root element that carries the Content Protection Information for a set of me
 <dl dfn-type="element-attr" dfn-for="CPIX">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
+:: An identifier for the CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
 
 : <dfn>contentId</dfn> (O, xs:string)
-:: Specifies an identifier for the asset or content that is been protected by the keys carried in this CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
+:: An identifier for the asset or content that is been protected by the keys carried in this CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
 
 : <dfn>name</dfn> (O, xs:string)
-:: The name of the presentation.
+:: A name for the presentation.
 
 : <dfn>DeliveryDataList</dfn> (0...1, <{DeliveryDataList}>)
-:: A container for <{DeliveryData}> elements. If not present, [=Content Key=]s in the document are delivered in the clear, without encryption.
+:: A container for <{DeliveryData}> elements. If not present, [=Content Keys=] in the document are delivered in the clear, without encryption.
 
 : <dfn>ContentKeyList</dfn> (0...1, <{ContentKeyList}>)
 :: A container for <{ContentKey}> elements.
@@ -404,13 +405,13 @@ The root element that carries the Content Protection Information for a set of me
 :: A container for <{ContentKeyPeriod}> elements.
 
 : <dfn>ContentKeyUsageRuleList</dfn> (0...1, <{ContentKeyUsageRuleList}>)
-:: Container for <{ContentKeyUsageRule}> elements. If not present, the document does not define [=Content Key Context=]s and an external mechanism is required for synchronizing the content creation workflow.
+:: A container for <{ContentKeyUsageRule}> elements. If not present, the document does not define [=Content Key Contexts=] and an external mechanism is required for synchronizing the content creation workflow.
 
 : <dfn>UpdateHistoryItemList</dfn> (0...1, <{UpdateHistoryItemList}>)
-:: Container for <{UpdateHistoryItem}> elements.
+:: A container for <{UpdateHistoryItem}> elements.
 
 : <dfn>Signature</dfn> (0...N, ds:Signature)
-:: Digital signature as defined in [[!XMLDSIG-CORE]]. Each signature signs either the full document or any set of elements within the CPIX document. Every digital signature must contain an X.509 certificate identifying the signer and the associated public key.
+:: Digital signatures as defined in [[!XMLDSIG-CORE]]. Each signature signs either the full document or any set of elements within the CPIX document. Every digital signature shall contain an X.509 certificate identifying the signer and the associated public key.
 
 </dl>
 
@@ -421,14 +422,14 @@ The root element that carries the Content Protection Information for a set of me
 <dl dfn-type="element-attr" dfn-for="DeliveryDataList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>DeliveryData</dfn> (0...N, <{DeliveryData}>)
-:: Contains the required information allowing defining which entities can get access to the [=Content Key=]s delivered in this document.
-:: There is one <{DeliveryData}> element per entity capable of accessing encrypted [=Content Key=]s stored in this document. If this element is not present, then the [=Content Key=]s are in the clear in the file.
+:: Contains the required information allowing defining which entities can get access to the [=Content Keys=] delivered in this document.
+:: There is one <{DeliveryData}> element per entity capable of accessing encrypted [=Content Keys=] stored in this document. If this element is not present, then the [=Content Keys=] are in the clear in the file.
 
 </dl>
 
@@ -439,7 +440,7 @@ The root element that carries the Content Protection Information for a set of me
 <dl dfn-type="element-attr" dfn-for="DeliveryData">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
@@ -457,7 +458,7 @@ The root element that carries the Content Protection Information for a set of me
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
 : <dfn>MACMethod</dfn> (0...1, pskc:MACMethodType)
-:: Identifies the MAC algorithm and contains the MAC key used to implement authenticated encryption of [=Content Key=]s. The MAC key is encrypted using the public key listed in the recipient’s X.509 certificate.
+:: Identifies the MAC algorithm and contains the MAC key used to implement authenticated encryption of [=Content Keys=]. The MAC key is encrypted using the public key listed in the recipient’s X.509 certificate.
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
 : <dfn>Description</dfn> (0...1, xs:string)
@@ -467,10 +468,10 @@ The root element that carries the Content Protection Information for a set of me
 :: The name of the entity generating this CPIX document.
 
 : <dfn>SenderPointOfContact</dfn> (0...1, xs:string)
-:: Contact information, such as an email address, of the Sender.
+:: The contact information, such as an email address, of the entity generating this CPIX document.
 
 : <dfn>ReceivingEntity</dfn> (0...1, xs:string)
-:: The name of the entity capable of decrypting [=Content Key=]s in this CPIX document.
+:: The name of the entity capable of decrypting [=Content Keys=] in this CPIX document.
 
 </dl>
 
@@ -481,13 +482,13 @@ The root element that carries the Content Protection Information for a set of me
 <dl dfn-type="element-attr" dfn-for="ContentKeyList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>ContentKey</dfn> (0...N, <{ContentKey}>)
-:: Contains all information on a [=Content Key=] used to encrypt one or more [=Content Key Context=]s.
+:: Contains all information on a [=Content Key=] used to encrypt one or more [=Content Key Contexts=].
 
 </dl>
 
@@ -502,10 +503,10 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 <dl dfn-type="element-attr" dfn-for="ContentKey">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>Algorithm</dfn> (O, xs:ID)
-:: This is an attribute inherited from [[!RFC6039]] and made optional in this specification.
+:: This is an attribute inherited from [[!RFC6030]] and made optional in this specification.
 
 : <dfn>kid</dfn> (M, xs:string)
 :: The unique identifier of the [=Content Key=].
@@ -529,7 +530,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 <dl dfn-type="element-attr" dfn-for="DRMSystemList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
@@ -543,12 +544,12 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 
 ### <dfn element>DRMSystem</dfn> Element ### {#schema-drmsystem}
 
-The <{DRMSystem}> element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming, HLS amd HDS formats. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
+The <{DRMSystem}> element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming, HLS and HDS formats. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
 
 <dl dfn-type="element-attr" dfn-for="DRMSystem">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
@@ -617,7 +618,7 @@ The HLSSignalingData allows carrying base64 encoded text. It has an optional att
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriodList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
@@ -636,7 +637,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 <dl dfn-type="element-attr" dfn-for="ContentKeyPeriod">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>index</dfn> (O, xs:integer)
 :: Numerical index for the key period. Mutually exclusive with <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}>.
@@ -656,7 +657,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 <dl dfn-type="element-attr" dfn-for="ContentKeyUsageRuleList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (O, xs:integer)
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
@@ -673,7 +674,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 <dl dfn-type="element-attr" dfn-for="ContentKeyUsageRule">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>kid</dfn> (M, xs:string)
 :: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
@@ -685,7 +686,7 @@ When <{ContentKeyPeriod/start}> and <{ContentKeyPeriod/end}> are present, the in
 
 : <dfn>KeyPeriodFilter</dfn> (0...N, <{KeyPeriodFilter}>)
 :: Defines a period of time constraints for the [=Content Key Context=].
-:: This filter links ContentKey and ContentKeyPeriod elements.
+:: This filter links <{ContentKey}> and <{ContentKeyPeriod}> elements.
 
 : <dfn>LabelFilter</dfn> (0...N, <{LabelFilter}>)
 :: Defines a label association for the [=Content Key Context=].
@@ -711,17 +712,17 @@ Additional child elements not defined by DASH-IF may be present containing propr
 
 #### <dfn element> Introduction</dfn> #### {#schema-usagerulefilter-intro}
 
-There can be several filters defined within a single <{ContentKeyUsageRule}>. In this case, all rules apply identically, the entity generating the <{ContentKeyUsageRule}> element or adding a new rule is responsible for ensuring that they do not contradict each other. A set of rules that would match multiple [=Content Key=]s to a single [=Content Key Context=] is invalid.
+There can be several filters defined within a single <{ContentKeyUsageRule}>. In this case, all rules apply identically, the entity generating the <{ContentKeyUsageRule}> element or adding a new rule is responsible for ensuring that they do not contradict each other. A set of rules that would match multiple [=Content Keys=] to a single [=Content Key Context=] is invalid.
 
 If more than one of a particular type of filter (e.g. <{KeyPeriodFilter}>) is present within a <{ContentKeyUsageRule}>, then they are first aggregated with a logical OR operator. After that, different types of filters are aggregated with a logical AND operator. For example, a rule that defines a label filter for stream-1, a label filter for steam-2 and a video filter would be matched as (stream-1 OR stream-2) AND video.
 
-A scenario where multiple [=Content Key=]s can be mapped to a single [=Content Key Context=] shall be considered invalid. A CPIX document must always match exactly zero or one [=Content Key=]s to any [=Content Key Context=].
+A scenario where multiple [=Content Keys=] can be mapped to a single [=Content Key Context=] shall be considered invalid. A CPIX document must always match exactly zero or one [=Content Keys=] to any [=Content Key Context=].
 
-A usage rule shall be considered unusable if it contains a child element whose meaning is unknown (i.e. a filter of an unknown type) or which cannot be processed for any other reason (e.g.  <{VideoFilter/minPixels}> is defined but the implementation does not know the pixel count of the video samples). An entity interpreting the <{ContentKeyUsageRule}> element shall not perform [=Content Key=](s) mapping to [=Content Key Context=]s if any unusable usage rules exist. An entity that is not interpreting the <{ContentKeyUsageRule}> element (doing, for example, only storage of the CPIX document for latter distribution to another entity) can perform any processing on the document.
+A usage rule shall be considered unusable if it contains a child element whose meaning is unknown (i.e. a filter of an unknown type) or which cannot be processed for any other reason (e.g.  <{VideoFilter/minPixels}> is defined but the implementation does not know the pixel count of the video samples). An entity interpreting the <{ContentKeyUsageRule}> element shall not perform [=Content Key=](s) mapping to [=Content Key Contexts=] if any unusable usage rules exist. An entity that is not interpreting the <{ContentKeyUsageRule}> element (doing, for example, only storage of the CPIX document for latter distribution to another entity) can perform any processing on the document.
 
 Processing of the [=Content Key=](s) referenced by any unusable usage rules must not be performed. The usable part of the document can be processed normally.
 
-There can be many different sources for defining usage rules, for example, they can be the result of a right holder requirement or a decision to encrypt separately SD, HD and UHD tracks. The CPIX document does not keep track of the source of these rules, it only defines how to maps [=Content Key=]s to tracks.
+There can be many different sources for defining usage rules, for example, they can be the result of a right holder requirement or a decision to encrypt separately SD, HD and UHD tracks. The CPIX document does not keep track of the source of these rules, it only defines how to maps [=Content Keys=] to tracks.
 
 #### <dfn element>KeyPeriodFilter</dfn> Element #### {#schema-keyperiodfilter}
 
@@ -747,7 +748,7 @@ There can be many different sources for defining usage rules, for example, they 
 
 The <{LabelFilter/label}> attribute is meant for triggering a particular <{ContentKeyUsageRule}> by using pre-agreed upon label strings. Its value may or may not correspond to media track types. One example is a label such as UHD that can be used to match the corresponding <{ContentKeyUsageRule}> element when used as an input or selector for a content encryptor, media packager, MPD generator or license service to select a specific [=Content Key=], populate the ContentProtection element, or include the corresponding key in a content license. Another example is if there is a previous agreement defined outside of a CPIX document that "blue tracks" are encrypted with the [=Content Key=] 1234 and "green tracks" are encrypted with the [=Content Key=] 5678. The labels can be used in this case to identify the suitable tracks (without expressing the specifics of the agreement itself).
 
-In contrast, the <{ContentKeyUsageRule/intendedTrackType}> attribute of <{ContentKeyUsageRule}> is used to assign a track type to the media streams which match the filters. The value of the string may not be pre-agreed between the various entities making use of the CPIX document. Said differently, the <{ContentKeyUsageRule/intendedTrackType}> attribute is a metadata that states business logic. For example, a rule can be that all low resolutions streams are encrypted with the same [=Content Key=]. The value lowRes matches this rule. It has no function in defining what [=Content Key=] are matched to what tracks, it simply acts as a label to allow business logic to say authorize the use of lowRes [=Content Key=] and then a CPIX processor can find the rules that matches the right [=Content Key=]s for lowRes and thereby associated with low resolution tracks.
+In contrast, the <{ContentKeyUsageRule/intendedTrackType}> attribute of <{ContentKeyUsageRule}> is used to assign a track type to the media streams which match the filters. The value of the string may not be pre-agreed between the various entities making use of the CPIX document. Said differently, the <{ContentKeyUsageRule/intendedTrackType}> attribute is a metadata that states business logic. For example, a rule can be that all low resolutions streams are encrypted with the same [=Content Key=]. The value lowRes matches this rule. It has no function in defining what [=Content Key=] are matched to what tracks, it simply acts as a label to allow business logic to say authorize the use of lowRes [=Content Key=] and then a CPIX processor can find the rules that matches the right [=Content Keys=] for lowRes and thereby associated with low resolution tracks.
 
 Note: If a specific key is to be used for more than one type of track (this is not recommended), then there ought to be multiple <{ContentKeyUsageRule}> elements, one for each track type, even if they all reference the same [=Content Key=] with the same <{ContentKey/kid}>.
 
@@ -757,10 +758,10 @@ If present, even without any attributes, the filter will only match video sample
 
 <dl dfn-type="element-attr" dfn-for="VideoFilter">
 
-: <dfn>minPixels</dfn> (O, xs:integer)
-:: The filter will only match video samples that contain at least this many pixels (encoded width x height before considering pixel/sample aspect ratio). The default value is 0 (zero).
+: <dfn>minPixels</dfn> (OD, xs:integer)
+:: The filter will only match video samples that contain at least this number of pixels (encoded width x height before considering pixel/sample aspect ratio). The default value is 0 (zero).
 
-: <dfn>maxPixels</dfn> (O, xs:integer)
+: <dfn>maxPixels</dfn> (OD, xs:integer)
 :: The filter will not match video samples that contain more than this number of pixels (encoded width x height before considering pixel/sample aspect ratio). The default value is MAX_UINT32.
 
 : <dfn>hdr</dfn> (O, xs:boolean)
@@ -789,10 +790,10 @@ If present, even without any attributes, the filter will only match audio sample
 
 <dl dfn-type="element-attr" dfn-for="AudioFilter">
 
-: <dfn>minChannels</dfn> (O, xs:integer)
-:: The filter will only match audio samples that contain at least this many channels. The default value is 0 (zero).
+: <dfn>minChannels</dfn> (OD, xs:integer)
+:: The filter will only match audio samples that contain at least this number of channels. The default value is 0 (zero).
 
-: <dfn>maxChannels</dfn> (O, xs:integer)
+: <dfn>maxChannels</dfn> (OD, xs:integer)
 :: The filter will not match audio samples that contain more than this number of channels. The default value is MAX_UINT32.
 
 </dl>
@@ -805,11 +806,11 @@ When <{AudioFilter/minChannels}> and <{AudioFilter/maxChannels}> are present, th
 
 <dl dfn-type="element-attr" dfn-for="BitrateFilter">
 
-: <dfn>minBitrate</dfn> (O, xs:integer)
+: <dfn>minBitrate</dfn> (OD, xs:integer)
 :: The filter will only match samples from streams with a nominal bitrate in Mb/s of at least this value. The default value is 0 (zero).
 :: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
-: <dfn>maxBitrate</dfn> (O, xs:integer)
+: <dfn>maxBitrate</dfn> (OD, xs:integer)
 :: The filter will not match samples from streams with a nominal bitrate in Mb/s that exceeds this value. The default value is MAX_UINT32.
 :: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
@@ -824,7 +825,7 @@ When <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> are present, 
 <dl dfn-type="element-attr" dfn-for="UpdateHistoryItemList">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>UpdateHistoryItem</dfn> (0...N, <{UpdateHistoryItem}>)
 :: It contains metadata about an update made to the CPIX document. There should be one entry for each instance in which an entity updated the document.
@@ -838,7 +839,7 @@ When <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> are present, 
 <dl dfn-type="element-attr" dfn-for="UpdateHistoryItem">
 
 : <dfn>id</dfn> (O, xs:ID)
-:: Specifies an identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
 : <dfn>updateVersion</dfn> (M, xs:integer)
 :: The is the ID referenced by other elements in the document. It is strongly recommended to use an identifier that is unique within the scope in which this CPIX document is published.
@@ -860,9 +861,9 @@ When <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> are present, 
 
 ## Key Encryption in the CPIX Document ## {#keys-enc}
 
-The CPIX document allows exchanging [=Content Key=]s in the clear but this is not a recommended method as it relies on the security of the communication mechanism used to deliver the CPIX document to the recipients, which may not be sufficient to adequately protect the [=Content Key=]s.
+The CPIX document allows exchanging [=Content Keys=] in the clear but this is not a recommended method as it relies on the security of the communication mechanism used to deliver the CPIX document to the recipients, which may not be sufficient to adequately protect the [=Content Keys=].
 
-[=Content Key=]s can be delivered encrypted within the document itself and in this case, a multi-level structure of encryption keys is used for an efficient encryption avoiding duplication of encrypted content and expensive encryption methods. This section describes the mechanism that shall be used when encryption of the [=Content Key=]s in the document is used.
+[=Content Keys=] can be delivered encrypted within the document itself and in this case, a multi-level structure of encryption keys is used for an efficient encryption avoiding duplication of encrypted content and expensive encryption methods. This section describes the mechanism that shall be used when encryption of the [=Content Keys=] in the document is used.
 
 ### Keys Used to Secure the CPIX Document ### {#keys-enc-keytypes}
 
@@ -870,7 +871,7 @@ The document contains the following keys:
 
 **Content Keys**
 
-Each ContentKey element contains one [=Content Key=] that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other [=Content Key=]s (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASH-IF-IOP]], these keys are 128-bit keys used with the AES cipher.
+Each <{ContentKey}> element contains one [=Content Key=] that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other [=Content Keys=] (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASH-IF-IOP]], these keys are 128-bit keys used with the AES cipher.
 
 **Document Key**
 
@@ -880,7 +881,7 @@ For every CPIX document, a [=Document Key=] is created. It is used for encryptin
 
 Each <{DeliveryData}> element identifies a Delivery Key, which is a public key from a key pair owned by the intended recipient. The Delivery Key is identified in the <{DeliveryData}> element by including the X.509 certificate of the intended recipient. The Delivery Key is used for encrypting the [=Document Key=] using an algorithm that is described within the CPIX document, according to [[!XMLENC-CORE]].
 
-The below figure gives the schema of encryption of the different keys when there are several <{DeliveryData}> elements and several <{ContentKey}> Elements. The [=Document Key=] allows reducing the numbers of <{ContentKey}> Elements as the [=Content Key=] they contain are all encrypted by the same [=Document Key=].
+The below figure gives the schema of encryption of the different keys when there are several <{DeliveryData}> elements and several <{ContentKey}> elements. The [=Document Key=] allows reducing the numbers of <{ContentKey}> elements as the [=Content Key=] they contain are all encrypted by the same [=Document Key=].
 
 <figure>
 	<img src="Diagrams/DocumentKeyStructure.png" />
@@ -998,17 +999,13 @@ Abstract: None
 {
 	"DASH-IF-IOP": {
 		"href": "https://dashif.org/guidelines/",
-		"title": "Guidelines for Implementation: DASH-IF Interoperability Points, version 4.1, September 2017.",
+		"title": "Guidelines for Implementation: DASH-IF Interoperability Points, version 4.1, September 2017",
 		"publisher": "DASH Industry Forum"
 	},
 	"DASH-SystemIDs": {
 		"href": "https://dashif.org/identifiers/content_protection/",
-		"title": "DASH-IF registry of DRM System IDs.",
+		"title": "DASH-IF registry of DRM System IDs",
 		"publisher": "DASH Industry Forum"
-	},
-	"RFC6030": {
-		"title": "RFC 6030, Portable Symmetric Key Container (PSKC), October 2010.",
-		"publisher": "IETF"
 	},
 	"CPIX-XSD": {
 		"href": "https://dashif.org/guidelines/",
