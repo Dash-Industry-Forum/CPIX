@@ -521,6 +521,10 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: The referenced key shall not be a leaf key.
 :: If this attribute is not specified, the [=Content Key=] is either a root key or does not participate in a key hierarchy. The CPIX document format does not make a distinction between these two cases.
 
+: <dfn>commonEncryptionScheme</dfn> (O, enumeration)
+:: This attribute shall not be used if the <{ContentKey/dependsOnKey}> attribute is present. In a key hierarchy, the root key defines the Common Encryption protection scheme to use with all keys in the hierarchy.
+:: The Common Encryption protection scheme that the content key is intended to be used with. Valid values are `cenc`, `cbc1`, `cens` and `cbcs` ([[!MPEGCENC]]). If the attribute is omitted then content may be encrypted using any Common Encryption protection scheme.
+
 </dl>
 
 <img src="Images/Schema-ContentKey.png" />

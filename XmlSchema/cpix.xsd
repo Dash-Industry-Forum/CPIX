@@ -128,6 +128,14 @@
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="Algorithm" type="pskc:KeyAlgorithmType" use="optional"/>
 	</xs:complexType>
+	<xs:simpleType name="CencSchemeType" final="restriction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="cenc" />
+			<xs:enumeration value="cbc1" />
+			<xs:enumeration value="cens" />
+			<xs:enumeration value="cbcs" />
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="ContentKeyType">
 		<xs:complexContent>
 			<xs:extension base="cpix:KeyType">
