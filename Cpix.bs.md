@@ -525,6 +525,8 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: This attribute shall not be used if the <{ContentKey/dependsOnKey}> attribute is present. In a key hierarchy, the root key defines the Common Encryption protection scheme to use with all keys in the hierarchy.
 :: The Common Encryption protection scheme that the content key is intended to be used with. Valid values are `cenc`, `cbc1`, `cens` and `cbcs` ([[!MPEGCENC]]). If the attribute is omitted then content may be encrypted using any Common Encryption protection scheme.
 
+Advisement: The DRM system signaling data in <{DRMSystem}> elements often contains the Common Encryption protection scheme identifier in a DRM system specific format. Ensure that the values in <{DRMSystem}> elements are aligned with the values in <{ContentKey/commonEncryptionScheme}> attributes.
+
 </dl>
 
 <img src="Images/Schema-ContentKey.png" />
