@@ -602,6 +602,8 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 
 </dl>
 
+Advisement: The DRM system signaling data in <{DRMSystem}> elements often contains the Common Encryption protection scheme identifier in a DRM system specific format. Ensure that the values in <{DRMSystem}> elements are aligned with the values in <{ContentKey/commonEncryptionScheme}> attributes.
+
 Additional child elements not defined by DASH-IF may be present containing signaling data for other media formats. Such elements must appear after any elements defined here.
 
 <img src="Images/Schema-DRMSystem.png" />
