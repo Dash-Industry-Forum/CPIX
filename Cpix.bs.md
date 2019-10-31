@@ -521,7 +521,13 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: The referenced key shall not be a leaf key.
 :: If this attribute is not specified, the [=Content Key=] is either a root key or does not participate in a key hierarchy. The CPIX document format does not make a distinction between these two cases.
 
+: <dfn>commonEncryptionScheme</dfn> (O, xs:string with length=4)
+:: This attribute shall not be used if the <{ContentKey/dependsOnKey}> attribute is present. In a key hierarchy, the root key defines the Common Encryption protection scheme to use with all keys in the hierarchy.
+:: The Common Encryption protection scheme that the content key is intended to be used with. When present, the value shall be a 4-character protection scheme name as defined by [[!MPEGCENC]]. If the attribute is omitted then content may be encrypted using any Common Encryption protection scheme.
+
 </dl>
+
+Advisement: The DRM system signaling data in <{DRMSystem}> elements often contains the Common Encryption protection scheme identifier in a DRM system specific format. Ensure that the values in <{DRMSystem}> elements are aligned with the values in <{ContentKey/commonEncryptionScheme}> attributes.
 
 <img src="Images/Schema-ContentKey.png" />
 
@@ -595,6 +601,8 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: This element has meaning only when a Flash media manifest is created for the media content.
 
 </dl>
+
+Advisement: The DRM system signaling data in <{DRMSystem}> elements often contains the Common Encryption protection scheme identifier in a DRM system specific format. Ensure that the values in <{DRMSystem}> elements are aligned with the values in <{ContentKey/commonEncryptionScheme}> attributes.
 
 Additional child elements not defined by DASH-IF may be present containing signaling data for other media formats. Such elements must appear after any elements defined here.
 
