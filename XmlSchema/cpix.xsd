@@ -18,7 +18,7 @@
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="KeyPeriodFilterType">
-		<xs:attribute name="periodId" type="xs:ID" use="required"/>
+		<xs:attribute name="periodId" type="xs:IDREF" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="LabelFilterType">
 		<xs:attribute name="label" type="xs:string" use="required"/>
