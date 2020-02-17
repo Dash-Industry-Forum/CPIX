@@ -130,7 +130,7 @@
 	</xs:complexType>
 	<xs:simpleType name="CencSchemeType" final="restriction">
 		<xs:restriction base="xs:string">
-			<xs:length value="4">
+			<xs:length value="4"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="ContentKeyType">
