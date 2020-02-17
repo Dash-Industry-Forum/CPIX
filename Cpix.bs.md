@@ -736,7 +736,7 @@ There can be many different sources for defining usage rules, for example, they 
 
 <dl dfn-type="element-attr" dfn-for="KeyPeriodFilter">
 
-: <dfn>periodId</dfn> (M, xs:ID)
+: <dfn>periodId</dfn> (M, xs:IDREF)
 :: This references a <{ContentKeyPeriod}> element by <{ContentKeyPeriod/id}>. The filter will only match samples that belong to the referenced key period.
 
 </dl>
