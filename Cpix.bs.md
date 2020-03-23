@@ -392,6 +392,10 @@ The root element that carries the Content Protection Information for a set of me
 : <dfn>name</dfn> (O, xs:string)
 :: A name for the presentation.
 
+: <dfn>version</dfn> (O, xs:string)
+:: A version for the CPIX document. The value shall reference a published version of the CPIX Guidelines and be structured as majorVersion.minorVersion (Example: '2.3').
+:: If the CPIX client knows that it doesn't support all the features of a given CPIX version, it needs to behave according to the recommendations of the API used to exchange the CPIX document.
+
 : <dfn>DeliveryDataList</dfn> (0...1, <{DeliveryDataList}>)
 :: A container for <{DeliveryData}> elements. If not present, [=Content Keys=] in the document are delivered in the clear, without encryption.
 
@@ -815,11 +819,11 @@ When <{AudioFilter/minChannels}> and <{AudioFilter/maxChannels}> are present, th
 <dl dfn-type="element-attr" dfn-for="BitrateFilter">
 
 : <dfn>minBitrate</dfn> (OD, xs:integer)
-:: The filter will only match samples from streams with a nominal bitrate in Mb/s of at least this value. The default value is 0 (zero).
+:: The filter will only match samples from streams with a nominal bitrate in b/s of at least this value. The default value is 0 (zero).
 :: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
 : <dfn>maxBitrate</dfn> (OD, xs:integer)
-:: The filter will not match samples from streams with a nominal bitrate in Mb/s that exceeds this value. The default value is MAX_UINT32.
+:: The filter will not match samples from streams with a nominal bitrate in b/s that exceeds this value. The default value is MAX_UINT32.
 :: At least one of <{BitrateFilter/minBitrate}> and <{BitrateFilter/maxBitrate}> must be specified.
 
 </dl>
