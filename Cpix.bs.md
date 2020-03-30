@@ -22,7 +22,7 @@ Because the defined container is not made for a specifically defined content pre
 
 ## Normative Language ## {#intro-conformance}
 
-See [[!DASH-IF-IOP]] section 2.3.
+See [[!DASHIFIOP]] section 2.3.
 
 ## Terms & Definitions ## {#intro-terms}
 
@@ -55,7 +55,7 @@ This section presents different use cases where such exchanges are required. [[#
 
 ## Overview of the End to End Architecture ## {#architecture}
 
-This informative section gives a general overview of the context in which content protection information need to be exchanged between entities in the backend. It completes section 7.5 of [[!DASH-IF-IOP]] by putting more emphasis on the backend aspects.
+This informative section gives a general overview of the context in which content protection information need to be exchanged between entities in the backend. It completes section 7.5 of [[!DASHIFIOP]] by putting more emphasis on the backend aspects.
 
 This informative section takes DASH content as an example for providing more specific and clear understanding, but this can be generalized to other streaming formats, such as HLS.
 
@@ -331,7 +331,7 @@ It shall be possible that the manifest generator receives [=DRM Signaling=] for 
 
 Update of [=Content Key=](s) shall be possible at periodic time or based on events. Some period of time could be in the clear (no encryption).
 
-It shall allow generating MPD conformant to [[!DASH-IF-IOP]].
+It shall allow generating MPD conformant to [[!DASHIFIOP]].
 
 [=Content Key=](s) shall be secured over the interface.
 
@@ -565,7 +565,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>systemId</dfn> (M, xs:string)
-:: This is the unique identifier of the DRM system. Values are published by [[!DASH-SystemIDs]].
+:: This is the unique identifier of the DRM system. Values are avaialble on [dashif.org](https://dashif.org/identifiers/content_protection/).
 
 : <dfn>kid</dfn> (M, xs:string)
 :: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
@@ -576,7 +576,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 : <dfn>PSSH</dfn> (0...1, xs:base64binary)
 :: This is the full [=PSSH=] box that should be added to ISOBMFF files encrypted with the referenced [=Content Key=].
 :: When the key is a leaf key in a key hierarchy, the value is inserted under the moof boxes.
-:: This element should not be used when the key is not part of a key hierarchy or is a root key in a key hierarchy. Instead, the DRM system signaling should be carried by the format-specific data structures such <{DRMSystem/ContentProtectionData}>. See [[!DASH-IF-IOP]] section 7.7.1. If this element is used in the above circumstances, the value is inserted under the moov box.
+:: This element should not be used when the key is not part of a key hierarchy or is a root key in a key hierarchy. Instead, the DRM system signaling should be carried by the format-specific data structures such <{DRMSystem/ContentProtectionData}>. See [[!DASHIFIOP]] section 7.7.1. If this element is used in the above circumstances, the value is inserted under the moov box.
 :: This element has meaning only when the media content is in the ISOBMFF format.
 
 : <dfn>ContentProtectionData</dfn> (0...1, xs:base64binary)
@@ -883,7 +883,7 @@ The document contains the following keys:
 
 **Content Keys**
 
-Each <{ContentKey}> element contains one [=Content Key=] that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other [=Content Keys=] (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASH-IF-IOP]], these keys are 128-bit keys used with the AES cipher.
+Each <{ContentKey}> element contains one [=Content Key=] that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other [=Content Keys=] (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASHIFIOP]], these keys are 128-bit keys used with the AES cipher.
 
 **Document Key**
 
@@ -978,6 +978,10 @@ The usage of DRM system signaling data is different when hierarchical keys are u
 
 Any DRM system specific functionality associated with key hierarchies exists on the DRM layer. It may affect the DRM system signaling data but not the keys themselves.
 
+## Content Keys with Several Protection Encryption Schemes ## {#keys-encryptionScheme}
+
+[[!MPEGCENC]] defines several protection schemes that are mutually exclusive. This means that several encrypted versions for the same content in the clear are created if the targeted devices support one or another protection scheme. While it may not be recommended, it is possible to use the same [=Content Keys=] when encrypting these different versions. In term of CPIX document, this means that several documents need to be created, these documents will differ only on the <{ContentKey/commonEncryptionScheme}> which will take a different value depending on the protection schemes.
+
 # Examples # {#examples}
 
 [Example CPIX documents are available on GitHub](https://github.com/Dash-Industry-Forum/cpix-test-vectors).
@@ -1009,16 +1013,6 @@ Abstract: None
 
 <pre class="biblio">
 {
-	"DASH-IF-IOP": {
-		"href": "https://dashif.org/guidelines/",
-		"title": "Guidelines for Implementation: DASH-IF Interoperability Points, version 4.1, September 2017",
-		"publisher": "DASH Industry Forum"
-	},
-	"DASH-SystemIDs": {
-		"href": "https://dashif.org/identifiers/content_protection/",
-		"title": "DASH-IF registry of DRM System IDs",
-		"publisher": "DASH Industry Forum"
-	},
 	"CPIX-XSD": {
 		"href": "https://dashif.org/guidelines/",
 		"title": "CPIX XML Schema",
