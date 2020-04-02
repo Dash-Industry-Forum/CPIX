@@ -980,7 +980,7 @@ Any DRM system specific functionality associated with key hierarchies exists on 
 
 ## Content Keys with Several Protection Encryption Schemes ## {#keys-encryptionScheme}
 
-[[!MPEGCENC]] defines several protection schemes that are mutually exclusive. This means that several encrypted versions for the same content in the clear are created if the targeted devices support one or another protection scheme. While it may not be recommended, it is possible to use the same [=Content Keys=] when encrypting these different versions. In term of CPIX document, this means that several documents need to be created, these documents will differ only on the <{ContentKey/commonEncryptionScheme}> which will take a different value depending on the protection schemes.
+[[!MPEGCENC]] defines several protection schemes that are not interoperable. This means that several encrypted versions for the same content in the clear are created if the targeted devices support one or another protection scheme. While it may not be recommended, it is possible to use the same [=Content Keys=] when encrypting these different versions. In term of CPIX document, this means that several documents need to be created, these documents will differ on the <{ContentKey/commonEncryptionScheme}> which will take a different value depending on the protection schemes. Note that depending on the DRM, some elements under the <{DRMSystem}> element may also be different.
 
 # Examples # {#examples}
 
