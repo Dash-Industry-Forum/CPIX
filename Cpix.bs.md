@@ -2,9 +2,12 @@
 
 The scope of this document is to define a Content Protection Information Exchange Format (CPIX). A CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example, DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
 
-This specification describes version 2.2 of the CPIX document format. Detailed changes with respect to version 2.1 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
+This specification describes version 2.3 of the CPIX document format. Detailed changes with respect to version 2.2 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
 
-* Bug fixes on the HLS signalization support.
+* Addition of the <{ContentKey/commonEncryptionScheme}> element with the CENC protection scheme value
+* Addition of the <{CPIX/version}> element
+* Addition of a section on using the same content key with different encryption schemes
+* Clarification on the <{ContentKey/explicitIV}> element encoding
 
 # Disclaimer # {#disclaimer}
 
@@ -992,8 +995,8 @@ The examples contain valid data unless explicitly noted otherwise. Their content
 <!-- Document metadata follows. The below sections are used by the document compiler and are not directly visible. -->
 
 <pre class="metadata">
-Date: 2019-03-22
-Revision: 2.2
+Date: 2020-04-17
+Revision: 2.3
 
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
 Status: LS-COMMIT
