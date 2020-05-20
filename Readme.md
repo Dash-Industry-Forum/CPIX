@@ -1,6 +1,6 @@
 # Content Protection Information Exchange Format (CPIX)
 
-Join the discussion: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
+[Join DASH-IF on Slack!](https://join.slack.com/t/dashif/shared_invite/zt-egme869x-JH~UPUuLoKJB26fw7wj3Gg)
 
 This repository contains the source files and issue tracker for CPIX. Contributions are welcome!
 
@@ -43,5 +43,3 @@ Most recent content from the **published** branch (final outputs published by DA
 # Document authoring
 
 See [Document Authoring Kit](https://dashif.org/DocumentAuthoring/) for details on document authoring process and the relevant tooling.
-
-Join **#iop** on Slack for live chat: [![Slack Status](https://dashif-slack.azurewebsites.net/badge.svg)](https://dashif-slack.azurewebsites.net)
