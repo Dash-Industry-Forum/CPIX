@@ -516,7 +516,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: This is an attribute inherited from [[!RFC6030]] and made optional in this specification.
 
 : <dfn>kid</dfn> (M, xs:string)
-:: The unique identifier of the [=Content Key=].
+:: The unique identifier of the [=Content Key=]. It shall be formatted as defined in [[!MPEGCENC]], section 11.2. In addition, according to [[!MPEGCMAF]], Section 8.2.1, it is strongly recommended the value be a UUID. In this case, it shall be stored sequenced as specified in [[!ITU-X667]], section 6.1.
 
 : <dfn>explicitIV</dfn> (O, xs:base64binary)
 :: The IV to use when solution-specific logic requires a single explicit IV to be associated with a [=Content Key=]. The value consists of a 128-bit IV in binary format, base64-encoded.
@@ -1020,6 +1020,11 @@ Abstract: None
 		"href": "https://dashif.org/guidelines/",
 		"title": "CPIX XML Schema",
 		"publisher": "DASH Industry Forum"
+	},
+	"ITU-X667": {
+		"href": "https://www.itu.int/rec/T-REC-X.667",
+		"title": "Information technology - Procedures for the operation of object identifier registration authorities: Generation of universally unique identifiers and their use in object identifiers",
+		"publisher": "ITU-T"
 	}
 }
 </pre>
