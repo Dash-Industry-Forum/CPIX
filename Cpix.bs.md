@@ -73,7 +73,7 @@ The figure above shows logical entities that may send or receive DRM information
 
 **Encoder** - A service provider who encodes media in a specified set of formats with different bitrates and resolutions etc., possibly determined by the publisher.
 
-**Packager / Encryptor** - A service provider who encrypts and packages media, inserting [=DRM Signaling=] and metadata into the media files. In the case of DASH packaging, this consists of adding the default_KID in the file header tenc box, initialization vectors and subsample byte ranges in track fragments indexed by saio and saiz boxes, and possibly one or more [=PSSH=] boxes containing license acquisition information (from the DRM Service). Tracks that are partially encrypted or encrypted with multiple keys require sample to group boxes and sample group description boxes in each track fragment to associate different KIDs to groups of samples. The Packager could originate values for KIDs, [=Content Keys=], encryption layout, etc., then send that information to other entities that need it, including the DRM Service and Streamer, and probably the Content Provider.  However, the Packager could receive that information from a different point of origin, such as the Content Provider or DRM Service.
+**Packager / Encryptor** - A service provider who encrypts and packages media, inserting [=DRM Signaling=] and metadata into the media files. In the case of DASH packaging, this consists of adding the default_KID in the file header `tenc` box, initialization vectors and subsample byte ranges in track fragments indexed by `saio` and `saiz` boxes, and possibly one or more [=PSSH=] boxes containing license acquisition information (from the DRM Service). Tracks that are partially encrypted or encrypted with multiple keys require sample to group boxes and sample group description boxes in each track fragment to associate different KIDs to groups of samples. The Packager could originate values for KIDs, [=Content Keys=], encryption layout, etc., then send that information to other entities that need it, including the DRM Service and Streamer, and probably the Content Provider.  However, the Packager could receive that information from a different point of origin, such as the Content Provider or DRM Service.
 
 **Manifest Creator** - A service provider which generates the media manifests which group the various media files into a coherent presentation. These manifest files may contain [=DRM Signaling=] information. For DASH, the MPD Creator is assumed to create one or more types of DASH MPD files, and provide indexing of Segments and/or sidx indexes for download so that players can byte range index Subsegments. The MPD must include descriptors for Common Encryption and DRM key management systems, and should include identification of the default_KID for each AdaptationSet element, and sufficient information in UUID ContentProtection elements to acquire a DRM license. The default_KID is available from the Packager and any other role that created it, and the DRM specific information is available from the DRM Service.
 
@@ -516,7 +516,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 :: This is an attribute inherited from [[!RFC6030]] and made optional in this specification.
 
 : <dfn>kid</dfn> (M, xs:string)
-:: The unique identifier of the [=Content Key=]. It shall be formatted as defined in [[!MPEGCENC]], section 11.2. In addition, according to [[!MPEGCMAF]], Section 8.2.1, it is strongly recommended the value be a UUID. In this case, it shall be stored sequenced as specified in [[!ITU-X667]], section 6.1.
+:: The unique identifier of the [=Content Key=]. It shall be formatted as defined in [[!MPEGCENC]], section 11.2. In addition, according to [[!MPEGCMAF]], Section 8.2.1, it is strongly recommended the value be a UUID. In this case, it shall be stored sequenced as specified in [[!ITU-X667]], section 6.4.
 
 : <dfn>explicitIV</dfn> (O, xs:base64binary)
 :: The IV to use when solution-specific logic requires a single explicit IV to be associated with a [=Content Key=]. The value consists of a 128-bit IV in binary format, base64-encoded.
@@ -578,12 +578,12 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 
 : <dfn>PSSH</dfn> (0...1, xs:base64binary)
 :: This is the full [=PSSH=] box that should be added to ISOBMFF files encrypted with the referenced [=Content Key=].
-:: When the key is a leaf key in a key hierarchy, the value is inserted under the moof boxes.
-:: This element should not be used when the key is not part of a key hierarchy or is a root key in a key hierarchy. Instead, the DRM system signaling should be carried by the format-specific data structures such <{DRMSystem/ContentProtectionData}>. See [[!DASHIFIOP]] section 7.7.1. If this element is used in the above circumstances, the value is inserted under the moov box.
+:: When the key is a leaf key in a key hierarchy, the value is inserted under the `moof` boxes.
+:: This element should not be used when the key is not part of a key hierarchy or is a root key in a key hierarchy. Instead, the DRM system signaling should be carried by the format-specific data structures such <{DRMSystem/ContentProtectionData}>. See [[!DASHIFIOP]] section 7.7.1. If this element is used in the above circumstances, the value is inserted under the `moov` box.
 :: This element has meaning only when the media content is in the ISOBMFF format.
 
 : <dfn>ContentProtectionData</dfn> (0...1, xs:base64binary)
-:: This is the full well-formed standalone XML fragment to be added to the DASH manifest under the ContentProtection element for this DRM system. This is UTF-8 text without a byte order mark.
+:: This is the full well-formed standalone XML fragment to be added to the DASH manifest under the ContentProtection element for this DRM system. This is UTF-8 text without a byte order mark. An example of such data is the W3C signaling defined in [[!DASHIFIOP]], in this case, all `dashif:xxx` elements are children of the `ContentProtection` element and are therefore be signaled in this element.
 :: This element shall not be used if the referenced [=Content Key=] is a leaf key in a key hierarchy.
 :: This element has meaning only when a DASH manifest is created for the media content.
 
