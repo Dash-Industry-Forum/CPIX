@@ -515,7 +515,7 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 : <dfn>Algorithm</dfn> (O, xs:ID)
 :: This is an attribute inherited from [[!RFC6030]] and made optional in this specification.
 
-: <dfn>kid</dfn> (M, xs:string)
+: <dfn>kid</dfn> (M, cpix:KeyIdType)
 :: The unique identifier of the [=Content Key=]. It shall be formatted as defined in [[!MPEGCENC]], section 11.2.
 
 : <dfn>explicitIV</dfn> (O, xs:base64binary)
