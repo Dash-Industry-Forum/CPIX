@@ -568,7 +568,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: Matches the <{UpdateHistoryItem/updateVersion}> attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
 
 : <dfn>systemId</dfn> (M, xs:string)
-:: This is the unique identifier of the DRM system. Values are avaialble on [dashif.org](https://dashif.org/identifiers/content_protection/).
+:: This is the unique identifier of the DRM system. Values are available on [dashif.org](https://dashif.org/identifiers/content_protection/).
 
 : <dfn>kid</dfn> (M, xs:string)
 :: Matches the <{ContentKey/kid}> attribute of the <{ContentKey}> this element references.
