@@ -995,7 +995,7 @@ The examples contain valid data unless explicitly noted otherwise. Their content
 <!-- Document metadata follows. The below sections are used by the document compiler and are not directly visible. -->
 
 <pre class="metadata">
-Date: 2020-04-17
+Date: 2020-09-03
 Revision: 2.3
 
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
