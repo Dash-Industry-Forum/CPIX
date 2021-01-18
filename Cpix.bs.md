@@ -580,7 +580,7 @@ The <{DRMSystem}> element contains all information on a DRM system that can be u
 :: This is the full [=PSSH=] box that should be added to ISOBMFF files encrypted with the referenced [=Content Key=].
 :: When the key is a leaf key in a key hierarchy, the value is inserted under the `moof` boxes.
 :: This element should not be used when the key is not part of a key hierarchy or is a root key in a key hierarchy. Instead, the DRM system signaling should be carried by the format-specific data structures such <{DRMSystem/ContentProtectionData}>. See [[!DASHIFIOP]] section 7.7.1. If this element is used in the above circumstances, the value is inserted under the `moov` box.
-:: This element has meaning only when the media content is in the ISOBMFF format.
+:: This element has meaning only when the media content is in the ISOBMFF format. In such a case, this is a mandatory attribute.
 
 : <dfn>ContentProtectionData</dfn> (0...1, xs:base64binary)
 :: This is the full well-formed standalone XML fragment to be added to the DASH manifest under the ContentProtection element for this DRM system. This is UTF-8 text without a byte order mark. An example of such data is the W3C signaling defined in [[!DASHIFIOP]], in this case, all `dashif:xxx` elements are children of the `ContentProtection` element and are therefore be signaled in this element.
