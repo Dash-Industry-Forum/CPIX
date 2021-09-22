@@ -4,6 +4,8 @@
 
 This repository contains the source files and issue tracker for CPIX. Contributions are welcome!
 
+I experienced some issues with images, i am wondering if the same issue occurs with this document.
+
 # How to report a bug?
 
 Just file a new issue in this repository.
