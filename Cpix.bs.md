@@ -1012,6 +1012,7 @@ Line Numbers: off
 Markup Shorthands: markdown yes
 Boilerplate: copyright off, abstract off
 Abstract: None
+Image Auto Size: false 
 </pre>
 
 <pre class="biblio">
