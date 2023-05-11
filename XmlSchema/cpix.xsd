@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2008 (http://www.altova.com) by It licence (Nagravision SA) -->
+<!-- edited with XMLSpy v2020 rel. 2 (x64) (http://www.altova.com) by licence@nagra.com (Nagravision SA Kudelski Group) -->
 <xs:schema xmlns:cpix="urn:dashif:org:cpix" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="urn:dashif:org:cpix" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
 	<xs:import namespace="urn:ietf:params:xml:ns:keyprov:pskc" schemaLocation="pskc.xsd"/>
+	<xs:simpleType name="UUIDType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="PlaylistType" final="restriction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="master"/>
+			<xs:enumeration value="media"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="UpdateHistoryItemType">
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="updateVersion" type="xs:integer" use="required"/>
@@ -49,7 +60,7 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
-		<xs:attribute name="kid" type="xs:string" use="required"/>
+		<xs:attribute name="kid" type="cpix:UUIDType" use="required"/>
 		<xs:attribute name="intendedTrackType" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="ContentKeyUsageRuleListType">
@@ -79,12 +90,6 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<xs:simpleType name="PlaylistType" final="restriction">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="master"/>
-			<xs:enumeration value="media"/>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:complexType name="DRMSystemType">
 		<xs:sequence>
 			<xs:element name="PSSH" type="xs:base64Binary" minOccurs="0"/>
@@ -97,8 +102,8 @@
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="updateVersion" type="xs:integer" use="optional"/>
-		<xs:attribute name="systemId" type="xs:string" use="required"/>
-		<xs:attribute name="kid" type="xs:string" use="required"/>
+		<xs:attribute name="systemId" type="cpix:UUIDType" use="required"/>
+		<xs:attribute name="kid" type="cpix:UUIDType" use="required"/>
 		<xs:attribute name="name" type="xs:string" use="optional"/>
 	</xs:complexType>
 	<xs:complexType name="DRMSystemListType">
@@ -128,23 +133,13 @@
 		<xs:attribute name="id" type="xs:ID" use="optional"/>
 		<xs:attribute name="Algorithm" type="pskc:KeyAlgorithmType" use="optional"/>
 	</xs:complexType>
-	<xs:simpleType name="CencSchemeType" final="restriction">
-		<xs:restriction base="xs:string">
-			<xs:length value="4"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="KeyIdType">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}"/>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:complexType name="ContentKeyType">
 		<xs:complexContent>
 			<xs:extension base="cpix:KeyType">
-				<xs:attribute name="kid" type="cpix:KeyIdType" use="required"/>
+				<xs:attribute name="kid" type="cpix:UUIDType" use="required"/>
 				<xs:attribute name="explicitIV" type="xs:base64Binary" use="optional"/>
-				<xs:attribute name="dependsOnKey" type="xs:string" use="optional"/>
-				<xs:attribute name="commonEncryptionScheme" type="cpix:CencSchemeType" use="optional"/>
+				<xs:attribute name="dependsOnKey" type="cpix:UUIDType" use="optional"/>
+				<xs:attribute name="commonEncryptionScheme" type="xs:string" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
