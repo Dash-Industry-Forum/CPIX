@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
-Date: 2023-03-31
+Date: 2023-07-09
 Editor: DASH Industry Forum
 Status: LS-COMMIT
 Shortname: cpix
@@ -23,12 +23,16 @@ Image Auto Size: false
 
 The scope of this document is to define a Content Protection Information Exchange Format (CPIX). A CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example, DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
 
-This specification describes version 2.3 of the CPIX document format. Detailed changes with respect to version 2.2 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
+This specification describes version 2.3.1 of the CPIX document format. Detailed changes with respect to version 2.3 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
 
-* Addition of the `@commonEncryptionScheme` attribute under the <{ContentKey}> element with the CENC protection scheme value
+* Clarified that key ids shall be UUID as described in [[!MPEGCENC]] (added a constraint)
+* Corrected a bug on `@periodId` that shall be a XS:REFID
+* Clarification on the `@explicitIV` attribute under the <{ContentKey}> element encoding
+* Taking into account the scenario described in Clause 9 of [[!DASHIF-IOPv5p6]] for key rotation, clarification for the `PSSH` and `ContentProtectionData` content under `DRMSystem`. A clause is also added on this topic.
+* Clean-up the Use Cases and Requirements clause (removed the electronic sell through use csae)
+* Updated references
 * Addition of the `@version` attribute under the <{CPIX}> element
 * Addition of a clause on using the same content key with different encryption schemes
-* Clarification on the `@explicitIV` attribute under the <{ContentKey}> element encoding
 
 # Disclaimer # {#disclaimer}
 
