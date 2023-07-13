@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
-Date: 2023-03-31
+Date: 2023-07-12
 Editor: DASH Industry Forum
 Status: LS-COMMIT
 Shortname: cpix
@@ -10,7 +10,7 @@ Repository: GitHub https://github.com/Dash-Industry-Forum/CPIX
 Default Highlight: text
 Line Numbers: off
 Markup Shorthands: markdown yes
-Boilerplate: copyright no, abstract no, index no, conformance no
+Boilerplate: copyright no, abstract no, index no, conformance no, header yes
 Abstract: None
 Image Auto Size: false 
 </pre>
@@ -19,16 +19,75 @@ Image Auto Size: false
 	<a href="https://www.dashif.org/"> <img src="Images/DASH-IF.png"> </a>
 </pre>
 
+<table style='font-family:"sans-serif"' class="def" valign="top">
+	<tr>
+		<td colspan="6"><b>Candidate Technical Specification</b></td>
+	</tr>
+	<tr>
+		<td colspan="2"><b>DASH-IF CTS</b></td>
+		<td><b>Part XX</b></td>
+		<td><b>rev 0</b></td>
+		<td colspan="2"><b> Current version 2.3.1</b></td>
+	</tr>
+	<tr>
+		<td><b>Status:</b></td>
+		<td>Draft</td>
+		<td>Internal Review</td>
+		<td>Community Review</td>
+		<td>IOP Review</td>
+		<td>IPR Review</td>	
+	</tr>
+	<tr>
+		<td><b>Title:</b></td>
+		<td colspan="5">DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)</td>	
+	</tr>
+	<tr>
+		<td><b>Source:</b></td>
+		<td colspan="5">DASH-IF Interoperability Working Group,<br>DASH-IF Content Protection and Security TF</td>	
+	</tr>
+	<tr>
+		<td><b>Supporting<br>Compagnies:</b></td>
+		<td colspan="5"></td>	
+	</tr>
+	</tr>
+	<tr>
+		<td><b>Category:</b></td>
+		<td colspan="3"><b> Candidate Technical Specification</b></td>
+		<td colspan="2"> <b>Date:</b> 2023-07-12</td>
+	</tr>
+	</tr>
+	<tr>
+		<td><b>Abstract:</b></td>
+		<td colspan="5">This document defines a container allowing the exchange between entities of content protection information typically made of keys used for encrypting content and any associated DRM specific information.<br>There may be one or several keys and these keys may be protected by one or several DRMs, hence there may be one or several DRM specific information. There is no assumption on the entities exchanging this information but it is not expected that a client device will use this exchange format. The goal is to allow entities involved in the content preparation workflow to get the content protection information so that, for example a DASH MPD can be generated with all content protection information. Because the defined container is not made for a specifically defined content preparation workflow but is generic, conformance is not considered to be a critical part of CPIX. As a consequence, no conformance is defined for this specification.</td>	
+	</tr>
+	<tr>
+		<td><b>Disclaimer:</b></td>
+		<td colspan="5">This document is a candidate Technical Specification. DASH-IF is expecting to publish this initially, but to submit the specification to a formal specification organization. The primary choice is ETSI, for which DASH-IF has a PAS agreement.<br>This document is approved by DASH-IF IOP will be sent for IPR Review as well as to ETSI for publication.</td>	
+	</tr>
+	<tr>
+		<td><b>Expected<br>Publication:</b></td>
+		<td colspan="5">  </td>	
+	</tr>
+	<tr>
+		<td><b>Other<br>Comments:</b></td>
+		<td colspan="5">  </td>	
+	</tr>
+</table>
+
 # Scope # {#scope}
 
 The scope of this document is to define a Content Protection Information Exchange Format (CPIX). A CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example, DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
 
-This specification describes version 2.3 of the CPIX document format. Detailed changes with respect to version 2.2 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
+This specification describes version 2.3.1 of the CPIX document format. Detailed changes with respect to version 2.3 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
 
-* Addition of the `@commonEncryptionScheme` attribute under the <{ContentKey}> element with the CENC protection scheme value
+* Clarified that key ids shall be UUID as described in [[!MPEGCENC]] (added a constraint)
+* Corrected a bug on `@periodId` that shall be a XS:REFID
+* Clarification on the `@explicitIV` attribute under the <{ContentKey}> element encoding
+* Taking into account the scenario described in Clause 9 of [[!DASHIF-IOPv5p6]] for key rotation, clarification for the `PSSH` and `ContentProtectionData` content under `DRMSystem`. A clause is also added on this topic.
+* Clean-up the Use Cases and Requirements clause (removed the electronic sell through use csae)
+* Updated references
 * Addition of the `@version` attribute under the <{CPIX}> element
 * Addition of a clause on using the same content key with different encryption schemes
-* Clarification on the `@explicitIV` attribute under the <{ContentKey}> element encoding
 
 # Disclaimer # {#disclaimer}
 
