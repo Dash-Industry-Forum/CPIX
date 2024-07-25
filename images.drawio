@@ -1,0 +1,867 @@
+<mxfile host="Electron" modified="2024-06-07T09:28:14.414Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="gI780j0TeVqFvn0h6Oe8" version="24.5.1" type="device" pages="16">
+  <diagram id="llctnCf1HnFW6s6WO-7p" name="Example of workflow for On-Demand Content preparation">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-1" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="80" y="243" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-3" value="Content Management System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="290" y="250" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-4" value="Transcoder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="170" y="340" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-5" value="Encryption Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="300" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-6" value="DRM System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="364" y="410" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-7" value="MPD Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="440" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-8" value="Portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="550" y="255" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-9" value="CDN" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="580" y="320" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=27.5;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;" parent="1" source="uFkiQJm24w0x7hMf2QzH-1" target="uFkiQJm24w0x7hMf2QzH-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;" parent="1" source="uFkiQJm24w0x7hMf2QzH-3" target="uFkiQJm24w0x7hMf2QzH-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="240" as="sourcePoint" />
+            <mxPoint x="210" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-13" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0;exitDx=0;exitDy=52.5;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=elbowEdgeStyle;" parent="1" source="uFkiQJm24w0x7hMf2QzH-1" target="uFkiQJm24w0x7hMf2QzH-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="590" as="sourcePoint" />
+            <mxPoint x="130" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-4" target="uFkiQJm24w0x7hMf2QzH-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="111" y="280" as="sourcePoint" />
+            <mxPoint x="142" y="387" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-15" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-5" target="uFkiQJm24w0x7hMf2QzH-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="121" y="290" as="sourcePoint" />
+            <mxPoint x="152" y="397" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-16" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-7" target="uFkiQJm24w0x7hMf2QzH-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="131" y="300" as="sourcePoint" />
+            <mxPoint x="162" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-4" target="uFkiQJm24w0x7hMf2QzH-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="730" as="sourcePoint" />
+            <mxPoint x="390" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-18" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-5" target="uFkiQJm24w0x7hMf2QzH-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="350" as="sourcePoint" />
+            <mxPoint x="251" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-19" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-7" target="uFkiQJm24w0x7hMf2QzH-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="360" as="sourcePoint" />
+            <mxPoint x="261" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-20" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-6" target="uFkiQJm24w0x7hMf2QzH-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="370" as="sourcePoint" />
+            <mxPoint x="271" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uFkiQJm24w0x7hMf2QzH-21" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="uFkiQJm24w0x7hMf2QzH-6" target="uFkiQJm24w0x7hMf2QzH-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="380" as="sourcePoint" />
+            <mxPoint x="281" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="uctSJWXePyVueD6-9lhp" name="Example of workflow for Live Content preparation">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wbmPXzRgoIaT0cRvybch-1" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="80" y="243" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-2" value="Content Management System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="290" y="250" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-3" value="Transcoder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="170" y="340" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-4" value="Encryption Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="300" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-5" value="DRM System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="364" y="410" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-6" value="MPD Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="440" y="340" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-7" value="Portal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="550" y="255" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-8" value="CDN" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=none;fontFamily=Times New Roman;" parent="1" vertex="1">
+          <mxGeometry x="580" y="320" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=27.5;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;" parent="1" source="wbmPXzRgoIaT0cRvybch-1" target="wbmPXzRgoIaT0cRvybch-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;" parent="1" source="wbmPXzRgoIaT0cRvybch-2" target="wbmPXzRgoIaT0cRvybch-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="240" as="sourcePoint" />
+            <mxPoint x="210" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-11" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=elbowEdgeStyle;" parent="1" target="wbmPXzRgoIaT0cRvybch-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="360" as="sourcePoint" />
+            <mxPoint x="130" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-12" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-3" target="wbmPXzRgoIaT0cRvybch-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="111" y="280" as="sourcePoint" />
+            <mxPoint x="142" y="387" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-13" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-4" target="wbmPXzRgoIaT0cRvybch-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="121" y="290" as="sourcePoint" />
+            <mxPoint x="152" y="397" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-14" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-6" target="wbmPXzRgoIaT0cRvybch-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="131" y="300" as="sourcePoint" />
+            <mxPoint x="162" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-15" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-3" target="wbmPXzRgoIaT0cRvybch-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="730" as="sourcePoint" />
+            <mxPoint x="390" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-16" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-4" target="wbmPXzRgoIaT0cRvybch-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="350" as="sourcePoint" />
+            <mxPoint x="251" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-6" target="wbmPXzRgoIaT0cRvybch-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="360" as="sourcePoint" />
+            <mxPoint x="261" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-18" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-5" target="wbmPXzRgoIaT0cRvybch-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="370" as="sourcePoint" />
+            <mxPoint x="271" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wbmPXzRgoIaT0cRvybch-19" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;curved=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="wbmPXzRgoIaT0cRvybch-5" target="wbmPXzRgoIaT0cRvybch-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="380" as="sourcePoint" />
+            <mxPoint x="281" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="JufL4YuRYhfVIXWTHpRA" name="Content Key delivery to one entity">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5r4KuieIA_9Vz9WI74gf-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="5r4KuieIA_9Vz9WI74gf-4" target="5r4KuieIA_9Vz9WI74gf-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5r4KuieIA_9Vz9WI74gf-2" value="&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Content protection information&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;- Content Keys&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="261" y="175" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5r4KuieIA_9Vz9WI74gf-3" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="420" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="5r4KuieIA_9Vz9WI74gf-4" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="150" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="MtfpopIQkC4i4-JxDO_5" name="Secure Content Key Delivery to Several Entities">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yowQPXasRALmkFD1aSQ1-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="yowQPXasRALmkFD1aSQ1-4" target="yowQPXasRALmkFD1aSQ1-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yowQPXasRALmkFD1aSQ1-2" value="&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Content protection information&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;-&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-indent: -18pt; background-color: initial;&quot; lang=&quot;EN-GB&quot;&gt;Content Keys (encrypted)&lt;br&gt;&lt;span style=&quot;text-indent: -18pt; background-color: initial;&quot;&gt;&amp;nbsp;- Digital signature&lt;/span&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="257" y="181" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="yowQPXasRALmkFD1aSQ1-3" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="427" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="yowQPXasRALmkFD1aSQ1-4" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="150" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="yowQPXasRALmkFD1aSQ1-5" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="428" y="212" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="yowQPXasRALmkFD1aSQ1-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=elbowEdgeStyle;" parent="1" source="yowQPXasRALmkFD1aSQ1-4" target="yowQPXasRALmkFD1aSQ1-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="186" as="sourcePoint" />
+            <mxPoint x="430" y="186" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="410" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="90iSNMoEADtg3UFnuj6H" name="Content Key Delivery with usage rules">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7VmkuOXl2wmraOjCzAT6-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="7VmkuOXl2wmraOjCzAT6-8" target="7VmkuOXl2wmraOjCzAT6-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7VmkuOXl2wmraOjCzAT6-4" value="&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Content protection information&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;- Content Keys&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;- Key usage rules&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="261" y="181" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7VmkuOXl2wmraOjCzAT6-7" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="420" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="7VmkuOXl2wmraOjCzAT6-8" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="150" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="_XnBNPqqTfpVLUFwPJqd" name="Content Key Delivery with DRM Signaling">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S-j9VkATRoS2LNwOcoym-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="S-j9VkATRoS2LNwOcoym-4" target="S-j9VkATRoS2LNwOcoym-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S-j9VkATRoS2LNwOcoym-2" value="&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Content protection information&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;- Content Keys&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;-&amp;nbsp;&lt;/span&gt;DRM System Signaling" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="261" y="181" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="S-j9VkATRoS2LNwOcoym-3" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="420" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="S-j9VkATRoS2LNwOcoym-4" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="150" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="_PHPBASTWeIXI-xwjeMx" name="Incremental update and extension of the document">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="ZcmZWAFUGM-zY_dL8QPo-4" target="ZcmZWAFUGM-zY_dL8QPo-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-2" value="Content protection information&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;border-color: var(--border-color); background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- Content Keys (signed by Key Server) encrypted for Encryption Engine&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- With usage rules (signed by Key&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;Server)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- Document signed by Key Server&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="250" y="122" width="238" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-3" value="Policy Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="414" y="173" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-4" value="Key Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="160" y="103" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="ZcmZWAFUGM-zY_dL8QPo-9" target="ZcmZWAFUGM-zY_dL8QPo-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="343" as="sourcePoint" />
+            <mxPoint x="430" y="342" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-8" value="Encryption Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="414" y="340" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-9" value="DRM System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="160" y="272" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-13" value="Packager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="160" y="442" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-14" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ZcmZWAFUGM-zY_dL8QPo-3" target="ZcmZWAFUGM-zY_dL8QPo-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="220" as="sourcePoint" />
+            <mxPoint x="170" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="459" y="260" />
+              <mxPoint x="205" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-15" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ZcmZWAFUGM-zY_dL8QPo-8" target="ZcmZWAFUGM-zY_dL8QPo-13" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="400" as="sourcePoint" />
+            <mxPoint x="180" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="459" y="430" />
+              <mxPoint x="205" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-16" value="Content protection information&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;border-color: var(--border-color); background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- Content Keys (signed by Key Server) encrypted for Encryption Engine&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- With updated usage rules (signed by Policy Engine)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- Document signed by Policy Engine&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="212" y="199" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-17" value="Content protection information&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;border-color: var(--border-color); background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- Content Keys (signed by Key Server) encrypted for Encryption Engine&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- With usage rules (signed by Policy Engine)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- With DRM system signaling (signed by DRM System)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- Document signed by DRM System&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;b style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="250" y="280" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ZcmZWAFUGM-zY_dL8QPo-18" value="Content protection information&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;border-color: var(--border-color); background-color: initial; text-indent: -14.2pt; font-size: 9px;&quot;&gt;- Content Keys (signed by Key Server) encrypted for Encryption Engine&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;span style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;-&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;&lt;b style=&quot;font-size: 9px;&quot;&gt;With updated usage rules (signed by Encryption Engine)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/b&gt;&lt;/span&gt;&lt;/i&gt;&lt;/span&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;text-align: justify; text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;- With DRM system signaling (signed by DRM System)&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;b style=&quot;text-indent: -18pt; background-color: initial; font-size: 9px;&quot;&gt;&lt;i style=&quot;font-size: 9px;&quot;&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 9px;&quot;&gt;- Document signed by Encryption Engine&lt;/span&gt;&lt;/i&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 9px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="207" y="360" width="250" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="e92ZeUqsS7IW3YldGerV" name="Bulk transfer of Content Keys referencing different assets">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0Q9m4EagrFfbLyQOYkCP-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" edge="1" parent="1" source="0Q9m4EagrFfbLyQOYkCP-4" target="0Q9m4EagrFfbLyQOYkCP-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0Q9m4EagrFfbLyQOYkCP-2" value="&lt;span style=&quot;background-color: initial; font-size: 12px;&quot;&gt;Content protection information&lt;/span&gt;&lt;br style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;&amp;nbsp;- Content Keys for different assets&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="261" y="175" width="179" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0Q9m4EagrFfbLyQOYkCP-3" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="442" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="0Q9m4EagrFfbLyQOYkCP-4" value="Content Key handling&lt;br style=&quot;font-size: 12px;&quot;&gt;component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="150" y="150" width="100" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="JEEutwNV1snxuwCv7DkY" name="Encryptor Producer">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="6LNHkoOC3ZKsqniqD1dh-4" target="6LNHkoOC3ZKsqniqD1dh-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="320" y="180" />
+              <mxPoint x="320" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-2" value="&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;Content Keys&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="240" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-3" value="DRM system" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="342" y="120" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-4" value="Encryptor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="139" y="160" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-5" value="DRM system" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="342" y="200" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6LNHkoOC3ZKsqniqD1dh-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="6LNHkoOC3ZKsqniqD1dh-4" target="6LNHkoOC3ZKsqniqD1dh-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="186" as="sourcePoint" />
+            <mxPoint x="410" y="134" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="320" y="180" />
+              <mxPoint x="320" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ztftp3E-EmZMBhNJLujh" name="Encryptor Consumer">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="g-mR3XtDc6ByJc18doA5-2" value="&lt;span style=&quot;background-color: initial; text-indent: -18pt; font-size: 12px;&quot;&gt;Content Keys &amp;amp; DRM Signaling&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="250" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="g-mR3XtDc6ByJc18doA5-4" value="Encryptor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="139" y="170" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="g-mR3XtDc6ByJc18doA5-5" value="DRM system" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="342" y="170" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="g-mR3XtDc6ByJc18doA5-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="g-mR3XtDc6ByJc18doA5-5" target="g-mR3XtDc6ByJc18doA5-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="260" as="sourcePoint" />
+            <mxPoint x="410" y="134" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="I5xtmqXBCLhmkxZyk0Z7" name="Encryptor Producer example steps">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-1" value="The Encryptor and DRM&lt;br/&gt;Systems exchange public keys" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="180" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="lXz4uBDohgLTvMnOBlh8-5" target="lXz4uBDohgLTvMnOBlh8-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-5" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The Encryptor constructs and secures the document with DRM Systems&lt;br/&gt;public keys&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="280" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-6" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The Encryptor sends the protected document to the DRM Systems&lt;span lang=&quot;EN-GB&quot;&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="380" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-7" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Each DRM System decrypts the document with its own private key&lt;span lang=&quot;EN-GB&quot;&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="480" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-12" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="lXz4uBDohgLTvMnOBlh8-1" target="lXz4uBDohgLTvMnOBlh8-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="380" as="sourcePoint" />
+            <mxPoint x="700" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-13" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="lXz4uBDohgLTvMnOBlh8-5" target="lXz4uBDohgLTvMnOBlh8-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="325" y="250" as="sourcePoint" />
+            <mxPoint x="325" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lXz4uBDohgLTvMnOBlh8-14" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="lXz4uBDohgLTvMnOBlh8-6" target="lXz4uBDohgLTvMnOBlh8-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="335" y="260" as="sourcePoint" />
+            <mxPoint x="335" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="6KB7fESVq_7TuDiHmVf7" name="Encryptor Consumer example steps">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IrsEYqqdWlferhjlJfxr-1" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The Encryptor and DRM System exchange public keys&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="180" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="IrsEYqqdWlferhjlJfxr-3" target="IrsEYqqdWlferhjlJfxr-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-3" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The Encryptor sends a document request message to the DRM System&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="280" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-4" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The DRM System constructs and secures the document with the public key of the Encryptor and sends the response back&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="380" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-5" value="&lt;p style=&quot;margin-bottom: 6pt;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;The Encryptor decrypts the document using its private key&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="480" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="IrsEYqqdWlferhjlJfxr-1" target="IrsEYqqdWlferhjlJfxr-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="380" as="sourcePoint" />
+            <mxPoint x="700" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-7" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="IrsEYqqdWlferhjlJfxr-3" target="IrsEYqqdWlferhjlJfxr-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="325" y="250" as="sourcePoint" />
+            <mxPoint x="325" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IrsEYqqdWlferhjlJfxr-8" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="IrsEYqqdWlferhjlJfxr-4" target="IrsEYqqdWlferhjlJfxr-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="335" y="260" as="sourcePoint" />
+            <mxPoint x="335" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ISulldmhGpeNr76Sr6SW" name="Multiple Producers example">
+    <mxGraphModel dx="1434" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="ZNj-R5ddwC6UXSosDGxs-4" target="ZNj-R5ddwC6UXSosDGxs-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="183" as="sourcePoint" />
+            <mxPoint x="430" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-3" value="Encryptor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="350" y="120" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-4" value="Packager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="160" y="120" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-5" value="DRM System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="540" y="120" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;" parent="1" source="ZNj-R5ddwC6UXSosDGxs-3" target="ZNj-R5ddwC6UXSosDGxs-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="186" as="sourcePoint" />
+            <mxPoint x="430" y="186" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-7" value="MPD Generator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="350" y="220" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="ZNj-R5ddwC6UXSosDGxs-5" target="ZNj-R5ddwC6UXSosDGxs-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="145" as="sourcePoint" />
+            <mxPoint x="550" y="145" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="585" y="180" />
+              <mxPoint x="395" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Times New Roman;fontSize=12;edgeStyle=orthogonalEdgeStyle;" parent="1" source="ZNj-R5ddwC6UXSosDGxs-5" target="ZNj-R5ddwC6UXSosDGxs-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="155" as="sourcePoint" />
+            <mxPoint x="560" y="155" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="585" y="180" />
+              <mxPoint x="395" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-11" value="&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;Times New Roman&quot;&gt;CPIX document v2&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="460" y="90" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-12" value="&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;Times New Roman&quot;&gt;CPIX document v1&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="260" y="90" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZNj-R5ddwC6UXSosDGxs-14" value="&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;Times New Roman&quot;&gt;CPIX document v3 (final)&lt;/font&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="460" y="190" width="60" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Nh6RH7iGHLpL2QQOVCmo" name="Multiple Producers example steps">
+    <mxGraphModel dx="819" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-1" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The Packager, Encryptor and DRM System exchange public keys&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-3" target="DyTjIQgZaZ7Nx64N4aiJ-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-3" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The Packager constructs version 1 of the document with identification of the receivers and the expected structure of content and sends the document to the Encryptor&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="280" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-4" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The &lt;span style=&quot;font-size: 10px;&quot; lang=&quot;EN-GB&quot;&gt;Encryptor adds key information, encrypting the Keys with the&lt;/span&gt;&lt;span lang=&quot;EN-GB&quot; style=&quot;font-size: 10px;&quot;&gt; DRM System’s public key, and sends version 2 of the document to the DRM System&lt;/span&gt;&lt;span style=&quot;font-size: 10px;&quot; lang=&quot;EN-GB&quot;&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="380" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-5" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The DRM System decrypts the keys with its public key and imports them into its database. Next it adds its own information, and sends version 3 of the document to the Encryptor and MPD Generator&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="480" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-1" target="DyTjIQgZaZ7Nx64N4aiJ-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="650" y="380" as="sourcePoint" />
+            <mxPoint x="700" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-7" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-3" target="DyTjIQgZaZ7Nx64N4aiJ-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="325" y="250" as="sourcePoint" />
+            <mxPoint x="325" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-8" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-4" target="DyTjIQgZaZ7Nx64N4aiJ-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="315" y="440" as="sourcePoint" />
+            <mxPoint x="335" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-9" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The MPD Generator generates the MPD, adding items from the content protection into the MPD&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="327" y="580" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-10" value="&lt;p style=&quot;font-size: 10px;&quot; class=&quot;MsoNormal&quot; align=&quot;center&quot;&gt;The Encryptor encrypts the content, and embeds items from the content protection into the content&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontFamily=Times New Roman;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="580" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-11" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.206;exitY=0.993;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-5" target="DyTjIQgZaZ7Nx64N4aiJ-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="314.76" y="545" as="sourcePoint" />
+            <mxPoint x="314.76" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DyTjIQgZaZ7Nx64N4aiJ-12" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;strokeColor=default;fillColor=default;exitX=0.799;exitY=0.994;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="DyTjIQgZaZ7Nx64N4aiJ-5" target="DyTjIQgZaZ7Nx64N4aiJ-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="372.5" y="540" as="sourcePoint" />
+            <mxPoint x="397.5" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Encryption relationships within the CPIX document with one Document Key" id="29gY-0va9LqGNJLGKAtp">
+    <mxGraphModel dx="2261" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-2" value="&lt;div style=&quot;mso-element:para-border-div;border:none;border-right:none black 1.0pt;&lt;br/&gt;mso-border-right-alt:none black 0cm;padding:0cm 1.0pt 0cm 0cm&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;p style=&quot;border: none; padding: 0cm;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Delivery Key 1 in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-700" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-4" value="&lt;div style=&quot;mso-element:para-border-div;border:none;border-right:none black 1.0pt;&lt;br/&gt;mso-border-right-alt:none black 0cm;padding:0cm 1.0pt 0cm 0cm&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;p style=&quot;border: none; padding: 0cm;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Delivery Key 2 in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-700" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-5" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Document&lt;br/&gt;Key in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-461" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-6" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Document&lt;br&gt;Key in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-461" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-7" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Content&lt;br/&gt;Key 2 in&lt;span style=&quot;font-family:&amp;quot;Courier New&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt; &lt;/span&gt;&lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&lt;br/&gt;&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;ContentKey_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-220" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Lm-ZGqSFRDz8DWJKsWJm-8" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Content&lt;br/&gt;Key 1 in&lt;span style=&quot;font-family:&amp;quot;Courier New&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt; &lt;/span&gt;&lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&lt;br/&gt;&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;ContentKey_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-220" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-1" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-2" target="Lm-ZGqSFRDz8DWJKsWJm-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-80" y="500" as="sourcePoint" />
+            <mxPoint x="-30" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-2" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="K_EJ8COzoJtlXD3_EKzy-1" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-4" target="Lm-ZGqSFRDz8DWJKsWJm-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-620" y="380" as="sourcePoint" />
+            <mxPoint x="-380" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-4" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="K_EJ8COzoJtlXD3_EKzy-3" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-6" target="Lm-ZGqSFRDz8DWJKsWJm-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-570" y="220" as="sourcePoint" />
+            <mxPoint x="-380" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-9" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="K_EJ8COzoJtlXD3_EKzy-8" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-10" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-5" target="Lm-ZGqSFRDz8DWJKsWJm-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-560" y="230" as="sourcePoint" />
+            <mxPoint x="-370" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-5" target="Lm-ZGqSFRDz8DWJKsWJm-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-260" y="210" as="sourcePoint" />
+            <mxPoint x="-70" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-14" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="K_EJ8COzoJtlXD3_EKzy-13" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-15" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="Lm-ZGqSFRDz8DWJKsWJm-6" target="Lm-ZGqSFRDz8DWJKsWJm-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-250" y="230" as="sourcePoint" />
+            <mxPoint x="-60" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K_EJ8COzoJtlXD3_EKzy-16" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" parent="K_EJ8COzoJtlXD3_EKzy-15" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint x="39" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="jl4twdH5FBkdsKnHPThM" name="Encryption relationships within the CPIX document with several Document Keys">
+    <mxGraphModel dx="1925" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-1" value="&lt;div style=&quot;mso-element:para-border-div;border:none;border-right:none black 1.0pt;&lt;br/&gt;mso-border-right-alt:none black 0cm;padding:0cm 1.0pt 0cm 0cm&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;p style=&quot;border: none; padding: 0cm;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Delivery Key 1 in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-720" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-2" value="&lt;div style=&quot;mso-element:para-border-div;border:none;border-right:none black 1.0pt;&lt;br/&gt;mso-border-right-alt:none black 0cm;padding:0cm 1.0pt 0cm 0cm&quot;&gt;&lt;br/&gt;&lt;br/&gt;&lt;p style=&quot;border: none; padding: 0cm;&quot; align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Delivery Key 2 in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-720" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-3" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;font color=&quot;#ff3333&quot;&gt;Document&lt;br&gt;Key A&lt;/font&gt;&lt;/b&gt; in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-4" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;font color=&quot;#ff3333&quot;&gt;Document&lt;br&gt;Key A&lt;/font&gt;&lt;/b&gt; in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-5" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Content&lt;br/&gt;Key 2 in&lt;span style=&quot;font-family:&amp;quot;Courier New&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt; &lt;/span&gt;&lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&lt;br/&gt;&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;ContentKey_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-240" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-6" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Content&lt;br/&gt;Key 1 in&lt;span style=&quot;font-family:&amp;quot;Courier New&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt; &lt;/span&gt;&lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&lt;br/&gt;&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;ContentKey_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-240" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-7" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;font color=&quot;#3333ff&quot;&gt;Document&lt;br&gt;Key B&lt;/font&gt;&lt;/b&gt; in &lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-3" target="YeYib4Vhjc2zG8OrF_la-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-590" y="-170" as="sourcePoint" />
+            <mxPoint x="-400" y="-170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-9" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-8" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-4" target="YeYib4Vhjc2zG8OrF_la-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-580" y="-160" as="sourcePoint" />
+            <mxPoint x="-390" y="-160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-11" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-10" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-7" target="YeYib4Vhjc2zG8OrF_la-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-570" y="-150" as="sourcePoint" />
+            <mxPoint x="-380" y="-150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-13" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-12" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-2" target="YeYib4Vhjc2zG8OrF_la-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-580" y="210" as="sourcePoint" />
+            <mxPoint x="-370" y="-140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-15" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-14" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-1" target="YeYib4Vhjc2zG8OrF_la-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-550" y="-130" as="sourcePoint" />
+            <mxPoint x="-360" y="-130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-17" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-16" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-18" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=default;" parent="1" source="YeYib4Vhjc2zG8OrF_la-1" target="YeYib4Vhjc2zG8OrF_la-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-600" y="150" as="sourcePoint" />
+            <mxPoint x="-400" y="-20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-19" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-18" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-20" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;Content&lt;br&gt;Key 3 in&lt;span style=&quot;font-family:&amp;quot;Courier New&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt; &lt;/span&gt;&lt;span class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;mso-bidi-font-family:&lt;br/&gt;&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;ContentKey_3&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-240" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-21" value="&lt;p align=&quot;center&quot; class=&quot;MsoNormal&quot;&gt;&lt;b&gt;&lt;font color=&quot;#66cc00&quot;&gt;Document&lt;br&gt;Key C&lt;/font&gt;&lt;/b&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;&amp;nbsp;&lt;/b&gt;in &lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot; class=&quot;BODYCharChar&quot;&gt;&lt;span style=&quot;font-size:9.0pt;&lt;br/&gt;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;&quot; lang=&quot;EN-GB&quot;&gt;DeliveryData_2&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-22" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-2" target="YeYib4Vhjc2zG8OrF_la-21" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-590" y="340" as="sourcePoint" />
+            <mxPoint x="-470" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-23" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-22" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-24" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YeYib4Vhjc2zG8OrF_la-21" target="YeYib4Vhjc2zG8OrF_la-20" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-350" y="290" as="sourcePoint" />
+            <mxPoint x="-230" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YeYib4Vhjc2zG8OrF_la-25" value="Encrypts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YeYib4Vhjc2zG8OrF_la-24" vertex="1" connectable="0">
+          <mxGeometry x="-0.1368" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
