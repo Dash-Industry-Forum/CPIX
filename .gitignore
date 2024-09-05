@@ -1,2 +1,3 @@
 # The output directory contains the build output. This is not checked in to source control.
 Output
+dist/

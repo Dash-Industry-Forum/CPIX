@@ -16,30 +16,12 @@ We accept pull requests!
 
 Most recent content from the **master** branch (may contain work in progress):
 
-![Build status of master branch](https://dev.azure.com/dashif/Automation/_apis/build/status/Cpix?branchName=master)
+[![Build status of master branch](https://github.com/Dash-Industry-Forum/CPIX/actions/workflows/publish.yml/badge.svg?branch=master)](https://github.com/Dash-Industry-Forum/CPIX/actions/workflows/publish.yml)
 
-* [HTML document](https://dashif-documents.azurewebsites.net/Cpix/master/Cpix.html)
-* [PDF document](https://dashif-documents.azurewebsites.net/Cpix/master/Cpix.pdf)
-* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/Cpix/master/Cpix.zip)
+* [HTML document](http://dashif.org/CPIX/)
+* [PDF document](http://dashif.org/CPIX/cpix.pdf)
 
-Most recent content from the **community-review** branch (latest version published for community review):
-
-![Build status of community-review branch](https://dev.azure.com/dashif/Automation/_apis/build/status/Cpix?branchName=community-review)
-
-* [HTML document](https://dashif-documents.azurewebsites.net/Cpix/community-review/Cpix.html)
-* [PDF document](https://dashif-documents.azurewebsites.net/Cpix/community-review/Cpix.pdf)
-* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/Cpix/community-review/Cpix.zip)
-
-Most recent content from the **published** branch (final outputs published by DASH-IF):
-
-![Build status of published branch](https://dev.azure.com/dashif/Automation/_apis/build/status/Cpix?branchName=published)
-
-* [HTML document](https://dashif-documents.azurewebsites.net/Cpix/published/Cpix.html)
-* [PDF document](https://dashif-documents.azurewebsites.net/Cpix/published/Cpix.pdf)
-* [Download PDF + HTML as archive](https://dashif-documents.azurewebsites.net/Cpix/published/Cpix.zip)
-
-[View automated build history for all branches](https://dev.azure.com/dashif/Automation/_build?definitionId=6)
 
 # Document authoring
 
-See [Document Authoring Kit](https://dashif.org/DocumentAuthoring/) for details on document authoring process and the relevant tooling.
+See [Document Authoring Kit](https://dashif.org/DASH-IF-IOP/authoring/) for details on document authoring process and the relevant tooling.
