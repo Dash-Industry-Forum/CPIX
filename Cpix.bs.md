@@ -1,6 +1,6 @@
 <pre class="metadata">
 Title: DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)
-Date: 2023-07-12
+Date: 2024-09-30
 Editor: DASH Industry Forum
 Status: LS-COMMIT
 Shortname: cpix
@@ -18,61 +18,6 @@ Image Auto Size: false
 <pre boilerplate="logo">
 	<a href="https://www.dashif.org/"> <img src="Images/DASH-IF.png"> </a>
 </pre>
-
-<table style='font-family:"sans-serif"' class="def" valign="top">
-	<tr>
-		<td colspan="6"><b>Candidate Technical Specification</b></td>
-	</tr>
-	<tr>
-		<td colspan="2"><b>DASH-IF CTS</b></td>
-		<td><b>Part XX</b></td>
-		<td><b>rev 0</b></td>
-		<td colspan="2"><b> Current version 2.4</b></td>
-	</tr>
-	<tr>
-		<td><b>Status:</b></td>
-		<td>Draft</td>
-		<td>Internal Review</td>
-		<td>Community Review</td>
-		<td>IOP Review</td>
-		<td>IPR Review</td>	
-	</tr>
-	<tr>
-		<td><b>Title:</b></td>
-		<td colspan="5">DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)</td>
-	</tr>
-	<tr>
-		<td><b>Source:</b></td>
-		<td colspan="5">DASH-IF Interoperability Working Group,<br>DASH-IF Content Protection and Security TF</td>
-	</tr>
-	<tr>
-		<td><b>Supporting<br>Compagnies:</b></td>
-		<td colspan="5"></td>
-	</tr>
-	</tr>
-	<tr>
-		<td><b>Category:</b></td>
-		<td colspan="3"><b> Candidate Technical Specification</b></td>
-		<td colspan="2"> <b>Date:</b> 2023-07-12</td>
-	</tr>
-	</tr>
-	<tr>
-		<td><b>Abstract:</b></td>
-		<td colspan="5">This document defines a container allowing the exchange between entities of content protection information typically made of keys used for encrypting content and any associated DRM specific information.<br>There may be one or several keys and these keys may be protected by one or several DRMs, hence there may be one or several DRM specific information. There is no assumption on the entities exchanging this information but it is not expected that a client device will use this exchange format. The goal is to allow entities involved in the content preparation workflow to get the content protection information so that, for example a DASH MPD can be generated with all content protection information. Because the defined container is not made for a specifically defined content preparation workflow but is generic, conformance is not considered to be a critical part of CPIX. As a consequence, no conformance is defined for this specification.</td>
-	</tr>
-	<tr>
-		<td><b>Disclaimer:</b></td>
-		<td colspan="5">This document is a candidate Technical Specification. DASH-IF is expecting to publish this initially, but to submit the specification to a formal specification organization. The primary choice is ETSI, for which DASH-IF has a PAS agreement.<br>This document is approved by DASH-IF IOP will be sent for IPR Review as well as to ETSI for publication.</td>
-	</tr>
-	<tr>
-		<td><b>Expected<br>Publication:</b></td>
-		<td colspan="5"> </td>
-	</tr>
-	<tr>
-		<td><b>Other<br>Comments:</b></td>
-		<td colspan="5"> </td>
-	</tr>
-</table>
 
 # Scope # {#scope}
 
