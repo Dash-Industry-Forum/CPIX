@@ -12,7 +12,7 @@ Line Numbers: off
 Markup Shorthands: markdown yes
 Boilerplate: copyright no, abstract no, index no, conformance no, header yes
 Abstract: None
-Image Auto Size: false 
+Image Auto Size: false
 </pre>
 
 <pre boilerplate="logo">
@@ -27,7 +27,7 @@ Image Auto Size: false
 		<td colspan="2"><b>DASH-IF CTS</b></td>
 		<td><b>Part XX</b></td>
 		<td><b>rev 0</b></td>
-		<td colspan="2"><b> Current version 2.3.1</b></td>
+		<td colspan="2"><b> Current version 2.4</b></td>
 	</tr>
 	<tr>
 		<td><b>Status:</b></td>
@@ -39,15 +39,15 @@ Image Auto Size: false
 	</tr>
 	<tr>
 		<td><b>Title:</b></td>
-		<td colspan="5">DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)</td>	
+		<td colspan="5">DASH-IF Implementation Guidelines: Content Protection Information Exchange Format (CPIX)</td>
 	</tr>
 	<tr>
 		<td><b>Source:</b></td>
-		<td colspan="5">DASH-IF Interoperability Working Group,<br>DASH-IF Content Protection and Security TF</td>	
+		<td colspan="5">DASH-IF Interoperability Working Group,<br>DASH-IF Content Protection and Security TF</td>
 	</tr>
 	<tr>
 		<td><b>Supporting<br>Compagnies:</b></td>
-		<td colspan="5"></td>	
+		<td colspan="5"></td>
 	</tr>
 	</tr>
 	<tr>
@@ -58,19 +58,19 @@ Image Auto Size: false
 	</tr>
 	<tr>
 		<td><b>Abstract:</b></td>
-		<td colspan="5">This document defines a container allowing the exchange between entities of content protection information typically made of keys used for encrypting content and any associated DRM specific information.<br>There may be one or several keys and these keys may be protected by one or several DRMs, hence there may be one or several DRM specific information. There is no assumption on the entities exchanging this information but it is not expected that a client device will use this exchange format. The goal is to allow entities involved in the content preparation workflow to get the content protection information so that, for example a DASH MPD can be generated with all content protection information. Because the defined container is not made for a specifically defined content preparation workflow but is generic, conformance is not considered to be a critical part of CPIX. As a consequence, no conformance is defined for this specification.</td>	
+		<td colspan="5">This document defines a container allowing the exchange between entities of content protection information typically made of keys used for encrypting content and any associated DRM specific information.<br>There may be one or several keys and these keys may be protected by one or several DRMs, hence there may be one or several DRM specific information. There is no assumption on the entities exchanging this information but it is not expected that a client device will use this exchange format. The goal is to allow entities involved in the content preparation workflow to get the content protection information so that, for example a DASH MPD can be generated with all content protection information. Because the defined container is not made for a specifically defined content preparation workflow but is generic, conformance is not considered to be a critical part of CPIX. As a consequence, no conformance is defined for this specification.</td>
 	</tr>
 	<tr>
 		<td><b>Disclaimer:</b></td>
-		<td colspan="5">This document is a candidate Technical Specification. DASH-IF is expecting to publish this initially, but to submit the specification to a formal specification organization. The primary choice is ETSI, for which DASH-IF has a PAS agreement.<br>This document is approved by DASH-IF IOP will be sent for IPR Review as well as to ETSI for publication.</td>	
+		<td colspan="5">This document is a candidate Technical Specification. DASH-IF is expecting to publish this initially, but to submit the specification to a formal specification organization. The primary choice is ETSI, for which DASH-IF has a PAS agreement.<br>This document is approved by DASH-IF IOP will be sent for IPR Review as well as to ETSI for publication.</td>
 	</tr>
 	<tr>
 		<td><b>Expected<br>Publication:</b></td>
-		<td colspan="5">  </td>	
+		<td colspan="5"> </td>
 	</tr>
 	<tr>
 		<td><b>Other<br>Comments:</b></td>
-		<td colspan="5">  </td>	
+		<td colspan="5"> </td>
 	</tr>
 </table>
 
@@ -78,16 +78,29 @@ Image Auto Size: false
 
 The scope of this document is to define a Content Protection Information Exchange Format (CPIX). A CPIX document contains keys and DRM information used for encrypting and protecting content and can be used for exchanging this information among entities needing it in many possibly different workflows for preparing, for example, DASH or HLS content. The CPIX document itself can be encrypted, signed and authenticated so that its receivers can be sure that its confidentiality, source and integrity are also protected.
 
-This specification describes version 2.3.1 of the CPIX document format. Detailed changes with respect to version 2.3 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
+This specification describes version 2.4 of the CPIX document format. 
+
+Detailed changes with respect to version 2.3.1 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
+
+* Added the option to encrypt Content Keys with different Document Keys, see clauses [[#schema-datamodel-deliverydatalist]] and [[#keys-enc-keytypes]]
+* Added the option to have in one document with Content Keys for different content, allowing the bulk transfer of content keys information in one document, hence adding a `@contentId`under the `ContentKey` element, see clause [[#usecases-exchange-multipleassets]] and [[#schema-datamodel-contentkey]]
+* Added HDCP information attached to the Content Key to be inserted in both HLS playlist and DASH MPD, see clause [[#schema-datamodel-HDCPdata]]
+* Added expected DRM robustness information to be inserted in both HLS playlist and DASH MPD, see clause [[#schema-datamodel-drmsystem]] and [[#schema-datamodel-contentprotectiondata]]
+* Simplified the `ContentKey` element by removing all non-used element inherited from the PSCK model, see clause [[#schema-datamodel-contentkey]]
+* Updated the HLS terminology to `multiVariant`, see clause [[#schema-datamodel-HLSsignalingdata]]
+* Removed the signaling for HDS and the deprecated `URIExtXKey` for HLS, see clause [[#schema-datamodel-drmsystem]]
+* Updated references
+
+Detailed changes with respect to version 2.3 are tracked on [GitHub](https://github.com/Dash-Industry-Forum/CPIX/issues). Highlighted changes are:
 
 * Clarified that key ids shall be UUID as described in [[!MPEGCENC]] (added a constraint)
-* Corrected a bug on `@periodId` that shall be a XS:REFID
-* Clarification on the `@explicitIV` attribute under the <{ContentKey}> element encoding
-* Taking into account the scenario described in Clause 9 of [[!DASHIF-IOPv5p6]] for key rotation, clarification for the `PSSH` and `ContentProtectionData` content under `DRMSystem`. A clause is also added on this topic.
-* Clean-up the Use Cases and Requirements clause (removed the electronic sell through use csae)
+* Corrected a bug on `@periodId` that shall be a XS:REFID, see clause [[#schema-datamodel-usagerulefilter-keyperiodfilter]]
+* Clarification on the `@explicitIV` attribute under the `ContentKey` element encoding, see clause [[#schema-datamodel-contentkey]]
+* Taking into account the scenario described in Clause 9 of [[!DASHIF-IOPv5p6]] for key rotation, clarification for the `PSSH` and `ContentProtectionData` content under `DRMSystem`. A clause is also added on this topic. See clause [[#schema-datamodel-drmsystem]] and [[#keys-rotation]]
+* Clean-up the Use Cases and Requirements clause (removed the electronic sell through use case)
+* Addition of the `@version` attribute under the `CPIX` element, see clause [[#schema-datamodel-cpix]]
+* Addition of a clause on using the same content key with different encryption schemes, see clause [[#keys-encryptionScheme]]
 * Updated references
-* Addition of the `@version` attribute under the <{CPIX}> element
-* Addition of a clause on using the same content key with different encryption schemes
 
 # Disclaimer # {#disclaimer}
 
@@ -156,7 +169,7 @@ The figure above shows logical entities that may send or receive content protect
 :: A service provider who encrypts and packages media, inserting DRM Signaling and metadata into the media files. In the case of DASH packaging, this consists of adding the default_KID in the file header `tenc` box, initialization vectors (IV) and subsample byte ranges in track fragments indexed by `saio` and `saiz` boxes, and possibly one or more `pssh` boxes containing license acquisition information (from the DRM Service). Tracks that are partially encrypted or encrypted with multiple keys require sample to group boxes and sample group description boxes in each track fragment to associate different KIDs to groups of samples. The Packager could originate values for KIDs, Content Keys, encryption layout, etc., then send that information to other entities that need it, including the DRM Service, and probably the Content Provider. However, the Packager could receive that information from a different point of origin, such as the Content Provider or DRM Service.
 
 : Manifest Creator
-:: A service provider which generates the media manifests which group the various media files into a coherent presentation. These manifest files may contain DRM signaling information. For DASH, the MPD Creator is assumed to create one or more types of DASH MPD files and provide indexing of segments and/or `sidx` indexes for download so that players can byte range index subsegments. The MPD shall include descriptors for Common Encryption and DRM systems and should include identification of the `@default_KID` for each `AdaptationSet` element, and sufficient information in `ContentProtection` elements to acquire a DRM license. The `@default_KID` is available from the Packager and any other role that created it, and the DRM signaling is available from the DRM Service
+:: A service provider which generates the media manifests which group the various media files into a coherent presentation. These manifest files may contain DRM signaling information. For DASH, the MPD Creator is assumed to create one or more types of DASH MPD files and provide indexing of segments and/or `sidx` indexes for download so that players can byte range index subsegments. The MPD shall include descriptors for Common Encryption and DRM systems and should include identification of the `@default_KID` for each `AdaptationSet` element, and sufficient information in `ContentProtection` elements to acquire a DRM license. The `@default_KID` is available from the Packager and any other role that created it, and the DRM signaling is available from the DRM Service.
 
 : DRM Client
 :: It gets information from different sources: media manifest files, media files, and DRM licenses.
@@ -305,6 +318,15 @@ As the document travels in the workflow, each component adds the elements contai
 
 Note that in the above example, the Content Key material itself is encrypted for the Encryption Engine. Despite the fact that many other components participate in the workflow, they do not have access to Content Keys.
 
+### Multiple Content Keys Delivery for Multiples Assets ### {#usecases-exchange-multipleassets}
+
+This use case is for the bulk transfer of Content Keys in one document. Each Content Key is associated to a different media asset, hence within the document, several media assets can be referenced. Limiting the number of documents to exchange allows for simpler transfer between entities of Content Keys and associated information such as usage rules and DRM signaling.
+
+<figure>
+	<img src="Images/UseCase-MultiplesAssets.png">
+	<figcaption>Bulk transfer of Content Keys referencing different assets.</figcaption>
+</figure>
+
 ### Content Key Hierarchy Delivery for Content Packaging ### {#usecases-exchange-hierarchydelivery}
 
 Some DRM systems enable the use of hierarchy of keys, where the set of keys delivered to clients (root keys) within licenses differs from the set of keys used to encrypt Content (leaf keys). Doing so enables DRM systems to separate content encryption and commercial offer management.
@@ -410,13 +432,13 @@ All these steps are summarized in the figure below.
 
 ## Introduction ## {#schema-intro}
 
-This clause describes the Content Protection Information eXchange (CPIX) format to provide a framework to securely exchange Content Key(s) and DRM Signaling between different system entities (see clause [[#usecases]]). This is an XML file that is described by the XSD avalaible [here](https://dashif.org/guidelines/others/#dash-if-content-protection-information-exchange-format). This clause describes in details elements part of the schema.
+This clause describes the Content Protection Information eXchange (CPIX) format to provide a framework to securely exchange Content Key(s) and DRM Signaling between different system entities (see clause [[#usecases]]). This is an XML file. This clause describes in details elements part of the schema.
 
 ## Requirements ## {#schema-requirements}
 
 It shall be possible to exchange Content Key(s) and DRM Signaling between entities involved in Content preparation workflows, an example of such interface where the exchange shall be possible is between a DRM system and the encryption engine.
 
-It shall be possible that the manifest generator receives DRM Signaling for several DRM systems and/or content formats
+It shall be possible that the manifest generator receives DRM Signaling for several DRM systems and/or content formats.
 
 Update of Content Key(s) shall be possible at periodic time or based on events. Some period of time could be in the clear (no encryption).
 
@@ -445,7 +467,7 @@ The Content Keys can be encrypted inside the XML file using the public keys of t
 The figure below shows the first elements and a high-level view of the structure. Detailed description of the structure is given in the following clauses.
 
 <figure>
-	<img src="Images/Schema-TopLevel.png">
+	<img src="Images/Schema-CpixView.png">
 	<figcaption>Content Protection Information Exchange Format high level view.</figcaption>
 </figure>
 
@@ -455,48 +477,49 @@ The figure below shows the first elements and a high-level view of the structure
 
 In this clause, the following conventions are used:
 
-* Element names are in `PascalCase` and the number of allowed instances is defined by (`min...max`) where N for `max` means unbounded. 
-
+* Element names are in `PascalCase` and the number of allowed instances is defined by (`min...max`) where N for `max` means unbounded.
 * Attribute names are in `camelCase` preceded with an `@` and the use of an attribute is defined as: M=Mandatory, O=Optional, OD=Optional with Default Value, CM=Conditionally Mandatory. Attributes may be in any order.
 
-The XSD schema for this model is provided [here](https://dashif.org/guidelines/others/#dash-if-content-protection-information-exchange-format). In addition to types defined in this document, the CPIX data model references types defined in [[!XMLSCHEMA11-2]], [[!RFC6030]], [[!XMLDSIG-CORE]] and [[!XMLENC-CORE]]. External data types are prefixed with `xs:`, `pskc:`, `ds:` and `xenc:` respectively.
+The XSD schema for this model is provided [here](https://dashif.org/guidelines/others/#dash-if-content-protection-information-exchange-format).
 
-### <dfn element>CPIX</dfn> Element### {#schema-datamodel-cpix}
+In addition to types defined in this document that come with the prefix `cpix:`, , the CPIX data model references types defined in [[!XMLSCHEMA11-2]], [[!RFC6030]], [[!XMLDSIG-CORE]] and [[!XMLENC-CORE]]. External data types are prefixed with `xs:`, `pskc:`, `ds:` and `xenc:` respectively.
+
+### `CPIX` Element### {#schema-datamodel-cpix}
 
 The root element that carries the Content Protection Information for a set of media assets.
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
 
-: `@contentId` (O, xs:string)
-:: An identifier for the asset or content that is been protected by the keys carried in this CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published.
+: `@contentId (O, xs:string)`
+:: An identifier for the asset or content that is protected by the keys carried in this CPIX document. It is recommended to use an identifier that is unique within the scope in which this file is published. It is mutually exclusive with the attribute `@contentId` defined in the `ContentKey` element.
 
-: `@name` (O, xs:string)
+: `@name (O, xs:string)`
 :: A name for the presentation.
 
-: `@version` (O, xs:string)
-:: A version for the CPIX document. The value shall reference a published version of the CPIX guidelines and be structured as majorVersion.minorVersion. This specification describes version 2.3.
+: `@version (O, xs:string)`
+:: A version for the CPIX document. The value shall reference a published version of the CPIX guidelines and be structured as majorVersion.minorVersion. This specification describes version 2.4.
 :: If the CPIX client knows that it doesn't support all the features of a given CPIX version, it needs to behave according to the recommendations of the API used to exchange the CPIX document.
 
-: `DeliveryDataList` (0...1, <{DeliveryDataList}>)
-:: A container for <{DeliveryData}> elements. If not present, Content Keys in the document are delivered in the clear, without encryption.
+: `DeliveryDataList (0...1, cpix:DeliveryDataList)`
+:: A container for `DeliveryData` elements. If not present, Content Keys in the document are delivered in the clear, without encryption.
 
-: `ContentKeyList` (0...1, <{ContentKeyList}>)
-:: A container for <{ContentKey}> elements.
+: `ContentKeyList (0...1, cpix:ContentKeyList)`
+:: A container for `ContentKey` elements.
 
-: `DRMSystemList` (0...1, <{DRMSystemList}>)
-:: A container for <{DRMSystem}> elements. If not present, the document does not contain any DRM system signaling data.
+: `DRMSystemList (0...1, cpix:DRMSystemList)`
+:: A container for `DRMSystem` elements. If not present, the document does not contain any DRM system signaling data.
 
-: `ContentKeyPeriodList` (0...1, <{ContentKeyPeriodList}>)
-:: A container for <{ContentKeyPeriod}> elements.
+: `ContentKeyPeriodList (0...1, cpix:ContentKeyPeriodList)`
+:: A container for `ContentKeyPeriod` elements.
 
-: `ContentKeyUsageRuleList` (0...1, <{ContentKeyUsageRuleList}>)
-:: A container for <{ContentKeyUsageRule}> elements. If not present, the document does not define Content Key Contexts and an external mechanism is required for synchronizing the content creation workflow.
+: `ContentKeyUsageRuleList (0...1, cpix:ContentKeyUsageRuleList)`
+:: A container for `ContentKeyUsageRule` elements. If not present, the document does not define Content Key Contexts and an external mechanism is required for synchronizing the content creation workflow.
 
-: `UpdateHistoryItemList` (0...1, <{UpdateHistoryItemList}>)
-:: A container for <{UpdateHistoryItem}> elements.
+: `UpdateHistoryItemList (0...1, cpix:UpdateHistoryItemList)`
+:: A container for `UpdateHistoryItem` elements.
 
-: `Signature` (0...N, ds:Signature)
+: `Signature (0...N, ds:Signature)`
 :: Digital signatures as defined in [[!XMLDSIG-CORE]]. Each signature signs either the full document or any set of elements within the CPIX document. Every digital signature shall contain an X.509 certificate identifying the signer and the associated public key.
 
 <figure>
@@ -504,57 +527,55 @@ The root element that carries the Content Protection Information for a set of me
 	<figcaption>CPIX element.</figcaption>
 </figure>
 
-### <dfn element>DeliveryDataList</dfn> Element ### {#schema-datamodel-deliverydatalist}
+### `DeliveryDataList` Element ### {#schema-datamodel-deliverydatalist}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `DeliveryData` (0...N, <{DeliveryData}>)
+: `DeliveryData (1...N, cpix:DeliveryData)`
 :: Contains the required information allowing defining which entities can get access to the Content Keys delivered in this document.
-:: There is one <{DeliveryData}> element per entity capable of accessing encrypted Content Keys stored in this document. If this element is not present, then the Content Keys are in the clear in the file.
+:: There is one `DeliveryData` element per entity capable of accessing encrypted Content Keys stored in this document. If this element is not present, then the Content Keys are in the clear in the file.
 
 <figure>
 	<img src="Images/Schema-DeliveryDataList.png">
 	<figcaption>DeliveryDataList element.</figcaption>
 </figure>
 
-### <dfn element>DeliveryData</dfn> Element ### {#schema-datamodel-deliverydata}
+### `DeliveryData` Element ### {#schema-datamodel-deliverydata}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `@name` (O, xs:string)
+: `@name (O, xs:string)`
 :: Name of the Delivery Data.
 
-: `DeliveryKey` (1, ds:KeyInfoType)
+: `DeliveryKey (1, ds:KeyInfoType)`
 :: Contains an X.509 certificate that identifies the intended recipient and the public key that was used to encrypt the Document Key.
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
-: `DocumentKey` (1, cpix:KeyType)
-:: Contains the key that was used for encrypting the Content Key stored in each <{ContentKey}> element. The Document Key is encrypted using the public key listed in the recipient’s X.509 certificate.
-:: This is an extension of `KeyType` defined in [[!RFC6030]]. The attributes `@id` and `@Algorithm` are optional in this extension.
+: `DocumentKey (1...N, cpix:DocumentKeyType)`
+:: Contains the keys that are used for encrypting the Content Key stored in `ContentKey` elements.
+
+: `MACMethod (0...1, pskc:MACMethodType)`
+:: Identifies the MAC algorithm and contains the MAC key used to implement authenticated encryption of Content Keys. The key in the MACKey element is encrypted using the public key listed in the recipient’s X.509 certificate from the DeliveryKey element.
 :: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
-: `MACMethod` (0...1, pskc:MACMethodType)
-:: Identifies the MAC algorithm and contains the MAC key used to implement authenticated encryption of Content Keys. The MAC key is encrypted using the public key listed in the recipient’s X.509 certificate.
-:: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
-
-: `Description` (0...1, xs:string)
+: `Description (0...1, xs:string)`
 :: A description of the element.
 
-: `SendingEntity` (0...1, xs:string)
+: `SendingEntity (0...1, xs:string)`
 :: The name of the entity generating this CPIX document.
 
-: `SenderPointOfContact` (0...1, xs:string)
+: `SenderPointOfContact (0...1, xs:string)`
 :: The contact information, such as an email address, of the entity generating this CPIX document.
 
-: `ReceivingEntity` (0...1, xs:string)
+: `ReceivingEntity (0...1, xs:string)`
 :: The name of the entity capable of decrypting Content Keys in this CPIX document.
 
 <figure>
@@ -562,15 +583,33 @@ The root element that carries the Content Protection Information for a set of me
 	<figcaption>DeliveryData element.</figcaption>
 </figure>
 
-### <dfn element>ContentKeyList</dfn> Element ### {#schema-datamodel-contentkeylist}
+### `DocumentKey` Element ### {#schema-datamodel-documentkey}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@encryptsKey (O, cpix:UUID)`
+:: Matches the `@kid` attribute(s) of the referenced ContentKey elements. These referenced Content Keys in the `ContentKey` element(s) are encrypted with the Document Key stored under the `Data` element. When a Document Key is used for encrypting several Content Keys, this attribute shall store a space-delimited list of those different `@kid` values.
+:: If there are several `DocumentKey` elements, this attribute shall be present. If there is only one `DocumentKey` element, this attribute may not be present and, in this case, the Document Key encrypts all Content Keys.
 
-: `ContentKey` (0...N, <{ContentKey}>)
+: `Data (1, pskc:KeyDataType)`
+:: Contains the Document Key either in the clear or encrypted. The Document Keys are encrypted using the public key listed in the recipient’s X.509 certificate from the DeliveryKey element.
+:: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
+
+<figure>
+	<img src="Images/Schema-DocumentKey.png">
+	<figcaption>DocumentKey element.</figcaption>
+</figure>
+
+### `ContentKeyList` Element ### {#schema-datamodel-contentkeylist}
+
+: `@id (O, xs:ID)`
+:: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
+
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
+
+: `ContentKey (1...N, cpix:ContentKey)`
 :: Contains all information on a Content Key used to encrypt one or more Content Key Contexts.
 
 <figure>
@@ -578,48 +617,70 @@ The root element that carries the Content Protection Information for a set of me
 	<figcaption>ContentKeyList element.</figcaption>
 </figure>
 
-### <dfn element>ContentKey</dfn> Element ### {#schema-datamodel-contentkey}
+### `ContentKey` Element ### {#schema-datamodel-contentkey}
 
-This is an extension of `KeyType` defined in [[!RFC6030]]. The attributes `@id` and `@Algorithm` are optional in this extension.
-
-The key this element contains can be encrypted. If it is encrypted, it is encrypted with the key that is under the `DocumentKey` element part of the <{DeliveryData}>. Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
-
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@Algorithm` (O, xs:ID)
-:: This is an attribute inherited from [[!RFC6030]] and made optional in this specification.
+: `@contentId (O, xs:string)`
+:: An identifier for the asset or content that is protected by this key. It is mutually exclusive with the attribute `@contentId` defined in the `CPIX` element.
+:: When present, every `ContentKey` element may have different or identical value. This attribute shall not be present if the `@dependsOnKey` attribute is present. In a key hierarchy, the root key defines this value for all keys in the hierarchy.
+:: The use of this attribute is recommended only when exchanging multiples content keys that do not share the same `@contentId` value. That allows reducing the number of documents that need to be exchanged. See [[#usecases-exchange-multipleassets]] for additional details.
 
-: `@kid` (M, cpix:UUIDType)
+: `@kid (M, cpix:UUIDType)`
 :: The unique identifier of the Content Key. It shall be formatted as defined in [[!MPEGCENC]], clause 11.2.
 
-: `@explicitIV` (O, xs:base64binary)
-:: The IV associated with the Content Key. This is a 128-bit value in binary format, base64-encoded. This is the value of Constant IV defined in [[!MPEGCENC]] or of the IV attribute under `#EXT-X-KEY` defined in [[!HLS]].
-:: Use of this attribute is not recommended except for compatibility with some DRM systems that explicitly need it.
+: `@explicitIV (O, xs:base64binary)`
+:: The IV associated with the Content Key. This is a 128-bit value in binary format, base64-encoded. This is the value of `Constant IV` defined in [[!MPEGCENC]] or of the `IV` attribute under `#EXT-X-KEY` or `#EXT-X-SESSION-KEY` defined in [[!HLS]] if content is delivered in HLS format.
+:: Use of this attribute is not recommended except for compatibility with some DRM systems that explicitly need it, meaning when a `Constant IV` needs to be provided within a DRM license.
 
-: `@dependsOnKey` (O, cpix:UUIDType)
-:: This attribute signals that the Content Key is a leaf key in a key hierarchy. It references the `@kid` attribute of another <{ContentKey}> element describing the root key.
+: `@dependsOnKey (O, cpix:UUIDType)`
+:: This attribute signals that the Content Key is a leaf key in a key hierarchy. It references the `@kid` attribute of another `ContentKey` element describing the root key.
 :: The referenced key shall not be a leaf key.
 :: If this attribute is not specified, the Content Key is either a root key or does not participate in a key hierarchy. The CPIX document format does not make a distinction between these two cases.
+:: Note all DRMs support key hierarchy, see [[#keys-rotation]] for more details.
 
-: `@commonEncryptionScheme` (O, xs:string)
+: `@commonEncryptionScheme (O, xs:string)`
 :: The encryption scheme that the content key is intended to be used with. When present, the value shall be a 4-character Common Encryption protection scheme name as defined by [[!MPEGCENC]] or one of the encryption method defined in [[!HLS]]. If the attribute is omitted then content may be encrypted using any encryption scheme.
-:: This attribute shall not be used if the `@dependsOnKey` attribute is present. In a key hierarchy, the root key defines the encryption scheme to use with all keys in the hierarchy.
+:: This attribute shall not be present if the `@dependsOnKey` attribute is present. In a key hierarchy, the root key defines the encryption scheme for all keys in the hierarchy.
+
+: `HDCPData (0...1, cpix:HDCPData)`
+:: Contains the HDCP information for this Content Key.
+:: This attribute shall not be present if the `@dependsOnKey` attribute is present. In a key hierarchy, the root key defines the HDCP properties for all keys in the hierarchy.
+
+: `Data (0...1, pskc:KeyDataType)`
+:: Contains the Content Key either in the clear or encrypted. If encrypted, the Content Key is encrypted with a key that is under a `DocumentKey` element.
+:: Refer to [[#keys-enc]] for a description of the key management within the CPIX document.
 
 <figure>
 	<img src="Images/Schema-ContentKey.png">
 	<figcaption>ContentKey element.</figcaption>
 </figure>
 
-### <dfn element>DRMSystemList</dfn> Element ### {#schema-datamodel-drmsystemlist}
+### `HDCPData` Element ### {#schema-datamodel-HDCPdata}
 
-: `@id` (O, xs:ID)
+: `@HLSHDCPLevel (O, xs:string)`
+:: This attribute specifies the value of the `HDCP-LEVEL` attribute of the `EXT-X-STREAM-INF` tag in the multiVariant playlist. Its format is as specified in clause 4.4.6.2 of [[!HLS]].
+:: This attribute has meaning only when an HLS playlist is created for the media content.
+
+: `HDCPOutputProtectionData (0...1, xs:base64binary)`
+:: This is the full well-formed standalone XML fragment to be added to the DASH manifest for the HDCP `OutputProtection` element for this Content Key. This is UTF-8 text without a byte order mark. See in [[!DASHIF-IOPv5p6]], clause 7.4 for more details.
+:: This element has meaning only when a DASH manifest is created for the media content.
+
+<figure>
+	<img src="Images/Schema-HDCPData.png">
+	<figcaption>ContentKey element.</figcaption>
+</figure>
+
+### `DRMSystemList` Element ### {#schema-datamodel-drmsystemlist}
+
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `DRMSystem` (0...N, <{DRMSystem}>)
+: `DRMSystem (1...N, cpix:DRMSystem)`
 :: DRM Signaling of a DRM system associated with a Content Key.
 
 <figure>
@@ -627,123 +688,150 @@ The key this element contains can be encrypted. If it is encrypted, it is encryp
 	<figcaption>DRMSystemList element.</figcaption>
 </figure>
 
-### <dfn element>DRMSystem</dfn> Element ### {#schema-datamodel-drmsystem}
+### `DRMSystem` Element ### {#schema-datamodel-drmsystem}
 
-This element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming, HLS and HDS formats. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
+This element contains all information on a DRM system that can be used for retrieving licenses for getting access to content. This specification defines elements for DRM system signaling in DASH, ISOBMFF, Smooth Streaming and HLS. Implementations may extend CPIX documents with additional elements to provide DRM system signaling information for other formats.
 
-The DRM system signaling data in <{DRMSystem}> elements often contains the protection scheme identifier in a DRM or streaming protocol system specific format. Values in <{DRMSystem}> elements shall be aligned with the values in `@commonEncryptionScheme` attributes of the <{ContentKey}> elements.
+The DRM system signaling data in `DRMSystem` elements often contains the protection scheme identifier in a DRM or streaming protocol system specific format. Values in `DRMSystem` elements shall be aligned with the values in `@commonEncryptionScheme` attributes of the `ContentKey` elements.
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `@systemId` (M, cpix:UUIDType)
+: `@systemId (M, cpix:UUIDType)`
 :: This is the unique identifier of the DRM system. Values are avaialble on [dashif.org](https://dashif.org/identifiers/content_protection/).
 
-: `@kid` (M, cpix:UUIDType)
-:: Matches the `@kid` attribute of the <{ContentKey}> this element references.
+: `@kid (M, cpix:UUIDType)`
+:: Matches the `@kid` attribute of the `ContentKey` this element references.
 
-: `@name` (O, xs:string)
+: `@name (O, xs:string)`
 :: This is a human-readable name and version of the DRM system. This can be used in a MPD as the value for the `@value` attribute of the `ContentProtection` element.
 
-: `PSSH` (0...1, xs:base64binary)
+: `@HLSAllowedCPC (O, xs:string)`
+:: This attribute specifies, for the DRM identified by the `@systemId` value, the value to be added in the `ALLOWED-CPC` attribute of the `EXT-X-STREAM-INF` tag in the multiVariant playlist. Its format is as specified in clause 4.4.6.2 of [[!HLS]].
+:: The final value of the `ALLOWED-CPC` is the concatenation, each separated by a comma, of all `@HLSAllowedCPC` values present in the CPIX document, except if `ContentKey` elements have a `@contentId` value. In this latter case, the concatenation is limited to those that have a referenced `ContentKey` element with the same `@contentId` value.
+:: This attribute has meaning only when an HLS playlist is created for the media content.
+:: If the referenced `ContentKey` element includes a `@dependsOnKey` attribute, this element shall not be used.
+
+: `PSSH (0...1, xs:base64binary)`
 :: This is the full `pssh` box that should be added to ISOBMFF files encrypted with the referenced Content Key.
-:: If the referenced <{ContentKey}> element by `@kid` includes a `@dependsOnKey` attribute, the value shall be inserted under the `moof` box.
-:: If the referenced <{ContentKey}> element by `@kid` does not include a `@dependsOnKey` attribute, the value may be inserted under the `moov` box or the `moof` box. In this case, see [[!DASHIF-IOPv5p6]], clause 6, if this element is used.
+:: If the referenced `ContentKey` element includes a `@dependsOnKey` attribute, the value shall be inserted under the `moof` box.
+:: If the referenced `ContentKey` element does not include a `@dependsOnKey` attribute, the value may be inserted under the `moov` box or the `moof` box. In this case, see [[!DASHIF-IOPv5p6]], clause 6 for more details.
 
-: `ContentProtectionData` (0...1, xs:base64binary)
+: `ContentProtectionData (0...1, cpix:ContentProtectionData)`
 :: This is the full well-formed standalone XML fragment to be added to the DASH manifest under the `ContentProtection` element for this DRM system. This is UTF-8 text without a byte order mark. An example of such data is the W3C signaling defined in [[!DASHIF-IOPv5p6]], in this case, all `dashif:xxx` elements are children of the `ContentProtection` element and are therefore provided in this element.
-:: If the referenced <{ContentKey}> element by `@kid` includes a `@dependsOnKey` attribute, this element shall not be used.
-:: If the referenced <{ContentKey}> element by `@kid` does not include a `@dependsOnKey` attribute, the value may be added under the `ContentProtection` element for this DRM system.
 :: This element has meaning only when a DASH manifest is created for the media content.
+:: If the referenced `ContentKey` element includes a `@dependsOnKey` attribute, this element shall not be used.
+:: If the referenced `ContentKey` element does not include a `@dependsOnKey` attribute, the value may be added under the `ContentProtection` element for this DRM system.
 
-: `URIExtXKey` (0...1, xs:base64binary)
-:: This is the full data to be added in the URI parameter of the `#EXT-X-KEY` tag of a HLS playlist. This is UTF-8 text without a byte order mark.
-:: This element is present only when the content is in the HLS format.
-:: The use of this element is deprecated. Using <{HLSSignalingData}> is recommended.
-
-: `HLSSignalingData` (0...2, <{HLSSignalingData}>)
+: `HLSSignalingData (0...2, cpix:HLSSignalingData)`
 :: This is the full data including the `#EXT-X-KEY` or `#EXT-X-SESSION-KEY` tag of a HLS playlist [[!HLS]] depending on the destination of the data (see [[#schema-datamodel-HLSsignalingdata]]). This may contain multiple lines allowing to add lines with proprietary tags and values. This is UTF-8 text without a byte order mark.
 :: This element shall not be used if the referenced Content Key is a leaf key in a key hierarchy.
 :: This element has meaning only when a HLS playlist is created for the media content.
+:: If the referenced `ContentKey` element includes a `@dependsOnKey` attribute, this element shall not be present.
 
 : `SmoothStreamingProtectionHeaderData` (0...1, xs:string)
-:: This is the inner text of the ProtectionHeader XML element to be added to the Smooth Streaming manifest for this DRM system. This is UTF-8 text without a byte order mark.
-:: This element shall not be used if the referenced Content Key is a leaf key in a key hierarchy.
+:: This is the inner text of the `ProtectionHeader` element to be added to the Smooth Streaming manifest for this DRM system. This is UTF-8 text without a byte order mark.
 :: This element has meaning only when a Smooth Streaming manifest is created for the media content.
+:: If the referenced `ContentKey` element includes a `@dependsOnKey` attribute, this element shall not be present.
 
-: `HDSSignalingData` (0...1, xs:base64binary)
-:: This is the full drmAdditionalHeader element to be added to the HDS playlist (including the beginning and ending tags). This is UTF-8 text without a byte order mark.
-:: This element shall not be used if the referenced Content Key is a leaf key in a key hierarchy.
-:: This element has meaning only when a Flash media manifest is created for the media content.
-
-Additional child elements not defined by DASH-IF may be present containing signaling data for other media formats. Such elements shall appear after any elements defined here.
+Additional child elements may be present containing signaling data for other media formats. Such elements shall appear after any elements defined here.
 
 <figure>
 	<img src="Images/Schema-DRMSystem.png">
 	<figcaption>DRMSystem element.</figcaption>
 </figure>
 
-### <dfn element>HLSSignalingData</dfn> Element ### {#schema-datamodel-HLSsignalingdata}
+### `ContentProtectionData` Element ### {#schema-datamodel-contentprotectiondata}
+The `ContentProtectionData` shall be base64 encoded text. It has an optional attribute allowing to define the robustness level that is expected for this DRM.
 
-The `HLSSignalingData` shall be base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the master playlist or in the media playlist. It allows having different proprietary signaling in these locations. In a <{DRMSystem}> element, every `HLSSignalingData` shall have a different `@playlist` value if present. If `@playlist` is not present then the `HLSSignalingData` goes in the media playlist and there is no signaling in the master playlist (in this case, there is only one `HLSSignalingData` element in the <{DRMSystem}> element).
+: `@robustness (O, xs:string)`
+:: The value of this attribute is DRM specific. It announces what robustness level is expected from the DRM system for the representations that are encrypted by the referenced Content Key.
+:: This is the value of the `@robustness` attribute of the `ContentProtection` element in the DASH manifest for this DRM system.
 
-: `@playlist` (O, restricted xs:string)
-:: Specifies the destination of the data carried by this element. It can only have two values `master` and `media`. There is a uniqueness rule for this attribute. If two elements are added under a <{DRMSystem}> element, they shall not have the same `@playlist` value.
+<figure>
+	<img src="Images/Schema-ContentProtectionData.png">
+	<figcaption>DRMSystem element.</figcaption>
+</figure>
+
+### `HLSSignalingData` Element ### {#schema-datamodel-HLSsignalingdata}
+
+The `HLSSignalingData` shall be base64 encoded text. It has an optional attribute allowing to define where this data is to be placed, either in the multiVariant playlist or in the media playlist. It allows having different proprietary signaling in these locations. In a `DRMSystem` element, every `HLSSignalingData` shall have a different `@playlist` value if present. If `@playlist` is not present then the `HLSSignalingData` goes in the media playlist and there is no signaling in the multiVariant playlist (in this case, there is only one `HLSSignalingData` element in the `DRMSystem` element).
+
+: `@playlist (O, restricted xs:string)`
+:: Specifies the destination of the data carried by this element. It can only have two values `multiVariant` and `media`. There is a uniqueness rule for this attribute. If two elements are added under a `DRMSystem` element, they shall not have the same `@playlist` value.
 
 <figure>
 	<img src="Images/Schema-HLSSignalingData.png">
 	<figcaption>HLSSignalingData element.</figcaption>
 </figure>
 
-### <dfn element>ContentKeyPeriodList</dfn> Element ### {#schema-datamodel-contentkeyperiodlist}
+### `ContentKeyPeriodList` Element ### {#schema-datamodel-contentkeyperiodlist}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `ContentKeyPeriod` (0...N, <{ContentKeyPeriod}>)
-:: For every Content Key, <{ContentKeyPeriod}> elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the Content as some parts may be in the clear.
+: `ContentKeyPeriod (1...N, cpix:ContentKeyPeriod)`
+:: For every Content Key, `ContentKeyPeriod` elements cover non ovelapping periods of time. The concatenation of all period of times may not fully cover the Content as some parts may be in the clear.
 
 <figure>
 	<img src="Images/Schema-ContentKeyPeriodList.png">
 	<figcaption>ContentKeyPeriodList element.</figcaption>
 </figure>
 
-### <dfn element>ContentKeyPeriod</dfn> Element ### {#schema-datamodel-contentkeyperiod}
+### `ContentKeyPeriod` Element ### {#schema-datamodel-contentkeyperiod}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@index` (O, xs:integer)
-:: Numerical index for the key period. Mutually exclusive with `@start` and `@end`.
+: `@index (O, xs:integer)`
+:: Numerical index for the key period. It shall increase. When reaching MAX_UINT32, the value rolls over.
 
-: `@start` (O, xs:dateTime)
-:: Wall clock (Live) or media time (VOD) for the start time for the period. Mutually exclusive with `@index`.
+: `@label (O, xs:string)`
+:: String identifier for the key period. As an example, the value of this attribute may be used to match a SCTE-35 `segmentation_event_id`, in this case, it allows matching this content key to a specific program.
 
-: `@end` (O, xs:dateTime)
-:: Wall clock (Live) or media time (VOD) for the end time for the period. Mutually exclusive with `@index`.
+: `@start (O, xs:dateTime)`
+:: For Live content, this is the wall clock time for the start time for the period.
 
-When `@start` and `@end` are present, the interval is defined by [`@start`, `@end`), meaning that the key is in use at the start time but not at the end time. If neither are specified, then it is assumed that the encryptor is determining the key period boundaries internally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (`@index`). An example of this would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
+: `@end (O, xs:dateTime)`
+:: For Live content, this is the wall clock time for the end time for the period. Mutually exclusive with `@duration`.
+
+: `@startOffset (O, xs:duration)`
+:: For VOD content, this is the start time for the period.
+
+: `@endOffset (O, xs:duration)`
+:: For VOD content, this is the end time for the period. Mutually exclusive with `@duration`.
+
+: `@duration (O, xs:duration)`
+:: For VOD and Live content, this is the duration for the period. Mutually exclusive with `@end` and `@endOffset`.
+
+The valid combinations of attributes are:
+* `@start` and `@end` are present, the interval is defined by [`@start`, `@end`).
+* `@start` and `@duration` are present, the interval is defined by [`@start`, `@start`+`@duration`).
+* `@startOffset` and `@endOffset` are present, the interval is defined by [`@startOffset`, `@endOffset`).
+* `@startOffset` and `@duration` are present, the interval is defined by [`@startOffset`, `@startOffset`+`@duration`).
+
+If none of these combinations is specified, then the encryptor is determining the key period boundaries internally, and other components do not need to be aware of them. In this case, the key periods are referenced simply by a sequence number (`@index`) or a string index (`@label`). An example of this use of `@index` would be an encryptor which rotates the keys once an hour, and not necessarily at specific times.
 
 <figure>
 	<img src="Images/Schema-ContentKeyPeriod.png">
 	<figcaption>ContentKeyPeriod element.</figcaption>
 </figure>
 
-### <dfn element>ContentKeyUsageRuleList</dfn> Element ### {#schema-datamodel-contentkeyusagerulelist}
+### `ContentKeyUsageRuleList` Element ### {#schema-datamodel-contentkeyusagerulelist}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (O, xs:integer)
-:: Matches the `@updateVersion` attribute of the <{UpdateHistoryItem}> element providing details on when this element was added or updated.
+: `@updateVersion (O, xs:integer)`
+:: Matches the `@updateVersion` attribute of the `UpdateHistoryItem` element providing details on when this element was added or updated.
 
-: `ContentKeyUsageRule` (0...N, <{ContentKeyUsageRule}>)
+: `ContentKeyUsageRule (1...N, cpix:ContentKeyUsageRule)`
 :: A rule which defines a Content Key Context.
 
 <figure>
@@ -751,73 +839,73 @@ When `@start` and `@end` are present, the interval is defined by [`@start`, `@en
 	<figcaption>ContentKeyUsageRuleList element.</figcaption>
 </figure>
 
-### <dfn element>ContentKeyUsageRule</dfn> Element ### {#schema-datamodel-contentkeyusagerule}
+### `ContentKeyUsageRule` Element ### {#schema-datamodel-contentkeyusagerule}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@kid` (M, cpix:UUIDType)
-:: Matches the `@kid` attribute of the <{ContentKey}> this element references.
+: `@kid (M, cpix:UUIDType)`
+:: Matches the `@kid` attribute of the `ContentKey` this element references.
 :: In hierarchical key scenarios, this shall reference a leaf key, not a root key.
 
-: `@intendedTrackType` (O, xs:string)
+: `@intendedTrackType (O, xs:string)`
 :: Specifies the type of media track which corresponds to the streams which match the rules defined in this element.
 :: Examples of types for the media track might be UHD, UHD+HFR. See [[#schema-datamodel-usagerulefilter-labelfilter]] for more details.
 
-: `KeyPeriodFilter` (0...N, <{KeyPeriodFilter}>)
+: `KeyPeriodFilter (0...N, cpix:KeyPeriodFilter)`
 :: Defines a period of time constraints for the Content Key Context.
-:: This filter links <{ContentKey}> and <{ContentKeyPeriod}> elements.
+:: This filter links `ContentKey` and `ContentKeyPeriod` elements.
 
-: `LabelFilter` (0...N, <{LabelFilter}>)
+: `LabelFilter (0...N, cpix:LabelFilter)`
 :: Defines a label association for the Content Key Context.
 
-: `VideoFilter` (0...N, <{VideoFilter}>)
+: `VideoFilter (0...N, cpix:VideoFilter)`
 :: Defines video constraints to be associated with the Content Key Context.
 :: This filter can only be used on media content of type video.
 
-: `AudioFilter` (0...N, <{AudioFilter}>)
+: `AudioFilter (0...N, cpix:AudioFilter)`
 :: Defines audio constraints to be associated with the Content Key Context.
 :: This filter can only be used on media content of type audio.
 
-: `BitrateFilter` (0...N, <{BitrateFilter}>)
+: `BitrateFilter (0...N, cpix:BitrateFilter)`
 :: Defines bitrate constraints to be associated with the Content Key Context.
 
-Additional child elements not defined by DASH-IF may be present containing proprietary filters. Such elements shall appear after any elements defined here.
+Additional child elements may be present containing proprietary filters. Such elements shall appear after any elements defined here.
 
 <figure>
 	<img src="Images/Schema-ContentKeyUsageRule.png">
 	<figcaption>ContentKeyUsageRule element.</figcaption>
 </figure>
 
-### <dfn element>Usage Rules Filters</dfn> ### {#schema-datamodel-usagerulefilter}
+### Usage Rules Filters ### {#schema-datamodel-usagerulefilter}
 
-#### <dfn element> Introduction</dfn> #### {#schema-datamodel-usagerulefilter-intro}
+#### Introduction #### {#schema-datamodel-usagerulefilter-intro}
 
-There can be several filters defined within a single <{ContentKeyUsageRule}>. In this case, all rules apply identically, the entity generating the <{ContentKeyUsageRule}> element or adding a new rule is responsible for ensuring that they do not contradict each other. A set of rules that would match multiple Content Keys to a single Content Key Context is invalid.
+There can be several filters defined within a single `ContentKeyUsageRule`. In this case, all rules apply identically, the entity generating the `ContentKeyUsageRule` element or adding a new rule is responsible for ensuring that they do not contradict each other. A set of rules that would match multiple Content Keys to a single Content Key Context is invalid.
 
-If more than one of a particular type of filter (e.g. <{KeyPeriodFilter}>) is present within a <{ContentKeyUsageRule}>, then they are first aggregated with a logical OR operator. After that, different types of filters are aggregated with a logical AND operator. For example, a rule that defines a label filter for stream-1, a label filter for steam-2 and a video filter would be matched as (stream-1 OR stream-2) AND video.
+If more than one of a particular type of filter (e.g. `KeyPeriodFilter`) is present within a `ContentKeyUsageRule`, then they are first aggregated with a logical OR operator. After that, different types of filters are aggregated with a logical AND operator. For example, a rule that defines a label filter for stream-1, a label filter for steam-2 and a video filter would be matched as (stream-1 OR stream-2) AND video.
 
 A scenario where multiple Content Keys can be mapped to a single Content Key Context shall be considered invalid. A CPIX document shall always match exactly zero or one Content Keys to any Content Key Context.
 
-A usage rule shall be considered unusable if it contains a child element whose meaning is unknown (i.e. a filter of an unknown type) or which cannot be processed for any other reason (e.g. `@minPixels` in the <{VideoFilter}> element is defined but the implementation does not know the pixel count of the video samples). An entity interpreting the <{ContentKeyUsageRule}> element shall not perform Content Key(s) mapping to Content Key Contexts if any unusable usage rules exist. An entity that is not interpreting the <{ContentKeyUsageRule}> element (doing, for example, only storage of the CPIX document for latter distribution to another entity) can perform any processing on the document.
+A usage rule shall be considered unusable if it contains a child element whose meaning is unknown (i.e. a filter of an unknown type) or which cannot be processed for any other reason (e.g. `@minPixels` in the `VideoFilter` element is defined but the implementation does not know the pixel count of the video samples). An entity interpreting the `ContentKeyUsageRule` element shall not perform Content Key(s) mapping to Content Key Contexts if any unusable usage rules exist. An entity that is not interpreting the `ContentKeyUsageRule` element (doing, for example, only storage of the CPIX document for latter distribution to another entity) can perform any processing on the document.
 
 Processing of the Content Key(s) referenced by any unusable usage rules shall not be performed. The usable part of the document can be processed normally.
 
 There can be many different sources for defining usage rules, for example, they can be the result of a right holder requirement or a decision to encrypt separately SD, HD and UHD tracks. The CPIX document does not keep track of the source of these rules, it only defines how to maps Content Keys to tracks.
 
-#### <dfn element>KeyPeriodFilter</dfn> Element #### {#schema-datamodel-usagerulefilter-keyperiodfilter}
+#### `KeyPeriodFilter` Element #### {#schema-datamodel-usagerulefilter-keyperiodfilter}
 
-: `@periodId` (M, xs:IDREF)
-:: This references a <{ContentKeyPeriod}> element by `@id`. The filter will only match samples that belong to the referenced key period.
+: `@periodId (M, xs:IDREF)`
+:: This references a `ContentKeyPeriod` element by `@id`. The filter will only match samples that belong to the referenced key period.
 
 <figure>
 	<img src="Images/Schema-KeyPeriodFilter.png">
 	<figcaption>KeyPeriodFilter element.</figcaption>
 </figure>
 
-#### <dfn element>LabelFilter</dfn> Element #### {#schema-datamodel-usagerulefilter-labelfilter}
+#### `LabelFilter` Element #### {#schema-datamodel-usagerulefilter-labelfilter}
 
-: `@label` (M, xs:string)
+: `@label (M, xs:string)`
 :: The filter will only match samples that carry a matching label. The exact meaning of labels is implementation-defined and shall be agreed upon in advance by the producer and consumer of the CPIX document.
 
 <figure>
@@ -825,32 +913,32 @@ There can be many different sources for defining usage rules, for example, they 
 	<figcaption>LabelFilter element.</figcaption>
 </figure>
 
-The `@label` attribute is meant for triggering a particular <{ContentKeyUsageRule}> by using pre-agreed upon label strings. Its value may or may not correspond to media track types. One example is a label such as UHD that can be used to match the corresponding <{ContentKeyUsageRule}> element when used as an input or selector for a content encryptor, media packager, MPD generator or license service to select a specific Content Key, populate the `ContentProtection` element, or include the corresponding key in a content license. Another example is if there is a previous agreement defined outside of a CPIX document that "blue tracks" are encrypted with the Content Key 1234 and "green tracks" are encrypted with the Content Key 5678. The labels can be used in this case to identify the suitable tracks (without expressing the specifics of the agreement itself).
+The `@label` attribute is meant for triggering a particular `ContentKeyUsageRule` by using pre-agreed upon label strings. Its value may or may not correspond to media track types. One example is a label such as UHD that can be used to match the corresponding `ContentKeyUsageRule` element when used as an input or selector for a content encryptor, media packager, MPD generator or license service to select a specific Content Key, populate the `ContentProtection` element, or include the corresponding key in a content license. Another example is if there is a previous agreement defined outside of a CPIX document that "blue tracks" are encrypted with the Content Key 1234 and "green tracks" are encrypted with the Content Key 5678. The labels can be used in this case to identify the suitable tracks (without expressing the specifics of the agreement itself).
 
-In contrast, the `@intendedTrackType` attribute of <{ContentKeyUsageRule}> is used to assign a track type to the media streams which match the filters. The value of the string may not be pre-agreed between the various entities making use of the CPIX document. Said differently, the `@intendedTrackType` attribute is a metadata that states business logic. For example, a rule can be that all low resolutions streams are encrypted with the same Content Key. The value lowRes matches this rule. It has no function in defining what Content Key are matched to what tracks, it simply acts as a label to allow business logic to say authorize the use of lowRes Content Key and then a CPIX processor can find the rules that matches the right Content Keys for lowRes and thereby associated with low resolution tracks.
+In contrast, the `@intendedTrackType` attribute of `ContentKeyUsageRule` is used to assign a track type to the media streams which match the filters. The value of the string may not be pre-agreed between the various entities making use of the CPIX document. Said differently, the `@intendedTrackType` attribute is a metadata that states business logic. For example, a rule can be that all low resolutions streams are encrypted with the same Content Key. The value lowRes matches this rule. It has no function in defining what Content Key are matched to what tracks, it simply acts as a label to allow business logic to say authorize the use of lowRes Content Key and then a CPIX processor can find the rules that matches the right Content Keys for lowRes and thereby associated with low resolution tracks.
 
-If a specific key is to be used for more than one type of track (this is not recommended), then there ought to be multiple <{ContentKeyUsageRule}> elements, one for each track type, even if they all reference the same Content Key with the same `@kid`.
+If a specific key is to be used for more than one type of track (this is not recommended), then there ought to be multiple `ContentKeyUsageRule` elements, one for each track type, even if they all reference the same Content Key with the same `@kid`.
 
-#### <dfn element>VideoFilter</dfn> Element #### {#schema-datamodel-usagerulefilter-videofilter}
+#### `VideoFilter` Element #### {#schema-datamodel-usagerulefilter-videofilter}
 
 If present, even without any attributes, the filter will only match video samples.
 
-: `@minPixels` (OD, xs:integer)
+: `@minPixels (OD, xs:integer)`
 :: The filter will only match video samples that contain at least this number of pixels (encoded width x height before considering pixel/sample aspect ratio). The default value is 0 (zero).
 
-: `@maxPixels` (OD, xs:integer)
+: `@maxPixels (OD, xs:integer)`
 :: The filter will not match video samples that contain more than this number of pixels (encoded width x height before considering pixel/sample aspect ratio). The default value is MAX_UINT32.
 
-: `@hdr` (O, xs:boolean)
+: `@hdr (O, xs:boolean)`
 :: Boolean value indicating whether the matching video stream is encoded in HDR.
 
-: `@wcg` (O, xs:boolean)
+: `@wcg (O, xs:boolean)`
 :: Boolean value indicating whether the matching video stream is encoded in WCG.
 
-: `@minFps` (O, xs:integer)
+: `@minFps (O, xs:integer)`
 :: Minimum nominal number of frames per second for the video stream. For interlaced video, this is half the number of fields per second.
 
-: `@maxFps` (O, xs:integer)
+: `@maxFps (O, xs:integer)`
 :: Maximum nominal number of frames per second for the video stream. For interlaced video, this is half the number of fields per second.
 
 When `@minPixels` and `@maxPixels` are present, the interval is defined by [`@minPixels`, `@maxPixels`], meaning that the filter is used for content with video samples that contain `@minPixels` pixels and is used for content with video samples that contain `@maxPixels` pixels.
@@ -862,14 +950,14 @@ When `@minFps` and `@maxFps` are present, the interval is defined by (`@minFps`,
 	<figcaption>VideoFilter element.</figcaption>
 </figure>
 
-#### <dfn element>AudioFilter</dfn> Element #### {#schema-datamodel-usagerulefilter-audiofilter}
+#### `AudioFilter` Element #### {#schema-datamodel-usagerulefilter-audiofilter}
 
 If present, even without any attributes, the filter will only match audio samples.
 
-: `@minChannels` (OD, xs:integer)
+: `@minChannels (OD, xs:integer)`
 :: The filter will only match audio samples that contain at least this number of channels. The default value is 0 (zero).
 
-: `@maxChannels` (OD, xs:integer)
+: `@maxChannels (OD, xs:integer)`
 :: The filter will not match audio samples that contain more than this number of channels. The default value is MAX_UINT32.
 
 When `@minChannels` and `@maxChannels` are present, the interval is defined by [`@minChannels`, `@maxChannels`], meaning that the filter is used for content with audio samples that have `@minChannels` audio channels and is used for content with audio samples that have `@maxChannels` audio channels.
@@ -879,12 +967,12 @@ When `@minChannels` and `@maxChannels` are present, the interval is defined by [
 	<figcaption>AudioFilter element.</figcaption>
 </figure>
 
-#### <dfn element>BitrateFilter</dfn> Element #### {#schema-datamodel-usagerulefilter-bitratefilter}
+#### `BitrateFilter` Element #### {#schema-datamodel-usagerulefilter-bitratefilter}
 
-: `@minBitrate` (OD, xs:integer)
+: `@minBitrate (OD, xs:integer)`
 :: The filter will only match samples from streams with a nominal bitrate in b/s of at least this value. The default value is 0 (zero).
 
-: `@maxBitrate` (OD, xs:integer)
+: `@maxBitrate (OD, xs:integer)`
 :: The filter will not match samples from streams with a nominal bitrate in b/s that exceeds this value. The default value is MAX_UINT32.
 
 At least one of `@minBitrate` and `@maxBitrate` shall be specified.
@@ -896,12 +984,12 @@ When `@minBitrate` and `@maxBitrate` are present, the interval is defined by [`@
 	<figcaption>BitrateFilter element.</figcaption>
 </figure>
 
-### <dfn element>UpdateHistoryItemList</dfn> Element ### {#schema-datamodel-updatehistoryitemlist}
+### `UpdateHistoryItemList` Element ### {#schema-datamodel-updatehistoryitemlist}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `UpdateHistoryItem` (0...N, <{UpdateHistoryItem}>)
+: `UpdateHistoryItem (1...N, cpix:UpdateHistoryItem)`
 :: It contains metadata about an update made to the CPIX document. There should be one entry for each instance in which an entity updated the document.
 
 <figure>
@@ -909,21 +997,21 @@ When `@minBitrate` and `@maxBitrate` are present, the interval is defined by [`@
 	<figcaption>UpdateHistoryItemList element.</figcaption>
 </figure>
 
-### <dfn element>UpdateHistoryItem</dfn> Element ### {#schema-datamodel-updatehistoryitem}
+### `UpdateHistoryItem` Element ### {#schema-datamodel-updatehistoryitem}
 
-: `@id` (O, xs:ID)
+: `@id (O, xs:ID)`
 :: An identifier for the element. It is recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@updateVersion` (M, xs:integer)
+: `@updateVersion (M, xs:integer)`
 :: The is the ID referenced by other elements in the document. It is strongly recommended to use an identifier that is unique within the scope in which this CPIX document is published.
 
-: `@index` (M, xs:string)
-:: This is the version number for the document update. Each <{UpdateHistoryItem}> element contains a unique value for this attribute. It is a monotonically increasing number, starting at value 1.
+: `@index (M, xs:string)`
+:: This is the version number for the document update. Each `UpdateHistoryItem` element contains a unique value for this attribute. It is a monotonically increasing number, starting at value 1.
 
-: `@source` (M, xs:string)
+: `@source (M, xs:string)`
 :: This is the identifier for the entity which performed the document update.
 
-: `@date` (M, xs:dateTime)
+: `@date (M, xs:dateTime)`
 :: This is the date and time when the document update was performed.
 
 <figure>
@@ -933,41 +1021,49 @@ When `@minBitrate` and `@maxBitrate` are present, the interval is defined by [`@
 
 # Key Management # {#keys}
 
-## Key Encryption in the CPIX Document ## {#keys-enc}
+## Key Encryption and Authentication in the CPIX Document ## {#keys-enc}
 
 ### Introduction ### {#keys-enc-intro}
 
 The CPIX document allows exchanging Content Keys in the clear but this is not a recommended method as it relies on the security of the communication mechanism used to deliver the CPIX document to the recipients, which may not be sufficient to adequately protect the Content Keys.
 
-Content Keys can be delivered encrypted within the document itself and in this case, a multi-level structure of encryption keys is used for an efficient encryption avoiding duplication of encrypted content and expensive encryption methods. This clause describes the mechanism that shall be used when encryption of the Content Keys in the document is used.
+Content Keys can be delivered encrypted within the document itself and in this case, a multi-level structure of encryption keys is used for an efficient encryption avoiding duplication of encrypted content and expensive encryption methods. This clause describes the mechanism that shall be used when encryption and authentication of the Content Keys in the document is used.
 
-### Keys Used to Secure the CPIX Document ### {#keys-enc-keytypes}
+### Encryption ### {#keys-enc-keytypes}
 
-The document contains the following keys:
+The document contains the following keys for encrypting Content Keys:
 
 : Content Keys
-:: Each <{ContentKey}> element contains one Content Key that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other Content Keys (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASHIF-IOPv5p6]], these keys are 128-bit keys used with the AES cipher.
+:: Each `ContentKey` element contains one Content Key that is used for encrypting an asset or crypto period of an asset or that acts as a dependency for the use of other Content Keys (when a key hierarchy is used). Typically, for Common Encryption as supported in [[!DASHIF-IOPv5p6]], these keys are 128-bit keys used with the AES cipher.
 
-: Document Key
-:: For every CPIX document, a Document Key is created. It is used for encrypting every Content Key. The Document Key is a 256-bit key and the encryption algorithm used for encrypting every Content Key is AES. The Document Key is part of each <{DeliveryData}> element. It is itself encrypted in the document, using the public key of each recipient.
+: Document Keys
+:: For every CPIX document, one or several Document Keys may be created. It is used for encrypting Content Keys. These Document Keys are 256-bit key and the encryption algorithm used for encrypting every Content Key is AES. These are part of `DeliveryData` elements. These are encrypted in the document, using the public key of recipients.
 
 : Delivery Keys
-:: Each <{DeliveryData}> element identifies a Delivery Key, which is a public key from a key pair owned by the intended recipient. The Delivery Key is identified in the <{DeliveryData}> element by including the X.509 certificate of the intended recipient. The Delivery Key is used for encrypting the Document Key using an algorithm that is described within the CPIX document, according to [[!XMLENC-CORE]].
+:: Each `DeliveryData` element identifies a Delivery Key, which is a public key from a key pair owned by the intended recipient. The Delivery Key is identified in the `DeliveryData` element by including the X.509 certificate of the intended recipient. The Delivery Key is used for encrypting Document Keys using an algorithm that is described within the CPIX document, according to [[!XMLENC-CORE]].
 
-The below figure gives the schema of encryption of the different keys when there are several <{DeliveryData}> elements and several <{ContentKey}> elements. The Document Key allows reducing the numbers of <{ContentKey}> elements as the Content Key they contain are all encrypted by the same Document Key.
+The below figure gives the schema of encryption of the different keys when there are several `DeliveryData` elements, one `DocumentKey`element and several `ContentKey` elements. The Document Key allows reducing the numbers of `ContentKey` elements as the Content Key they contain are all encrypted by the same Document Key.
 
 <figure>
-	<img src="Images/DocumentKeyStructure.png">
-	<figcaption>Encryption relationships within the CPIX document. Blue indicates encrypted data.</figcaption>
+	<img src="Images/Diagram-EncryptionOneDocumentKey.png">
+	<figcaption>Encryption relationships within the CPIX document with one Document Key.</figcaption>
+</figure>
+
+The below figure gives the schema of encryption of the different keys when there are several `DeliveryData` elements, several `DocumentKey` elements and several `ContentKey` elements. In this example, the recipient identified in `DeliveryData_2` is entitled to access a subset of the Content Keys that are in the CPIX document while the recipient identified in `DeliveryData_1` is entitled to access another subset of the Content Keys.
+
+<figure>
+	<img src="Images/Diagram-EncryptionSeveralDocumentKeys.png">
+	<figcaption>Encryption relationships within the CPIX document with several Document Keys.</figcaption>
 </figure>
 
 ### Authenticated Encryption ### {#keys-enc-mac}
 
-: MAC Key
-:: For every CPIX document, a MAC Key is created. It is used to calculate the MAC of every encrypted Content Key. The <{DeliveryData}> element identifies the MAC algorithm and provides the MAC Key, encrypted with the Delivery Key, for each recipient.
+The document contains the following key for authenticating keys:
 
-: Authenticated Encryption of Content Keys
-:: Implementations shall provide a MAC for every encrypted Content Key and shall verify the MAC before attempting to decrypt any encrypted Content Key. The purpose of the MAC is to protect against cryptographic vulnerabilities in the receiving application; it is not used as a general purpose authentication mechanism.
+: MAC Key
+:: For every CPIX document, a MAC Key may be created. It is used to calculate the MAC of every encrypted Content Key. The `DeliveryData` element identifies the MAC algorithm and provides the MAC Key, encrypted with the Delivery Key, for each recipient.
+
+For authenticated encryption of Content Keys, every encrypted Content Key shall have a MAC value and it shall be verified before attempting to decrypt any encrypted Content Key. The purpose of the MAC is to protect against cryptographic vulnerabilities in the receiving application; it is not used as a general-purpose authentication mechanism.
 
 The MAC is calculated over the data in the `CipherValue` element (the concatenated IV and encrypted Content Key) and stored in the `ValueMac` element under the Secret element for each encrypted Content Key.
 
@@ -991,27 +1087,27 @@ The following table gives the identification of the algorithms that shall be use
 	</tr>
 	<tr>
 		<td>Content Key wrapping</td>
-		<td>AES256-CBC, PKCS #7 padding</td>
+		<td>`AES256-CBC with PKCS #7 padding`</td>
 	</tr>
 	<tr>
 		<td>Encrypted key MAC</td>
-		<td>HMAC-SHA512</td>
+		<td>`HMAC-SHA512`</td>
 	</tr>
 	<tr>
 		<td>Document Key wrapping</td>
-		<td>RSA-OAEP-MGF1-SHA1</td>
+		<td>`RSA-OAEP-MGF1-SHA1`</td>
 	</tr>
 	<tr>
 		<td>Digital signature</td>
-		<td>RSASSA-PKCS1-v1_5</td>
+		<td>`RSASSA-PKCS1-v1_5`</td>
 	</tr>
 	<tr>
 		<td>Digital signature digest</td>
-		<td>SHA-512</td>
+		<td>`SHA-512`</td>
 	</tr>
 	<tr>
 		<td>Digital signature canonicalization</td>
-		<td>Canonimal XML 1.0 (omits comments)</td>
+		<td>`Canonical XML 1.1 (comments omitted)`</td>
 	</tr>
 </table>
 
@@ -1021,30 +1117,57 @@ For RSA, the recommended minimum key size is 3072 bits and is it not recommended
 
 A CPIX document can contain content protection information for multiple crypto-periods, or period of time for content encrypted using key rotation.
 
-When content is protected with key rotation, a CPIX document shall contain one or more <{ContentKey}> elements and one or more <{ContentKeyPeriod}> elements, one of each per crypto-period which the document covers. Each <{ContentKey}> element contains the key material for a single crypto-period. The crypto-period itself is identified by the <{ContentKeyPeriod}> element, that includes `@start`, `@end` or `@index` attributes.
+When content is protected with key rotation, a CPIX document shall contain one or more `ContentKey` elements and one or more `ContentKeyPeriod` elements, one of each per crypto-period which the document covers. Each `ContentKey` element contains the key material for a single crypto-period. The crypto-period itself is identified by a well-formed `ContentKeyPeriod` element as described in [[#schema-datamodel-contentkeyperiod]].
 
 Key rotation may be supported in complex workflows, with one entity requesting DRM Signaling for multiple crypto periods, and another entity providing the requested information (keys, DRM system-specific information for the crypto period, etc). Clause 9 of [[!DASHIF-IOPv5p6]] defines three scenarios for key rotation. The decision for encrypting content following one of these scenarios is made, most of the time, by the entity requesting DRM signaling, the entity providing this information is not aware of it. As a consequence, in some cases, the response will include some information that will not be inserted in the MPD (if requested for DASH content). In more details:
 
 : Manifest based key rotation signaling
-:: The entity providing the DRM signaling shall insert the `PSSH` element and the `ContentProtectionData` element under the <{DRMSystem}> element associated to all content keys. The `ContentProtectionData` element shall be inserted in the MPD under the `ContentProtection` element. The `PSSH` element may be inserted under the `moov` box.
+:: The entity providing the DRM signaling shall insert the `PSSH` element and the `ContentProtectionData` element under the `DRMSystem` element associated to all content keys. The `ContentProtectionData` element shall be inserted in the MPD under the `ContentProtection` element. The `PSSH` element may be inserted under the `moov` box.
 
 : In-band key rotation signaling
-:: The entity providing the DRM signaling shall insert the `PSSH` element and the `ContentProtectionData` element under the <{DRMSystem}> element associated to all content keys. The `ContentProtectionData` element shall be ignored. The `PSSH` element shall be inserted under the `moov` box and `moof` boxes of the segments that are encrypted by this key.
+:: The entity providing the DRM signaling shall insert the `PSSH` element and the `ContentProtectionData` element under the `DRMSystem` element associated to all content keys. The `ContentProtectionData` element shall be ignored. The `PSSH` element shall be inserted under the `moov` box and `moof` boxes of the segments that are encrypted by this key.
 
 : In-band key hierarchy
-:: CPIX supports expressing two-level key hierarchies, where each leaf key has exactly one root key that is required in order to use the leaf key. Both root keys and leaf keys are represented using <{ContentKey}> elements, with leaf keys indicated by the presence of a `@dependsOnKey` attribute that references the root key as described in clause [[#schema-datamodel-contentkey]].
-:: If a CPIX document includes at least one <{ContentKey}> element that has a `@dependsOnKey` attribute, the content referenced by the `@contentId` attribute is fully protected with key hierarchy. A CPIX document may include <{ContentKey}> elements for leaf keys only, the referenced root key is then provided in a different document.
-:: When using hierarchical keys, only the leaf keys shall be used to encrypt media content. Therefore, root keys shall not be referenced by any <{ContentKeyUsageRule}> elements.
-:: The `PSSH` element under the <{DRMSystem}> element associated to the root key shall be inserted under the `moov` box, while, for the leaf keys, it shall be inserted under the `moof` boxes of the segments that are encrypted by this leaf key. The `ContentProtectionData` element of the <{DRMSystem}> element associated to the root key shall be inserted in the MPD. The entity providing the signaling uses the presence or not of the `@dependsOnKey` attribute in the <{ContentKey}> element for knowing what type of signaling it needs to generate for every key.
+:: CPIX supports expressing two-level key hierarchies, where each leaf key has exactly one root key that is required in order to use the leaf key. Both root keys and leaf keys are represented using `ContentKey` elements, with leaf keys indicated by the presence of a `@dependsOnKey` attribute that references the root key as described in clause [[#schema-datamodel-contentkey]].
+:: If a CPIX document includes at least one `ContentKey` element that has a `@dependsOnKey` attribute, the content referenced by the `@contentId` attribute is fully protected with key hierarchy. A CPIX document may include `ContentKey` elements for leaf keys only, the referenced root key is then provided in a different document.
+:: When using hierarchical keys, only the leaf keys shall be used to encrypt media content. Therefore, root keys shall not be referenced by any `ContentKeyUsageRule` elements.
+:: The `PSSH` element under the `DRMSystem` element associated to the root key shall be inserted under the `moov` box, while, for the leaf keys, it shall be inserted under the `moof` boxes of the segments that are encrypted by this leaf key. The `ContentProtectionData` element of the `DRMSystem` element associated to the root key shall be inserted in the MPD. The entity providing the signaling uses the presence or not of the `@dependsOnKey` attribute in the `ContentKey` element for knowing what type of signaling it needs to generate for every key.
 :: Note that not all DRM systems support key hierarchy.
 
 ## Content Keys with Several Protection Encryption Schemes ## {#keys-encryptionScheme}
 
-In [[!MPEGCENC]], several protection schemes that are not interoperable are defined. This means that several encrypted versions for the same content in the clear are created if the targeted devices support one or another protection scheme. While it may not be recommended, it is possible to use the same Content Keys when encrypting these different versions. In term of CPIX document, this means that several documents need to be created, these documents will differ on the `@commonEncryptionScheme` attribute under the <{ContentKey}> element which will take a different value depending on the protection schemes. Note that depending on the DRM, some elements under the <{DRMSystem}> element may also be different.
+In [[!MPEGCENC]], several protection schemes that are not interoperable are defined. This means that several encrypted versions for the same content in the clear are created if the targeted devices support one or another protection scheme. While it may not be recommended, it is possible to use the same Content Keys when encrypting these different versions. In term of CPIX document, this means that several documents need to be created, these documents will differ on the `@commonEncryptionScheme` attribute under the `ContentKey` element which will take a different value depending on the protection schemes. Note that depending on the DRM, some elements under the `DRMSystem` element may also be different.
 
-# Examples # {#examples}
+# CPIX Documents Best Practices # {#best-practices}
 
-Example CPIX documents are available on [GitHub](https://github.com/Dash-Industry-Forum/cpix-test-vectors). The examples contain valid data unless explicitly noted otherwise. Their contents are described on the referenced page.
+This clause provides best pactices for CPIX documents for some use cases. It provides the minimum set of elements and attributes to expect for these use cases.
+
+For the sake of simplicity, best pactices are considering three widely deployed and supported DRMs, namely, FairPlay, PlayReady and Widevine. Each DRM comes with its own signaling and some constraints. For example, it is very unlikely that FairPlay DRM signaling is needed for a content key with a `@commonEncryptionScheme` value equals to `cenc`. PlayReady signaling is defined on this [page](https://learn.microsoft.com/en-gb/playready/packaging/mp4-based-formats-supported-by-playready-clients?tabs=case1), offering some flexibiliby but not supporting all encrpytion modes defined in [[!MPEGCENC]].
+
+Disclaimer: This clause is not taking any commitment on the exact set of features supported by every DRM. In addition, this can evolve over time.
+
+These best practices can be found on [GitHub](https://github.com/Dash-Industry-Forum/CPIX) and are:
+
+: An asset with one content key (`OneContentKey.xml`)
+:: One content key is provided in the clear. This key has a `@commonEncryptionScheme` value equals to `cbcs`. HDCP data are attached to this content key in the form of an `HDCPData`element. `DRMSystem` elements include the expected robustness level, expressed in the terms defined by each DRM.  
+
+: An asset with multiples content keys (`KPTIntentedTrackType.xml`, `KPTLabelFilter.xml`)
+:: Two content keys are provided in the clear. They both have a `@commonEncryptionScheme` value equals to `cenc`. Each DRMSystem element has a `@robustness` attribute defining the expected robustness level for this DRM system for using the content key.
+:: In the first file, each content key is associated with a ContentKeyUsageRule element that contains an `@intendedTrackType` attribute, hence associating each key to a list of tracks associated to these values. In the second file, the exact same assocation is expressed using a `Label` filter.
+
+: An asset with multiples content keys encrypted (`KPTIntentedTrackTypeEncrypted.xml`)
+:: This is a continuation of one of the previous file where the content key are both encryped with one document key for one recipent that is described under a `DeliveryData` element.
+
+: An Asset with multiples content keys signed (`KPTIntentedTrackTypeSigned.xml`)
+:: Another continuation that describes the possiblity to sign some elements of the CPIX document. In this case, one may want to ensure that the `ContentKeyList` element is not modifed so that it is alway possible to decrypt the content ideentified by the `@contentId` attribute that is part of the `CPIX` element. Note that, in this file, the content keys are not encrypted, nothing prevents to also encrypt them and to sign the corresponding `ContentKeyList` element.
+
+: An asset with key rotation (`KeyRotationIndex.xml`, `KeyRotationDate.xml`, `KeyHierarchy.xml`)
+:: As described in clause [[#keys-rotation]], there are several mechanisms for enabling key rotation, hence, in case of DASH content, this means that the MPD is different. The CPIX document may then contain different information depending on the mode used. It is up to the receiveing entity to extract the relevant information and create a functional MPD.
+:: Within a CPIX document, the simplest model includes a `ContentKeyPeriod` element and its associated `KeyPeriodFilter` element. This is shown in the first and second files, using `@index` in the first file and `@start`, `@end`in the second file. The DRM signaling data includes all information and it is the responsibility of the entity generating the MDP to extract the relevant information depending on the MDP to be generated as explained in clause [[#keys-rotation]].
+:: The third file include an example with key herarchy, where all signaling for HDCP, robustness level are attached to the root key only. The `KeyPeriodFilter` elements are attached to the leaf keys. Note that the `PSSH` and `ContentProtectionData` elements contains dummy data in this file.
+
+: An asset with key rotation and multiples content keys (`KeyRotationAndKPT.xml` and `KeyHierarchyAndKPT.xml`)
+:: Associating key per track and key rotations, these files show the possibilities of the signaling in these cases. Key rotation can be also with key hierarchy, hence the second file for this example. Associating these funtionalities show how filters can be described in one `ContentKeyUsageRule` element.
 
 # Abbreviations # {#abbreviations}
 
@@ -1070,10 +1193,10 @@ Example CPIX documents are available on [GitHub](https://github.com/Dash-Industr
 :: Frames Per Second
 : HD
 :: High Definition
+: HDCP
+:: High-bandwidth Digital Content Protection
 : HDR
 :: High Dynamic Range
-: HDS
-:: HTTP Dynamic Streaming
 : HLS
 :: HTTP Live Streaming
 : ISO
@@ -1146,7 +1269,7 @@ Example CPIX documents are available on [GitHub](https://github.com/Dash-Industr
 		"publisher": "W3C"
 	},
 	"HLS": {
-		"href": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis-12",
+		"href": "https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/",
 		"title": "R. Pantos. HTTP Live Streaming 2nd Edition. Internet Draft",
 		"publisher": "IETF"
 	}
